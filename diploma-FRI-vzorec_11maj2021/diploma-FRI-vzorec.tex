@@ -1,0 +1,824 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% datoteka diploma-FRI-vzorec.tex
+%
+% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
+% na UL Fakulteti za računalništvo in informatiko
+%
+% na osnovi starejših verzij vkup spravil Franc Solina, maj 2021
+% prvo verzijo je leta 2010 pripravil Gašper Fijavž
+%
+% za upravljanje z literaturo ta vezija uporablja BibLaTeX
+%
+% svetujemo uporabo Overleaf.com - na tej spletni implementaciji LaTeXa ta vzorec zagotovo pravilno deluje
+%
+
+\documentclass[a4paper,12pt,openright]{book}
+%\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
+ 
+\usepackage[utf8]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8
+\usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorce
+\usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov
+\usepackage{fancyhdr}          % poskrbi, na primer, za glave strani
+\usepackage{amssymb}           % dodatni matematični simboli
+\usepackage{amsmath}           % eqref, npr.
+\usepackage{hyperxmp}
+\usepackage[hyphens]{url}
+\usepackage{csquotes}
+\usepackage[pdftex, colorlinks=true,
+						citecolor=black, filecolor=black, 
+						linkcolor=black, urlcolor=black,
+						pdfproducer={LaTeX}, pdfcreator={LaTeX}]{hyperref}
+
+\usepackage{color}
+\usepackage{soul}
+
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=nty,
+]{biblatex}
+
+
+\addbibresource{literatura.bib} %Imports bibliography file
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	DIPLOMA INFO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ttitle}{Ocena kakovosti ponarejenih posnetkov}
+\newcommand{\ttitleEn}{Visual Realism Assessment of Deepfakes}
+\newcommand{\tsubject}{\ttitle}
+\newcommand{\tsubjectEn}{\ttitleEn}
+\newcommand{\tauthor}{Luka Dragar}
+\newcommand{\tkeywords}{globoki ponaredek,vizualni realizem}
+\newcommand{\tkeywordsEn}{deepfake,visual realism}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	HYPERREF SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\ttitleEn}
+\hypersetup{pdfauthor={\tauthor}}
+\hypersetup{pdfkeywords=\tkeywordsEn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% postavitev strani
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\addtolength{\marginparwidth}{-20pt} % robovi za tisk
+\addtolength{\oddsidemargin}{40pt}
+\addtolength{\evensidemargin}{-40pt}
+
+\renewcommand{\baselinestretch}{1.3} % ustrezen razmik med vrsticami
+\setlength{\headheight}{15pt}        % potreben prostor na vrhu
+\renewcommand{\chaptermark}[1]%
+{\markboth{\MakeUppercase{\thechapter.\ #1}}{}} \renewcommand{\sectionmark}[1]%
+{\markright{\MakeUppercase{\thesection.\ #1}}} \renewcommand{\headrulewidth}{0.5pt} \renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[LE,RO]{\sl \thepage} 
+%\fancyhead[LO]{\sl \rightmark} \fancyhead[RE]{\sl \leftmark}
+\fancyhead[RE]{\sc \tauthor}              % dodal Solina
+\fancyhead[LO]{\sc Diplomska naloga}     % dodal Solina
+
+
+\newcommand{\BibLaTeX}{{\sc Bib}\LaTeX}
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% naslovi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\newcommand{\autfont}{\Large}
+\newcommand{\titfont}{\LARGE\bf}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+\setcounter{tocdepth}{1}	      % globina kazala
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% konstrukti
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\newtheorem{izrek}{Izrek}[chapter]
+\newtheorem{trditev}{Trditev}[izrek]
+\newenvironment{dokaz}{\emph{Dokaz.}\ }{\hspace{\fill}{$\Box$}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PDF-A
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% define medatata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\Title{\ttitle}
+\def\Author{\tauthor, matjaz.kralj@fri.uni-lj.si}
+\def\Subject{\ttitleEn}
+\def\Keywords{\tkeywordsEn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% \convertDate converts D:20080419103507+02'00' to 2008-04-19T10:35:07+02:00
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\convertDate{%
+    \getYear
+}
+
+{\catcode`\D=12
+ \gdef\getYear D:#1#2#3#4{\edef\xYear{#1#2#3#4}\getMonth}
+}
+\def\getMonth#1#2{\edef\xMonth{#1#2}\getDay}
+\def\getDay#1#2{\edef\xDay{#1#2}\getHour}
+\def\getHour#1#2{\edef\xHour{#1#2}\getMin}
+\def\getMin#1#2{\edef\xMin{#1#2}\getSec}
+\def\getSec#1#2{\edef\xSec{#1#2}\getTZh}
+\def\getTZh +#1#2{\edef\xTZh{#1#2}\getTZm}
+\def\getTZm '#1#2'{%
+    \edef\xTZm{#1#2}%
+    \edef\convDate{\xYear-\xMonth-\xDay T\xHour:\xMin:\xSec+\xTZh:\xTZm}%
+}
+
+%\expandafter\convertDate\pdfcreationdate 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% get pdftex version string
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcount\countA
+\countA=\pdftexversion
+\advance \countA by -100
+\def\pdftexVersionStr{pdfTeX-1.\the\countA.\pdftexrevision}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XMP data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\usepackage{xmpincl}
+%\includexmp{pdfa-1b}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pdfInfo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\pdfinfo{%
+    /Title    (\ttitle)
+    /Author   (\tauthor, damjan@cvetan.si)
+    /Subject  (\ttitleEn)
+    /Keywords (\tkeywordsEn)
+    /ModDate  (\pdfcreationdate)
+    /Trapped  /False
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% znaki za copyright stran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\newcommand{\CcImageCc}[1]{%
+	\includegraphics[scale=#1]{cc_cc_30.pdf}%
+}
+\newcommand{\CcImageBy}[1]{%
+	\includegraphics[scale=#1]{cc_by_30.pdf}%
+}
+\newcommand{\CcImageSa}[1]{%
+	\includegraphics[scale=#1]{cc_sa_30.pdf}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{slovene}
+\frontmatter
+\setcounter{page}{1} %
+\renewcommand{\thepage}{}       % preprečimo težave s številkami strani v kazalu
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%naslovnica
+ \thispagestyle{empty}%
+   \begin{center}
+    {\large\sc Univerza v Ljubljani\\%
+%      Fakulteta za elektrotehniko\\% za študijski program Multimedija
+%      Fakulteta za upravo\\% za študijski program Upravna informatika
+      Fakulteta za računalništvo in informatiko\\%
+%      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
+     }
+    \vskip 10em%
+    {\autfont \tauthor\par}%
+    {\titfont \ttitle \par}%
+    {\vskip 3em \textsc{DIPLOMSKO DELO\\[5mm]         % dodal Solina za ostale študijske programe
+%    VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+     UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
+    \vfill\null%
+% izberite pravi habilitacijski naziv mentorja!
+
+    {\large \textsc{Mentor}: doc. dr. Žiga Emeršič\par}%
+   {\large \textsc{Somentor}: pred. dr. Borut Batagelj\par}%
+    {\vskip 2em \large Ljubljana, \the\year \par}%
+\end{center}
+% prazna stran
+%\clearemptydoublepage      
+% izjava o licencah itd. se izpiše na hrbtni strani naslovnice
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%copyright stran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}
+
+\vspace*{5cm}
+{\small \noindent
+To delo je ponujeno pod licenco \textit{Creative Commons Priznanje avtorstva-Deljenje pod enakimi pogoji 2.5 Slovenija} (ali novej\v so razli\v cico).
+To pomeni, da se tako besedilo, slike, grafi in druge sestavine dela kot tudi rezultati diplomskega dela lahko prosto distribuirajo,
+reproducirajo, uporabljajo, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno in vidno navede avtorja in naslov tega
+dela in da se v primeru spremembe, preoblikovanja ali uporabe tega dela v svojem delu, lahko distribuira predelava le pod
+licenco, ki je enaka tej.
+Podrobnosti licence so dostopne na spletni strani \href{http://creativecommons.si}{creativecommons.si} ali na Inštitutu za
+intelektualno lastnino, Streliška 1, 1000 Ljubljana.
+
+\vspace*{1cm}
+\begin{center}% 0.66 / 0.89 = 0.741573033707865
+\CcImageCc{0.741573033707865}\hspace*{1ex}\CcImageBy{1}\hspace*{1ex}\CcImageSa{1}%
+\end{center}
+}
+
+\vspace*{1cm}
+{\small \noindent
+Izvorna koda diplomskega dela, njeni rezultati in v ta namen razvita programska oprema je ponujena pod licenco GNU General Public License,
+različica 3 (ali novejša). To pomeni, da se lahko prosto distribuira in/ali predeluje pod njenimi pogoji.
+Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
+}
+
+\vfill
+\begin{center} 
+\ \\ \vfill
+{\em
+Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
+\end{center}
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% stran 3 med uvodnimi listi
+\thispagestyle{empty}
+\
+\vfill
+
+\bigskip
+\noindent\textbf{Kandidat:} Luka Dragar\\
+\noindent\textbf{Naslov:} Ocena kakovosti ponarejenih posnetkov\\
+% vstavite ustrezen naziv študijskega programa!
+\noindent\textbf{Vrsta naloge:} Diplomska naloga na univerzitetnem programu prve stopnje Računalništvo in informatika \\
+% izberite pravi habilitacijski naziv mentorja!
+\noindent\textbf{Mentor:} doc. dr. Žiga Emeršič\\
+\noindent\textbf{Somentor:} pred. dr. Borut Batagelj
+
+\bigskip
+\noindent\textbf{Opis:}\\
+Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. 
+V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. 
+Kaj so cilji, kakšne metode naj uporabi, morda bo zapisal tudi ključno literaturo.
+
+\bigskip
+\noindent\textbf{Title:} Visual Realism Assessment of Deepfakes
+
+\bigskip
+\noindent\textbf{Description:}\\
+opis diplome v angleščini
+
+\vfill
+
+
+
+\vspace{2cm}
+
+% prazna stran
+\clearemptydoublepage
+
+% zahvala
+\thispagestyle{empty}\mbox{}\vfill\null\it%
+\noindent
+Hvaležen sem svojemu mentorju, doc. dr. Žigi Emeršiču, in somentorju, pred. dr. Borutu Batagelju, za strokovno usmerjanje in pomoč pri oblikovanju te diplomske naloge.
+\rm\normalfont
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% posvetilo, če sama zahvala ne zadošča :-)
+\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
+Svoji dragi Lari.
+\normalfont\end{minipage}
+
+% prazna stran
+\clearemptydoublepage
+
+\selectlanguage{english}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kazalo
+\pagestyle{empty}
+\def\thepage{}% preprečimo težave s številkami strani v kazalu
+\tableofcontents{}
+
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% seznam kratic
+\selectlanguage{slovene}
+\chapter*{Seznam uporabljenih kratic}
+
+\noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
+  {\bf kratica} & {\bf angleško}                              & {\bf slovensko} \\ \hline
+  {\bf VRA}      & Visual Realism Assessment of Deepfakes              &  Ocena kakovosti ponarejenih posnetkov \\
+
+%  \dots & \dots & \dots \\
+\end{tabular}
+
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% povzetek
+\phantomsection
+\addcontentsline{toc}{chapter}{Povzetek}
+\chapter*{Povzetek}
+
+\noindent\textbf{Naslov:} \ttitle
+\bigskip
+
+\noindent\textbf{Avtor:} \tauthor
+\bigskip
+
+%\noindent\textbf{Povzetek:} 
+\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh globokih konvolucijskih nevronskih mrež (CNN), imenovanih Eva in ConvNext. Modela smo natrenirali na podatkovna množici DeepFake Game Competition (DFGC) 2022, z ciljem napovedati povprečno mnenjsko oceno (MOS) DeepFake videoposnetka. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
+
+\bigskip
+
+\noindent\textbf{Ključne besede:} \tkeywords.
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% abstract
+\phantomsection
+\selectlanguage{english}
+\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Abstract}
+
+\noindent\textbf{Title:} \ttitleEn
+\bigskip
+
+\noindent\textbf{Author:} \tauthor
+\bigskip
+
+%\noindent\textbf{Abstract:} 
+\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of two Convolutional Neural Network (CNN) models, Eva and ConvNext. These models were trained on the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with the competition's baseline model.
+\bigskip
+
+\noindent\textbf{Keywords:} \tkeywordsEn.
+\selectlanguage{english}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+\chapter{Introduction}
+DeepFakes, first appearing around the end of 2017, were initially popularized by a group of Reddit users named "deepfakes." Utilizing deep-learning models, they crafted videos allowing for face swapping, face reenactment, facial attribute editing, and even entirely generated faces. This phenomenon rapidly spread, with well-known YouTube videos and various celebrities becoming the subject of deepfake content. The realism and accessibility of deepfakes have not only sparked widespread fascination but have also raised significant concerns. With the potential for negative applications such as impersonation and misinformation, extensive research has been directed towards developing automatic detection methods to counter these manipulations.
+
+The evaluation of deepfakes extends beyond merely detecting them, however. Since deepfakes are ultimately consumed by human viewers, their perceptual quality or visual realism has critical implications for their potential social impacts. This introduces the essential concept of Visual Realism Assessment (VRA), which focuses on how convincingly real a deepfake appears rather than traditional metrics like sharpness or compression. VRA provides a unique challenge due to its subjectivity, requiring careful and nuanced approaches. In addition, VRA serves as a valuable quality metric for both the generated images and the generative models themselves.
+
+Despite its vital role, VRA is an underexplored field compared to deepfake detection. The analysis of visual realism provides a fresh perspective in the continuous efforts to comprehend and manage the diverse and complex effects of deepfakes. More dedicated research is urgently needed to fully address this complex problem.
+
+In this spirit, we participated in the DFGC-VRA competition, a continuation of the previous DFGC-2021 and DFGC-2022 competitions. While earlier events primarily focused on deepfake detection and creation, this year's competition emphasized the crucial but less-explored area of Visual Realism Assessment. Our efforts paid off, earning us a third-place finish in the DFGC 2023 competition.  Remarkably, I completed the entire project, from data preprocessing to model training and evaluation, in just 14 days.
+
+The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with the competition's baseline model and highlights the strengths and limitations of our solution. 
+
+\section{Contributions}
+
+We summarize the contributions of this work as follows:
+
+\begin{itemize}
+    \item Uncover key gaps and the importance of VRA within deepfake research.
+    \item Establish and validate an ensemble of Eva and ConvNext CNNs specifically for VRA applications in deepfakes.
+    \item Conduct comprehensive benchmarking of our model against existing solutions, identifying both strengths and areas for further improvement.
+    \item Provide an in-depth explanation of the entire research methodology, ranging from data preprocessing to final evaluation.
+    \item Identify and implement key improvements to existing VRA methods.
+\end{itemize}
+
+
+\section{Structure}
+
+This thesis is organized into the following chapters:
+TODO
+
+\chapter{Related Work}
+\label{ch0}
+The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection, and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
+With the advent of deep learning, detection methods have made significant strides, but disparities between human and machine perception of deepfakes remain an area needing further investigation \cite{DBLP:journals/corr/abs-2009-03155}.
+
+Building on this, disparities between human and machine perception of deepfakes have opened new avenues for investigation. Key research has revealed that a hybrid approach, incorporating both human judgment and machine learning models, yields superior results in deepfake detection compared to using either method in isolation \cite{DBLP:journals/corr/abs-2105-06496}. Importantly, this study discovered that the specialized cognitive capacity to process facial visuals greatly influences the efficacy of human deepfake detection.
+
+This naturally leads to the topic of Visual Realism Assessment (VRA), a specialized area that shifts the focus from mere authenticity to the quality of deepfakes. Related fields such as Video Quality Assessment (VQA), Image Quality Assessment (IQA), and Face Image Quality Assessment (FIQA) share similar goals and challenges \cite{babnik2023diffiqa, DBLP:journals/corr/abs-2201-11975,zhao2023zoomvqa}.
+
+Recent studies such as the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA)\cite{peng_etal_2023} have endeavored to develop models predicting the Mean Opinion Score (MOS) for deepfake videos, a measure that reflects subjective quality and realism. Within this context, our own research 'Beyond Detection: Visual Realism Assessment of Deepfakes' \cite{dragar2023detection} also aimed to predict MOS scores, securing third place in the DFGC-VRA competition. Furthermore, our team had the opportunity to contribute to the summary paper of the DFGC-VRA competition. These collective works offer both a substantive and methodological foundation for the ongoing research undertaken in this thesis.
+
+The significant work by Sun et al. \cite{sun2023visual}, titled "Visual Realism Assessment for Face-swap Videos," proposed a benchmark for evaluating the effectiveness of various automatic VRA models. Utilizing the DFGC 2022 dataset, they demonstrated the feasibility of creating effective VRA models for assessing face-swap videos and highlighted the applicability of existing deepfake detection features for VRA.
+
+In the DFGC 2022 competition, the winning team employed an ensemble of models, including ConvNext, for their deepfake detection solution \cite{peng2022dfgc}. This victory suggests that models like ConvNext and Vision Transformers could be used not only for deepfake detection but also for Visual Realism Assessment. Such findings underscore the importance of factoring in visual realism and human cognitive abilities in the development of deepfake detection models, thereby motivating the research undertaken in this thesis.
+
+\chapter{Methods}
+\label{ch1}
+
+\section{Overview}
+
+This research leverages the power of an ensemble comprising two distinct Convolutional Neural Network (CNN) models: Eva~\cite{fang2022eva} and ConvNext~\cite{DBLP:journals/corr/abs-2201-03545}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were trained using the DFGC 2022 dataset and were submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
+
+\section{ConvNeXt}
+\label{sec:convnext}
+
+ConvNeXt is an evolved architecture that aims to combine the strengths of Convolutional Neural Networks (ConvNets) and Transformers, specifically hierarchical vision Transformers like Swin-T\cite{DBLP:journals/corr/abs-2103-14030}. It starts with a ResNet-50\cite{DBLP:journals/corr/HeZRS15} backbone and gradually integrates features such as depthwise convolutions, large kernel sizes, and new activation and normalization functions inspired by Transformers.
+
+\subsection{ConvNeXt Architecture Overview}
+The architecture employed for this work is \texttt{convnext\_xlarge\_384\_in22ft1k}. The identifier indicates a large variant of the ConvNeXt model specifically optimized for \(384 \times 384\) input images. The architecture is modular, comprising stages and blocks that transform the input image into a feature vector. Depending on the downstream task—such as classification or Mean Opinion Score (MOS) prediction—the final linear layer (referred to as the "head") can be modified.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.2\textwidth]{images/convok.drawio (1).pdf}
+\caption{ConvNeXt Architecture}
+\label{fig:convnext}
+\end{figure}
+
+
+\subsubsection{Key Terminology}
+\begin{itemize}
+    \item \textbf{Block}: A block is the smallest unit in the ConvNeXt architecture, consisting of a series of layers like Depthwise Convolution, Layer Normalization, Pointwise Convolution, and GELU Activation.
+    \item \textbf{Stage}:A stage groups together multiple blocks and functions as a significant unit within the network. Each stage operates at a consistent feature dimension, determined by the \texttt{dims} parameter, allowing for uniformity in feature map sizes across all the blocks within the same stage. This enables the model to focus on extracting different types of features at each stage.
+    \item \textbf{Downsampling Layers}: These are specialized layers responsible for reducing the size of the input image to make it more manageable for the model.
+   \item \textbf{Convolutional Layer}:
+The convolutional layer serves multiple roles, such as spatial downsampling and channel expansion, depending on its configuration. 
+
+In essence, each kernel acts as a 'local feature detector.' As it slides across the input feature map, it computes weighted sums of local regions, which contribute to a single output pixel for that kernel's feature map.
+
+Mathematically, given an input feature map \( \mathbf{X} \) of dimensions \( H \times W \times C \) and a kernel \( \mathbf{W} \) of dimensions \( K \times K \times C \times D \), the convolution operation is:
+
+\[
+\mathbf{Y}_{i,j,d} = \sum_{m=0}^{K-1} \sum_{n=0}^{K-1} \sum_{c=1}^{C} \mathbf{X}_{i+m,j+n,c} \times \mathbf{W}_{m,n,c,d}
+\]
+
+This produces an output feature map \( \mathbf{Y} \) with dimensions \( H' \times W' \times D \). Strides greater than 1 will downsample \( H' \) and \( W' \), while the depth \( D \) can either expand or contract the channel dimensions.
+
+Intuitively, \( D \) represents the variety of feature detectors applied. Each one generates a unique feature map, enabling the model to capture a comprehensive set of features. Therefore, by applying \( D \) kernels, the model diversifies its understanding of the input, enhancing its ability to learn complex representations.
+
+This multifunctionality makes the convolutional layer a powerful and flexible component in neural network design, adept at both feature extraction and dimensionality adaptation.
+
+\end{itemize}
+
+\subsubsection{Blocks}
+Each block serves as a mini-network within the larger architecture, responsible for specific feature transformations. To illustrate this, see Figure \ref{fig:convnext}, which shows the block's internal structure.
+
+
+\paragraph{Components of a Block}
+The key components that constitute a ConvNeXt block are:
+
+\begin{itemize}
+      \item \textbf{Depthwise Convolution}: Operates on each input channel independently, providing efficient, channel-specific feature extraction. The layer is denoted as Depthwise Conv2d(dim, 7×7, S1, P3), where:
+\begin{itemize}
+\item \textit{dim}: The number of channels in the input and output, ensuring that each channel is convolved independently.
+\item \textit{7×7}: The kernel size, specifying that a 7×7 filter is used for the convolution.
+\item \textit{S1}: The stride of 1, indicating that the filter is moved one pixel at a time across the input.
+\item \textit{P3}: Padding of 3, ensuring that the spatial dimensions are preserved by adding three layers of zeros around the border of the input.
+\end{itemize}
+
+the depthwise convolution not only enables more granular, channel-specific feature extraction but also is computationally efficient. The use of a larger 7×7 kernel size in the depthwise convolution represents an upgrade proposed in the ConvNeXt architecture, as it was found to be optimal\cite{DBLP:journals/corr/abs-2201-03545}.
+    
+    \item \textbf{Layer Normalization(LN)}: Applied post Depthwise Convolution, normalizes the activations in a single data sample, across all feature channels. By making sure the output values have a mean of zero and a standard deviation of one, it stabilizes the training process and helps the model to learn more efficiently.
+    
+    \item \textbf{Pointwise Convolution (1x1 Conv)}: This is a \(1 \times 1\) convolution that changes the number of channels, effectively creating a channel-wise transformation of the features. Mathematically, let \( \mathbf{X} \) be the input feature map of dimensions \( H \times W \times C \), and \( \mathbf{W} \) be the weight matrix of dimensions \( C \times D \), where \( D \) is the new channel dimension. The pointwise convolution can be described by:
+
+        \[
+        \mathbf{Y}_{i,j,d} = \sum_{c=1}^{C} \mathbf{X}_{i,j,c} \times \mathbf{W}_{c,d}
+        \]
+        
+        where \( \mathbf{Y} \) is the output feature map with dimensions \( H \times W \times D \), \( \mathbf{Y}_{i,j,d} \) is the value at the \(i\)-th row, \(j\)-th column, and \(d\)-th channel of \( \mathbf{Y} \), and \( \mathbf{X}_{i,j,c} \) is the corresponding element in the input feature map \( \mathbf{X} \).
+
+        In practice, this operation can be efficiently implemented as a fully connected (linear) layer. For each spatial position \( (i, j) \), the corresponding feature vector \( \mathbf{X}_{i,j,:} \) can be transformed into \( \mathbf{Y}_{i,j,:} \) via a linear layer:
+
+        \[
+        \mathbf{Y}_{i,j,:} = \mathbf{W} \mathbf{X}_{i,j,:}^{\top} + \mathbf{b}
+        \]
+        
+        Here, \( \mathbf{W} \) represents the weight matrix of dimensions \( C \times D \), \( \mathbf{b} \) is the bias term of dimensions \( D \), and \( \mathbf{Y}_{i,j,:} \) and \( \mathbf{X}_{i,j,:} \) are flattened into vectors of dimensions \( D \) and \( C \) respectively. This approach allows for efficient computation and is equivalent to a \( 1 \times 1 \) convolution.
+
+       In the specific architecture under discussion, the pointwise convolution first expands the channel dimensions by a factor of 4. This serves as an "inverse bottleneck" that allows the model to compute more complex feature representations before later stages potentially condense the channels again for computational efficiency. This "inverse bottleneck" strategy provides additional capacity for the model to learn intricate inter-channel relationships and is inspired by the design principles of MobileNetV2\cite{DBLP:journals/corr/abs-1801-04381}, which have also been adopted in modern Transformer architectures.
+
+    
+   \item \textbf{GELU Activation}: Stands for Gaussian Error Linear Unit. The activation function is applied to introduce non-linearity into the model. Its purpose is to enable the network to learn complex mappings from inputs to outputs. Without a non-linear activation function, the network would essentially behave like a single-layer linear model, incapable of learning complex patterns. The inclusion of GELU or other non-linear activation functions allows the model to learn from backpropagated errors and adjust its weights to model complex functions.
+   
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/gelu.png}
+        \caption{Graphical representation of the GELU activation function}
+    \end{figure}
+
+   \item \textbf{Residual Connection}:
+In the context of neural networks, the term "residual" signifies the difference between the input and the output of a set of layers. A residual connection is designed to learn this difference, denoted as \( F(x) \), rather than learning the entire output \( H(x) \).
+
+Mathematically, this is expressed as \( H(x) = F(x) + x \), where \( F(x) \) is the residual that the network learns, and \( x \) is the original input. Once \( F(x) \) is learned, it is added back to \( x \) to produce the final output \( H(x) \).
+
+This allows for ease of identity mapping—essentially allowing layers to output the same values as their input. This is often the optimal behavior, especially in deep networks, where adding complexity doesn't always result in better performance. By making it easier to learn the identity mapping, residual connections, allowing for more effective training of deep architectures.
+  
+\end{itemize}
+
+
+The choice of these components aims to achieve a balance between computational efficiency and the ability to learn rich, hierarchical features. Depthwise convolution and pointwise convolution together provide an efficient way to transform features, while layer normalization and GELU activation ensure stable and effective learning.
+
+
+\subsubsection{Stages}
+The entire ConvNeXt model is divided into four main stages. Each stage contains a specific number of blocks, which are specified by the `depths=[3, 3, 27, 3]` parameter. The dimensions of the features processed in these stages are determined by the `dims=[256, 512, 1024, 2048]` parameter.
+
+\subsubsection{Downsampling Layers}
+The initial step in the architecture is the application of downsampling layers. They reduce the spatial dimensions of the input image, making it easier for subsequent layers to process it.
+
+\begin{itemize}
+     \item \textbf{Stem (Patchify Layer)}:
+     
+   The stem layer in this architecture employs a "patchify" strategy, often found in Vision Transformers (ViT). It utilizes a \(4 \times 4\) convolutional layer with 256 output channels and a stride of 4 to break the image into smaller, non-overlapping patches. Given an input image of dimensions \(384 \times 384 \times 3\), the output feature map dimensions become \( \frac{384}{4} \times \frac{384}{4} \times 256 = 96 \times 96 \times 256 \).
+    
+    In this transformation, each \(4 \times 4\) patch in the original \(384 \times 384\) image is mapped to a \(1 \times 1\) position in the \(96 \times 96\) output feature map, while increasing the depth to 256 channels. This essentially compresses the spatial dimensions by a factor of 4 while simultaneously expanding the feature space.
+    
+    This patch-based approach allows for efficient processing of local spatial information, converting the 2D image into a \(96 \times 96\) grid of patches, each represented by a 256-dimensional feature vector. This is particularly advantageous for sequence-based architectures like Transformers, as each patch can be treated as a distinct element in a 1D sequence without losing its spatial context. 
+    
+    The resulting \(96 \times 96 \times 256\) feature map serves as a compact yet rich representation of the original image, ready for further processing by subsequent layers in the network.
+ \item \textbf{Intermediate Downsampling Layers}:
+
+Following the stem layer, additional downsampling layers are deployed. The primary goal of these layers is to transition the model from learning fine-grained, local features to more global, high-level features. This is accomplished through:
+
+\begin{enumerate}
+    \item \textbf{Layer Normalization (LN)}: (As previously described)
+    
+    \item \textbf{Convolutional Layer}: A \(2 \times 2\) convolutional layer with a stride of 2 performs two key tasks:
+    \begin{itemize}
+        \item It halves the spatial dimensions, enabling the model to focus on more global, contextual features.
+        \item It doubles the channel dimensions, providing the model with a richer feature space for learning more complex and abstract representations.
+    \end{itemize}
+\end{enumerate}
+
+This careful adjustment of dimensions is designed to shift the model's focus towards learning more abstract, high-level features that capture larger contextual information, thereby preparing the network for more complex transformations in subsequent stages.
+
+\end{itemize}
+
+\subsection{Utilizing ConvNext as Our Model Backbone}
+
+In our work, we adapt the ConvNext model, originally optimized for deepfake detection, for the task of Mean Opinion Score (MOS) prediction. This model utilizes the DFGC-1st-2022-model as its backbone, a winner of the DFGC2022 competition \cite{peng2022dfgc}. We employ the principle of transfer learning to make this adaptation efficient and effective.
+
+\subsubsection{Architectural Adaptations}
+
+The ConvNext model architecture comprises multiple layers designed for feature extraction and deepfake detection. In our adaptation, we replace the final layer head of the ConvNext models with an identity mapping, effectively removing it. This allows us to attach our custom regression head for MOS prediction while keeping the feature extraction capabilities intact.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.1\textwidth]{images/convmy.drawio.pdf}
+\caption{Modified ConvNeXt Architectures: One for Frame-Based and Another for Frame Sequence-Based MOS Prediction}\label{fig:modified_convnext}
+\end{figure}
+
+By doing this, we leverage the robust feature extraction capabilities of the original ConvNext model while tailoring the output layers to our specific task of MOS prediction.
+
+\subsubsection{Transfer Learning}
+
+Transfer learning is a prevalent approach in machine learning where a model initially developed for a specific task is adapted to solve a different but related problem. In our work, we employ this technique to adapt the ConvNext model, originally optimized for deepfake detection, for Mean Opinion Score (MOS) prediction. Using the DFGC-1st-2022-model as its backbone, the ConvNext model is a prime candidate for this adaptation, as it has already been trained on a challenging task and has robust feature-extraction capabilities.
+
+Traditional machine learning often starts from scratch, requiring a significant amount of data and computational resources. Transfer learning alleviates these requirements by utilizing the architecture and pre-trained weights of an existing model.
+
+A popular source for such pre-trained models is ImageNet, a dataset containing millions of labeled images across thousands of categories. Models trained on ImageNet acquire a wide spectrum of features, ranging from basic patterns to complex object characteristics. These features are useful for many different tasks and serve as a solid foundation for our MOS prediction model.
+
+In this context, the pre-trained ConvNext model accelerates our learning process. We initialize our model with its weights and further fine-tune it on a dataset specific to MOS prediction. 
+
+\subsubsection{Feature Extraction and Pooling Techniques}
+
+In our work on MOS prediction, we utilize the ConvNext model as the backbone and adapt it for two distinct applications: video-based and frame-based assessments. The model ingests images and outputs feature vectors. Accordingly, we have developed two separate versions of the model, each configured to handle these feature vectors differently, depending on whether the application is focused on video sequences or individual frames.
+
+\paragraph{Pooling Techniques for Video Sequences:}
+For video-based applications, we aggregate feature vectors from multiple frames using average pooling and standard deviation pooling. These techniques condense the frame features into a single video-level feature vector. The mean and standard deviation are calculated as follows:
+
+\begin{equation}
+f_{\mathrm{mean}} = \frac{1}{n}\sum_{i=1}^{n} f_{i},
+\end{equation}
+
+\begin{equation}
+f_{\mathrm{std}} = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(f_{i} - f_{\mathrm{mean}})^2}.
+\end{equation}
+
+These aggregated features, \(f_{\mathrm{mean}}\) and \(f_{\mathrm{std}}\), are then concatenated and fed into a custom regression head tailored for frame-sequence-based MOS prediction see Figure \ref{fig:modified_convnext}.
+
+\paragraph{Frame-based Applications:}
+Drawing inspiration from the winners of the DFGC 2023 competition\cite{peng_etal_2023}, we also employ the ConvNext model for per frame-based MOS prediction. In this version, the feature vectors for individual frames are used directly. These features are then fed into a separate custom regression head, specifically designed for frame-based MOS assessment. This frame-based approach is computationally easier and simpler to implement.
+
+\subsubsection{Custom Regression Head: An MLP-based Architecture}
+
+Our custom regression head is designed as a Multi-Layer Perceptron (MLP), a type of fully connected feedforward neural network. In an MLP, each neuron in a layer is connected to every neuron in the subsequent layer, enabling intricate mappings from inputs to outputs.
+
+The architecture consists of a sequence of linear layers interleaved with ReLU (Rectified Linear Unit) activation functions. Each linear layer is fully connected and is defined by the equation \(y = Wx + b\), where \(W\) represents the weight matrix, \(b\) is the bias term, \(x\) is the input feature vector, and \(y\) is the output feature vector. The ReLU activation is described as \(\text{ReLU}(x) = \max(0, x)\).
+These layers and activation functions process the feature vectors, either directly extracted or pooled from the ConvNext backbone. The custom head concludes with a single neuron designed to output the MOS.
+
+\subsection{Forward Pass}
+
+The forward pass of our ConvNext model operates on an input video sequence with dimensions \(N \times \text{seq\_len} \times W \times H \times C\), where \(N\) is the batch size, \(\text{seq\_len}\) is the sequence length, \(W\) and \(H\) are the width and height of each frame, and \(C\) is the number of channels. The methodology for processing this input varies based on whether it's frame-based or frame-sequence-based.
+
+\subsubsection{Frame-Sequence-Based Approach}
+
+In the frame-sequence-based approach, a for-loop iterates through each frame within the sequence. The backbone model processes each frame to extract its features. These features are then aggregated using both mean and standard deviation, adhering to principles of average pooling and standard deviation pooling. The aggregated features are subsequently fed into the custom regression head designed for frame-sequence-based MOS prediction.
+
+\subsubsection{Frame-Based Approach}
+
+In the frame-based approach, a single frame is randomly selected from the sequence during each forward pass. This randomness is deliberately introduced to mitigate overfitting by providing slightly different inputs to the model at each epoch. The selected frame is processed by the backbone model to extract its features, which are then passed directly to a separate custom regression head, specifically tailored for frame-based MOS prediction.
+
+By utilizing these two distinct approaches, we accommodate different use-cases while maintaining a consistent input video sequence structure \(N \times \text{seq\_len} \times W \times H \times C\).
+
+\subsection{Loss Functions}
+
+To train our models, we employ two loss functions: Root Mean Square Error (RMSE) and Mean Absolute Error (MAE). Both of these metrics are commonly used for regression tasks, but they have different sensitivities to outliers in the dataset.
+
+\subsubsection{Root Mean Square Error (RMSE)}
+
+The RMSE is calculated using the formula:
+
+\begin{equation}
+\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_{i} - \hat{y}_{i})^2},
+\end{equation}
+
+where \(N\) is the number of samples, \(y_{i}\) is the true value, and \(\hat{y}_{i}\) is the predicted value. RMSE gives a higher penalty to large errors, making it more sensitive to outliers in the data.
+
+\subsubsection{Mean Absolute Error (MAE)}
+
+The MAE is calculated as follows:
+
+\begin{equation}
+\text{MAE} = \frac{1}{N} \sum_{i=1}^{N} |y_{i} - \hat{y}_{i}|,
+\end{equation}
+
+where \(N\) is the number of samples, \(y_{i}\) is the true value, and \(\hat{y}_{i}\) is the predicted value. Unlike RMSE, MAE treats all errors equally, making it less sensitive to outliers.
+
+\paragraph{Sensitivity to Outliers}
+
+The main difference between RMSE and MAE lies in their treatment of outliers. RMSE squares the error before averaging, thereby giving more weight to large errors. This makes RMSE more sensitive to outliers, and it may result in a model that is less robust if outliers are an issue. On the other hand, MAE assigns equal weight to all errors, providing a more balanced view that is less influenced by extreme values.
+
+
+
+
+
+\section{Eva Model}
+\label{sec:eva}
+
+In parallel to ConvNext, we also utilize the Eva model, a novel approach to visual representation learning that pushes the boundaries of large-scale masked image modeling (MIM) using publicly accessible data. Eva, a Vision Transformer (ViT), is pre-trained to reconstruct masked-out image-text aligned vision features conditioned on visible image patches. This unique pretraining task allows Eva to scale efficiently up to one billion parameters, setting new records across a wide range of downstream visual tasks. 
+
+
+\subsection{Eva Architecture Overview}
+\label{subsec:eva_architecture}
+
+The architecture of Eva is based on the Vision Transformer (ViT) model, which replaces traditional convolution layers with transformer layers for feature extraction. In Eva, an input image is divided into a fixed number of patches, each of which is then linearly embedded into a vector. These vectors serve as the input sequence for the transformer model. The transformer's attention mechanism enables the model to capture both local and global features within an image.
+
+\subsubsection{Pre-training Task}
+\label{subsubsec:eva_pretraining}
+
+Eva is pre-trained on a unique masked image modeling (MIM) task. In this task, specific patches of the input image, along with aligned text features, are masked out and the model aims to reconstruct them based on the remaining visible patches. This pre-training task not only allows for efficient scaling of the model but also ensures that Eva learns a broad range of features, making it highly effective for multiple downstream tasks.
+
+\subsubsection{Scaling Capabilities}
+\label{subsubsec:eva_scaling}
+
+One of the distinguishing features of Eva is its ability to scale efficiently. The model can be scaled up to one billion parameters without a significant drop in performance. This is attributed to its specialized pre-training task, which makes the model adaptable and robust across various visual recognition tasks.
+
+\subsubsection{Downstream Tasks Performance}
+\label{subsubsec:eva_downstream}
+
+Eva has demonstrated state-of-the-art performance in a variety of downstream visual tasks, including image recognition, video action recognition, object detection, instance segmentation, and semantic segmentation. This wide range of applicability testifies to the model's versatile capabilities and establishes it as a formidable tool for visual representation learning.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.2\textwidth]{images/convok.drawio (1).pdf}
+\caption{ConvNeXt Architecture}
+\label{fig:convnext}
+\end{figure}
+
+
+
+
+
+
+
+In similarity with ConvNext, Eva is used as a feature extractor for predicting MOS on deepfake videos, with
+
+the backbone model replaced by the Eva model. However, unlike ConvNext, the Eva model is not initialized with weights from the winners of the DFGC2022 competition. Instead, we initialize the model with weights pretrained on ImageNet using the timm library.
+
+Eva's architecture is specifically designed for handling both the mean and standard deviation vectors extracted from video frames. The model follows the same forward pass as the ConvNext model: a random starting point is selected within the video, from which a sequence of five consecutive frames is chosen. The mean and standard deviation of the features for each frame sequence are calculated, following which these vectors are concatenated to form the video-level features. They are then fed into the fully connected layers of the Eva model, with the final output being the Mean Opinion Score (MOS) for the input frame sequence.
+
+Just like with the ConvNext model, the weights of the backbone model in Eva are not frozen during training. This facilitates the fine-tuning of the entire model, encompassing the backbone and the newly added layers, to the specific task of predicting MOS scores on deepfake videos. The learning objective remains the same, that is, the Root Mean Squared Error (RMSE), providing a measure of the differences between predicted and observed values. 
+
+\section{Ensemble Approach}
+\label{sec:ensemble}
+
+The ensemble method combines the strengths of the ConvNext and Eva models to provide a more accurate and robust evaluation of MOS for deepfake videos. The outputs from the individual models are averaged to compute the final predicted MOS, allowing for a more nuanced understanding of video realism and thereby providing a more effective tool for deepfake detection. 
+
+The the ensemble approach helps to mitigate any model-specific limitations and potentially introduces a level of diversity that can improve the overall performance of the system. This approach mirrors the concept of collective intelligence, where multiple models, each with its own strengths and weaknesses, collaborate to improve the overall performance. It is an important part of our method, and it is this collective intelligence that contributes significantly to the success of our approach.
+
+
+\chapter{Experiments}
+\label{ch2}
+\section{Dataset}
+
+The dataset utilized for this thesis is the DeepFake Game Competition (DFGC) 2022 dataset, originating from the second DFGC held in conjunction with IJCB-2022. The dataset comprises 2799 fake and 1595 real face-swap videos, with each video approximately 5 seconds in length. The fake videos were generated using various face-swap methods like DeepFaceLab, SimSwap, and FaceShifter, with additional post-processing operations.
+
+The dataset is divided into three subsets: C1, C2, and C3. C1 contains 240 fake videos from 6 submit-ids, C2 includes 520 fake videos from 13 submit-ids, and C3 houses 640 fake videos from 16 submit-ids. Each submit-id corresponds to a set of 80 swap videos for 20 pairs of facial-IDs. The videos from the same submit-id are believed to have been created via identical methods or processes. The dataset is annotated by five independent human raters who assessed video realism, rating it on a scale of 1 (very bad) to 5 (very good).
+
+\section{Data Preprocessing}
+
+In this stage, faces were extracted from each video frame using the Multi-task Cascaded Convolutional Networks (MTCNN) model and OpenCV. The bounding boxes of the faces were resized and adjusted by a scale factor of 1.3, in order to provide context and improve prediction accuracy. This step resulted in a new dataset of cropped face images which served as input for the subsequent modeling stages. Preprocessing the data prior to model training expedited the training process and saved computational resources.
+
+\section{Training and Validation Data}
+
+For this thesis, a method was implemented to process each video by selectively extracting sequences of frames. A starting point was randomly selected within each video, and a sequence of five frames was captured from that point. The frames were then transformed as required by the modeling process. Each sequence was paired with its corresponding Mean Opinion Score (MOS) label. 
+
+The dataset was then divided into three subsets to facilitate the training, validation, and testing of the models. Out of the total 700 videos, 70\% (490 videos) were allocated for training, 20\% (140 videos) for testing, and the remaining 10\% (70 videos) were used for validation.
+
+\section{Experimental Setup}
+
+Training was conducted on a High-Performance Computing (HPC) infrastructure, facilitated by Pytorch Lightning. The AdamW optimizer was chosen with a learning rate of 2e-5. The learning rate scheduler, ReduceLROnPlateau, was incorporated along with early stopping, both of which were monitored via validation loss. The selected hyperparameters included a batch size of 2, a dropout rate of 0.1, a sequence length of 5, gradient accumulation across 8 batches, and a maximum of 33 epochs. Training was conducted on two Tesla V100S-32GB GPUs using a distributed data parallel (ddp) strategy.
+
+\section{Model Selection}
+
+Due to the non-deterministic nature of the training process, multiple models were trained with identical parameters. The model with the best performance, as determined by validation loss, was selected for the final submission. At the end of the training, the best model checkpoint based on validation loss was further trained with the same hyperparameters to accommodate the remaining data. Once early stopping was triggered, this final model checkpoint was saved for the final predictions.
+
+\section{Predictions and Model Averaging}
+
+The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos),
+
+Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
+
+The dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
+
+For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model during the training phase.
+
+To assess the consistency of the predictions, the Root Mean Square Error (RMSE) between pairs of predictions was calculated. For the ConvNext model, the average RMSE was found to be 0.16, indicating a reasonable level of consistency in the predictions.
+
+
+\chapter{Results}
+\label{ch3}
+
+\section{Preliminary Analysis and Data Description}
+
+\section{Data Preprocessing Results}
+
+2. Face Extraction
+
+3. Resizing and Adjustment
+
+\section{Model Training Results}
+
+4. Performance Metrics
+
+5. Hyperparameter Tuning
+
+\section{Model Selection and Validation}
+
+6. Model Selection
+
+7. Validation
+
+\section{Final Predictions and Model Averaging}
+
+8. Test Set Predictions 
+
+9. Model Averaging
+
+10. Consistency of Predictions
+
+\section{Model comparison}
+
+11.Competition
+
+\chapter{Conclusion}
+\label{ch4}
+
+
+%\cleardoublepage
+%\addcontentsline{toc}{chapter}{Literatura}
+
+% če imaš težave poravnati desni rob bibliografije, potem odkomentiraj spodnjo vrstico
+\raggedright
+
+
+\printbibliography[heading=bibintoc,type=article,title={Journal articles}]
+
+\printbibliography[heading=bibintoc,type=inproceedings,title={Articles in Proceedings}]
+
+\printbibliography[heading=bibintoc,type=incollection,title={Chapters in books}]
+
+% v zadnji verziji diplomskega dela običajno združiš vse tri vrste referenc v en sam seznam in
+% izpustiš delne sezname
+\printbibliography[heading=bibintoc,title={Literature}]
+
+\end{document}
+
