@@ -678,28 +678,67 @@ In parallel to ConvNext, we also utilize the Eva model, a novel approach to visu
 \subsection{Eva Architecture Overview}
 \label{subsec:eva_architecture}
 
-The architecture of Eva is based on the Vision Transformer (ViT) model, which replaces traditional convolution layers with transformer layers for feature extraction. In Eva, an input image is divided into a fixed number of patches, each of which is then linearly embedded into a vector. These vectors serve as the input sequence for the transformer model. The transformer's attention mechanism enables the model to capture both local and global features within an image.
+The Eva model, originally detailed in "Exploring the Limits of Masked Visual Representation Learning at Scale" \cite{fang2022eva}, capitalizes on the Vision Transformer (ViT) framework. This framework was first brought to prominence by the seminal paper, "An image is worth 16x16 words: Transformers for image recognition at scale" \cite{DBLP:journals/corr/abs-2010-11929}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.1\textwidth]{images/eva_arhitecture.png}
+\caption{Vanilla ViT model overview \cite{DBLP:journals/corr/abs-2010-11929}}\label{fig:eva}
+\end{figure}
+
+
+\subsection{Vision Transformer (ViT) Mechanics}
+\label{subsec:vit_mechanics}
+
+In a typical Vision Transformer, an input image \( x \in \mathbb{R}^{H \times W \times C} \) is initially divided into a sequence of flattened 2D patches \( xp \in \mathbb{R}^{N \times (P^2 \cdot C)} \). Here, \( H, W \) represent the height and width of the image, \( C \) is the number of channels, and \( (P, P) \) is the resolution of each image patch. The total number of patches \( N \) is computed as \( N = \frac{HW}{P^2} \).
+
+\begin{itemize}
+   \item \textbf{Patch Embedding}:
+    
+    The stem layer in our specific Vision Transformer (ViT) configuration divides the \(336 \times 336\) input image into non-overlapping patches of size \(14 \times 14\). Each patch is then linearly embedded into a \(1024\)-dimensional vector through a 2D convolution operation. The convolutional layer has a kernel size and stride both set to \(14\), and the number of output channels is \(1024\).
+    
+    The transformation results in a feature map with dimensions \(\frac{336}{14} \times \frac{336}{14} \times 1024 = 24 \times 24 \times 1024\).
+    
+    In this configuration, each \(14 \times 14\) patch of the original \(336 \times 336\) image is mapped to a \(1 \times 1\) position in the \(24 \times 24\) output feature map, and its depth is expanded to \(1024\) channels. These patches are then flattened into a sequence of 
+    \(576\) vectors, each with \(1024\) dimensions, and are prepared for further transformations by the subsequent layers of the ViT architecture."
+
+    
+    \item \textbf{Positional Embedding}:
+
+    
+    Each patch is initially embedded into a 1024-dimensional vector. To this, a 1024-dimensional positional vector is added. The resulting vector, therefore, encapsulates both content and positional information. The positional vectors are also learnable parameters, allowing the model to optimize their values during training to best capture the spatial configuration of the input.
+    
+
+    \item \textbf{Class Token}: The \texttt{cls\_token} is a special, learnable token that is prepended to the sequence of patch embeddings. During training, it gets updated to capture global information about the entire image, serving as a universal representation that can be used for tasks like classification. 
+    
+    
+
+    \item \textbf{Transformer Layers}: The sequence of 577 tokens serves as the input to a series of Transformer layers, each with its own set of functionalities.
+    
+
+    \item \textbf{Transformer Overview}: 
+    The core idea behind the Transformer model is the parallel processing of the entire input sequence, enabling effective handling of long-range dependencies through attention mechanisms.
+    
+    \item \textbf{Output}: 
+    After the sequence passes through the Transformer layers, the resulting output is also a sequence of vectors. For classification tasks, the vector corresponding to the special 'Class Token' is generally used as it aims to capture the global information about the entire sequence.
+\end{itemize}
+
+
 
 \subsubsection{Pre-training Task}
 \label{subsubsec:eva_pretraining}
 
-Eva is pre-trained on a unique masked image modeling (MIM) task. In this task, specific patches of the input image, along with aligned text features, are masked out and the model aims to reconstruct them based on the remaining visible patches. This pre-training task not only allows for efficient scaling of the model but also ensures that Eva learns a broad range of features, making it highly effective for multiple downstream tasks.
+Eva utilizes a unique self-supervised pre-training approach known as Masked Image Modeling (MIM). In this method, certain patches of the input image, along with their corresponding text features, are obscured. The model then aims to reconstruct these masked sections based on the unmasked portions. This pre-training strategy is particularly beneficial for Vision Transformers, which often require substantial amounts of labeled data to achieve effective learning. By leveraging MIM, Eva can efficiently scale and is capable of learning a diverse set of features. 
 
-\subsubsection{Scaling Capabilities}
-\label{subsubsec:eva_scaling}
+\newpage
 
-One of the distinguishing features of Eva is its ability to scale efficiently. The model can be scaled up to one billion parameters without a significant drop in performance. This is attributed to its specialized pre-training task, which makes the model adaptable and robust across various visual recognition tasks.
-
-\subsubsection{Downstream Tasks Performance}
-\label{subsubsec:eva_downstream}
-
-Eva has demonstrated state-of-the-art performance in a variety of downstream visual tasks, including image recognition, video action recognition, object detection, instance segmentation, and semantic segmentation. This wide range of applicability testifies to the model's versatile capabilities and establishes it as a formidable tool for visual representation learning.
+\subsection{Utilizing Eva}
 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=1.2\textwidth]{images/convok.drawio (1).pdf}
-\caption{ConvNeXt Architecture}
+\includegraphics[width=1.1\textwidth]{images/eva_my.drawio.pdf}
+\caption{Eva Architecture}
 \label{fig:convnext}
 \end{figure}
 
