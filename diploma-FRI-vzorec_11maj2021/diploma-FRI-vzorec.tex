@@ -14,7 +14,8 @@
 
 \documentclass[a4paper,12pt,openright]{book}
 %\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
- 
+\usepackage{float}
+
 \usepackage[utf8]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8
 \usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorce
 \usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov
@@ -350,7 +351,7 @@ Svoji dragi Lari.
 \bigskip
 
 %\noindent\textbf{Povzetek:} 
-\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh globokih konvolucijskih nevronskih mrež (CNN), imenovanih Eva in ConvNext. Modela smo natrenirali na podatkovna množici DeepFake Game Competition (DFGC) 2022, z ciljem napovedati povprečno mnenjsko oceno (MOS) DeepFake videoposnetka. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
+\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh globokih konvolucijskih nevronskih mrež (CNN), imenovanih Eva in ConvNext. Modela smo natrenirali na podatkovni množici DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja(MOS) ponarejenaga videoposnetka DeepFake. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
 
 \bigskip
 
@@ -394,7 +395,7 @@ Despite its vital role, VRA is an underexplored field compared to deepfake detec
 
 In this spirit, we participated in the DFGC-VRA competition, a continuation of the previous DFGC-2021 and DFGC-2022 competitions. While earlier events primarily focused on deepfake detection and creation, this year's competition emphasized the crucial but less-explored area of Visual Realism Assessment. Our efforts paid off, earning us a third-place finish in the DFGC 2023 competition.  Remarkably, I completed the entire project, from data preprocessing to model training and evaluation, in just 14 days.
 
-The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with the competition's baseline model and highlights the strengths and limitations of our solution. 
+The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with other competitors as well as the competition's baseline model, highlighting the strengths and limitations of our solution.
 
 \section{Contributions}
 
@@ -416,14 +417,14 @@ TODO
 
 \chapter{Related Work}
 \label{ch0}
-The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection, and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
+The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection, and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods~\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
 With the advent of deep learning, detection methods have made significant strides, but disparities between human and machine perception of deepfakes remain an area needing further investigation \cite{DBLP:journals/corr/abs-2009-03155}.
 
 Building on this, disparities between human and machine perception of deepfakes have opened new avenues for investigation. Key research has revealed that a hybrid approach, incorporating both human judgment and machine learning models, yields superior results in deepfake detection compared to using either method in isolation \cite{DBLP:journals/corr/abs-2105-06496}. Importantly, this study discovered that the specialized cognitive capacity to process facial visuals greatly influences the efficacy of human deepfake detection.
 
 This naturally leads to the topic of Visual Realism Assessment (VRA), a specialized area that shifts the focus from mere authenticity to the quality of deepfakes. Related fields such as Video Quality Assessment (VQA), Image Quality Assessment (IQA), and Face Image Quality Assessment (FIQA) share similar goals and challenges \cite{babnik2023diffiqa, DBLP:journals/corr/abs-2201-11975,zhao2023zoomvqa}.
 
-Recent studies such as the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA)\cite{peng_etal_2023} have endeavored to develop models predicting the Mean Opinion Score (MOS) for deepfake videos, a measure that reflects subjective quality and realism. Within this context, our own research 'Beyond Detection: Visual Realism Assessment of Deepfakes' \cite{dragar2023detection} also aimed to predict MOS scores, securing third place in the DFGC-VRA competition. Furthermore, our team had the opportunity to contribute to the summary paper of the DFGC-VRA competition. These collective works offer both a substantive and methodological foundation for the ongoing research undertaken in this thesis.
+Recent studies such as the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA)~\cite{peng_etal_2023} have endeavored to develop models predicting the Mean Opinion Score (MOS) for deepfake videos, a measure that reflects subjective quality and realism. Within this context, our own research 'Beyond Detection: Visual Realism Assessment of Deepfakes' \cite{dragar2023detection} also aimed to predict MOS scores, securing third place in the DFGC-VRA competition. Furthermore, our team had the opportunity to contribute to the summary paper of the DFGC-VRA competition. These collective works offer both a substantive and methodological foundation for the ongoing research undertaken in this thesis.
 
 The significant work by Sun et al. \cite{sun2023visual}, titled "Visual Realism Assessment for Face-swap Videos," proposed a benchmark for evaluating the effectiveness of various automatic VRA models. Utilizing the DFGC 2022 dataset, they demonstrated the feasibility of creating effective VRA models for assessing face-swap videos and highlighted the applicability of existing deepfake detection features for VRA.
 
@@ -434,7 +435,8 @@ In the DFGC 2022 competition, the winning team employed an ensemble of models, i
 
 \section{Overview}
 
-This research leverages the power of an ensemble comprising two distinct Convolutional Neural Network (CNN) models: Eva~\cite{fang2022eva} and ConvNext~\cite{DBLP:journals/corr/abs-2201-03545}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were trained using the DFGC 2022 dataset and were submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
+This research leverages the power of an ensemble comprising two distinct Convolutional Neural Network (CNN) models:
+ConvNext~\cite{DBLP:journals/corr/abs-2201-03545} and Eva~\cite{fang2022eva}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were finetuned on a subset of the DFGC 2022 dataset and submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
 
 \section{ConvNeXt}
 \label{sec:convnext}
@@ -628,6 +630,7 @@ These layers and activation functions process the feature vectors, either direct
 The forward pass of our ConvNext model operates on an input video sequence with dimensions \(N \times \text{seq\_len} \times W \times H \times C\), where \(N\) is the batch size, \(\text{seq\_len}\) is the sequence length, \(W\) and \(H\) are the width and height of each frame, and \(C\) is the number of channels. The methodology for processing this input varies based on whether it's frame-based or frame-sequence-based.
 
 \subsubsection{Frame-Sequence-Based Approach}
+\label{frame:based}
 
 In the frame-sequence-based approach, a for-loop iterates through each frame within the sequence. The backbone model processes each frame to extract its features. These features are then aggregated using both mean and standard deviation, adhering to principles of average pooling and standard deviation pooling. The aggregated features are subsequently fed into the custom regression head designed for frame-sequence-based MOS prediction.
 
@@ -709,7 +712,7 @@ In a typical Vision Transformer, an input image \( x \in \mathbb{R}^{H \times W 
     Each patch is initially embedded into a 1024-dimensional vector. To this, a 1024-dimensional positional vector is added. The resulting vector, therefore, encapsulates both content and positional information. The positional vectors are also learnable parameters, allowing the model to optimize their values during training to best capture the spatial configuration of the input.
     
 
-    \item \textbf{Class Token}: The \texttt{cls\_token} is a special, learnable token that is prepended to the sequence of patch embeddings. During training, it gets updated to capture global information about the entire image, serving as a universal representation that can be used for tasks like classification. 
+    \item \textbf{Class Token}: The class token is a special, learnable token that is prepended to the sequence of patch embeddings. During training, it gets updated to capture global information about the entire image, serving as a universal representation that can be used for tasks like classification. 
     
     
 
@@ -734,91 +737,271 @@ Eva utilizes a unique self-supervised pre-training approach known as Masked Imag
 
 \subsection{Utilizing Eva}
 
+Figure \ref{fig:eva_my} illustrates the architecture of the Eva model, which serves as a feature extractor for predicting MOS on deepfake videos, similar to the role played by the ConvNext model. Unlike ConvNext, Eva is initialized with pretrained weights from ImageNet using the timm library, rather than weights from DFGC2022 competition winners.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.1\textwidth]{images/eva_my.drawio.pdf}
-\caption{Eva Architecture}
-\label{fig:convnext}
+\caption{Modified Eva Architecture for Frame Sequence-Based MOS Prediction}
+\label{fig:eva_my}
 \end{figure}
 
 
+Eva's adapted architecture is specialized for dealing with both mean and standard deviation vectors extracted from video frames, as detailed in Section \ref{frame:based}. Following the same forward pass procedure as the ConvNext model, a random starting point within the video is selected. From this point, a sequence of \textit{seq\_len} consecutive frames is extracted. The mean and standard deviation vectors for each frame sequence are computed and subsequently concatenated to produce video-level features. These features, which have an encoding dimension of 1024, serve as the input to Eva's fully connected head layers. The final output of this process is the Mean Opinion Score (MOS) for the input frame sequence. 
 
-
-
-
-
-In similarity with ConvNext, Eva is used as a feature extractor for predicting MOS on deepfake videos, with
-
-the backbone model replaced by the Eva model. However, unlike ConvNext, the Eva model is not initialized with weights from the winners of the DFGC2022 competition. Instead, we initialize the model with weights pretrained on ImageNet using the timm library.
-
-Eva's architecture is specifically designed for handling both the mean and standard deviation vectors extracted from video frames. The model follows the same forward pass as the ConvNext model: a random starting point is selected within the video, from which a sequence of five consecutive frames is chosen. The mean and standard deviation of the features for each frame sequence are calculated, following which these vectors are concatenated to form the video-level features. They are then fed into the fully connected layers of the Eva model, with the final output being the Mean Opinion Score (MOS) for the input frame sequence.
-
-Just like with the ConvNext model, the weights of the backbone model in Eva are not frozen during training. This facilitates the fine-tuning of the entire model, encompassing the backbone and the newly added layers, to the specific task of predicting MOS scores on deepfake videos. The learning objective remains the same, that is, the Root Mean Squared Error (RMSE), providing a measure of the differences between predicted and observed values. 
+Just like with the ConvNext model, the weights of the backbone model in Eva are not frozen during training. This facilitates the fine-tuning of the entire model, encompassing the backbone and the newly added layers, to the specific task of predicting MOS scores on deepfake videos. With the learning objective being Root Mean Squared Error (RMSE).
 
 \section{Ensemble Approach}
 \label{sec:ensemble}
 
-The ensemble method combines the strengths of the ConvNext and Eva models to provide a more accurate and robust evaluation of MOS for deepfake videos. The outputs from the individual models are averaged to compute the final predicted MOS, allowing for a more nuanced understanding of video realism and thereby providing a more effective tool for deepfake detection. 
+Ensemble methods are designed to improve the performance of single predictive models by combining them to form a composite model. In the context of our work, we employ an ensemble approach that combines the capabilities of both the ConvNext and Eva models, aiming for a more robust and accurate prediction of Mean Opinion Scores (MOS) for deepfake videos. 
 
-The the ensemble approach helps to mitigate any model-specific limitations and potentially introduces a level of diversity that can improve the overall performance of the system. This approach mirrors the concept of collective intelligence, where multiple models, each with its own strengths and weaknesses, collaborate to improve the overall performance. It is an important part of our method, and it is this collective intelligence that contributes significantly to the success of our approach.
+The basic premise is straightforward: individual models may excel in different aspects of the task, and combining them can mitigate their individual limitations. For example, ConvNext might be particularly proficient at capturing local features, while Eva excels at understanding the global context. By averaging their outputs, we create a composite MOS prediction that incorporates both local and global contextual insights, thereby enriching the model's understanding of visual realism. This not only enhances the accuracy of the MOS prediction but also augments the model's robustness against diverse forms of manipulation and artifacts in deepfake videos.
+
+
 
 
 \chapter{Experiments}
 \label{ch2}
 \section{Dataset}
 
-The dataset utilized for this thesis is the DeepFake Game Competition (DFGC) 2022 dataset, originating from the second DFGC held in conjunction with IJCB-2022. The dataset comprises 2799 fake and 1595 real face-swap videos, with each video approximately 5 seconds in length. The fake videos were generated using various face-swap methods like DeepFaceLab, SimSwap, and FaceShifter, with additional post-processing operations.
+The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFCG-VRA competition, a subset of 1,400 videos was annotated by independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
 
-The dataset is divided into three subsets: C1, C2, and C3. C1 contains 240 fake videos from 6 submit-ids, C2 includes 520 fake videos from 13 submit-ids, and C3 houses 640 fake videos from 16 submit-ids. Each submit-id corresponds to a set of 80 swap videos for 20 pairs of facial-IDs. The videos from the same submit-id are believed to have been created via identical methods or processes. The dataset is annotated by five independent human raters who assessed video realism, rating it on a scale of 1 (very bad) to 5 (very good).
+\subsection{Face-Swap Methods}
+
+The original dataset incorporates videos generated using 35 different face-swap methods. A face-swap essentially involves taking two real videos and replacing the face in one video with the face from the other, while aiming to maintain natural facial expressions, lighting, and other variables. Key methods used for this in the dataset include DeepFaceLab~\cite{DBLP:journals/corr/abs-2005-05535}, SimSwap~\cite{DBLP:journals/corr/abs-2106-06340}, and FaceShifter~\cite{DBLP:journals/corr/abs-1912-13457}. An illustrative example of face-swaps for a single identity, achieved using various methods and annotated with Mean Opinion Scores (MOS), can be seen in Figure \ref{fig:face-swap-example}.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/newplot.png}
+    \caption{Grid illustrating face-swaps of a single identity, achieved via different faceswap methods and annotated with Mean Opinion Scores (MOS).}
+    \label{fig:face-swap-example}
+\end{figure}
+
+
+
+\subsection{Mean Opinion Score (MOS) Rating}
+
+Unlike traditional user studies that employ a no-reference setting for evaluations, the annotated dataset in this study provides some form of reference to assist in quality annotations. Multiple deepfake versions of the same original video are available to the raters, allowing for a more nuanced evaluation. This enables the raters to make direct comparisons of varying quality levels between videos created from the same source-target pair, as illustrated in Figure~\ref{fig:face-swap-example}. 
+
+Annotations were performed by five independent human raters and were based on a Mean Opinion Score (MOS) scale, a standardized metric used to assess subjective qualities. The scale ranged from 1 to 5, with 1 being very bad and 5 being very good. The final MOS for each video is the average of the scores given by the five raters. Figure~\ref{fig:MOS_distribution} illustrates the distribution of MOS scores across video subsets.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[trim={1cm 1cm 0cm 0cm},clip,width=0.9\textwidth]{images/mos.png}
+    \caption{Histograms depicting the mean and standard deviation of realism ratings across the annotated subset of the DFGC-2022 dataset. C1, C2, and C3 represent specific subsets of the 1,400 videos. Figure adapted from \cite{peng2022dfgc}.}
+    \label{fig:MOS_distribution}
+\end{figure}
+
+
+\subsection{Data Splitting and Test Set Characteristics}
+
+The 1,400 annotated videos are split into different sets for training and testing, as outlined in Figure~\ref{fig:data_splitting}. The training set comprises 700 videos, each labeled with a ground truth Mean Opinion Score (MOS). For evaluation, three test sets are utilized: Test-1 contains 300 videos and is ID-disjoint, meaning it does not share any facial identities with the training set. Test-2 consists of 280 videos and is method-disjoint, indicating that the deepfake methods used for face swapping differ from those in the training set. Test-3 is the most restrictive, containing 120 videos that are both ID and method-disjoint. Participants trained their models using the training set and evaluated their performance on these test sets. Importantly, the annotations for the test sets were not disclosed to the participants.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\textwidth]{images/protocol.png}
+    \caption{Competition protocol for dataset splits. Figure adapted from~\cite{peng_etal_2023}.}
+    \label{fig:data_splitting}
+\end{figure}
+
+
 
 \section{Data Preprocessing}
 
-In this stage, faces were extracted from each video frame using the Multi-task Cascaded Convolutional Networks (MTCNN) model and OpenCV. The bounding boxes of the faces were resized and adjusted by a scale factor of 1.3, in order to provide context and improve prediction accuracy. This step resulted in a new dataset of cropped face images which served as input for the subsequent modeling stages. Preprocessing the data prior to model training expedited the training process and saved computational resources.
+The initial step involved face extraction from video frames using the Multi-task Cascaded Convolutional Networks (MTCNN)~\cite{DBLP:journals/corr/ZhangZL016} and OpenCV~\cite{opencv_library}. Bounding boxes were resized and expanded by a factor of 1.3 to capture more context (Figure~\ref{fig:MTCCN}). This resulted in a dataset of cropped face images for subsequent modeling. Preprocessing expedited training and optimized resource usage.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{images/resultof.png}
+    \caption{Example of face extraction using MTCNN and OpenCV. The red box indicates the original bounding box, and the green box represents the 1.3-scaled bounding box.}
+
+    \label{fig:MTCCN}
+\end{figure}
+
 
 \section{Training and Validation Data}
 
-For this thesis, a method was implemented to process each video by selectively extracting sequences of frames. A starting point was randomly selected within each video, and a sequence of five frames was captured from that point. The frames were then transformed as required by the modeling process. Each sequence was paired with its corresponding Mean Opinion Score (MOS) label. 
+Two different methods were employed for data preparation and model training in this thesis:
 
-The dataset was then divided into three subsets to facilitate the training, validation, and testing of the models. Out of the total 700 videos, 70\% (490 videos) were allocated for training, 20\% (140 videos) for testing, and the remaining 10\% (70 videos) were used for validation.
+\begin{enumerate}
+    \item \textbf{Frame-Sequence-based Competition Models:} For the competition, frame-sequence-based models were used, each video was processed to extract a sequence of five frames, starting from a randomly chosen point within the video. The dataset was then subdivided into three parts: 70\% for training (490 videos), 20\% for testing (140 videos), and 10\% for validation (70 videos). This specific split was employed to quickly evaluate model hyperparameters and overall performance. The top-performing model in the test set was subsequently retrained using the same split, with the aim of capturing any nuances present in the remaining data.
+
+   \item \textbf{Improved Frame-based ConvNeXt Model:} Post-competition, a frame-based ConvNeXt model was developed. In this version, 16 random frames were selected from each video. During each training epoch, one of these 16 frames was randomly chosen for gradient updates. A simpler 10\% validation split was applied for this model, as external test sets from the competition were available for performance evaluation directly.
+
+\end{enumerate}
 
 \section{Experimental Setup}
 
-Training was conducted on a High-Performance Computing (HPC) infrastructure, facilitated by Pytorch Lightning. The AdamW optimizer was chosen with a learning rate of 2e-5. The learning rate scheduler, ReduceLROnPlateau, was incorporated along with early stopping, both of which were monitored via validation loss. The selected hyperparameters included a batch size of 2, a dropout rate of 0.1, a sequence length of 5, gradient accumulation across 8 batches, and a maximum of 33 epochs. Training was conducted on two Tesla V100S-32GB GPUs using a distributed data parallel (ddp) strategy.
+\subsection{HPC Infrastructure}
+The training was executed on the ARNES and VEGA High-Performance Computing (HPC) clusters, which employ the SLURM job scheduler for resource management. Utilizing HPC resources efficiently necessitates careful planning when writing code and scheduling jobs. In particular, the distributed data parallel (DDP) strategy was employed to leverage the multiple GPUs in these clusters. The use of HPC was critical given the large size of the model and video frames dataset. In my case, the HPC systems were crucial for enabling rapid computations by distributing tasks across multiple CPUs and GPUs. This setup provided a substantial advantage, especially for the machine learning experiments that I conducted, which required extensive computational resources. Using the HPC system allowed me to quickly train and test different models, making the whole process more efficient.
+
+
+\subsection{Framework}
+
+The experiments were facilitated using the PyTorch Lightning framework. PyTorch Lightning offers a more organized and modular approach than plain PyTorch, streamlining complex network training code into simpler, more readable forms. One significant advantage is that PyTorch Lightning makes the code hardware-agnostic. We opted for PyTorch Lightning due to its native support for SLURM environments, DDP strategies, and easy integration with WandB logging, thus making it particularly well-suited for our HPC setup.
+
+
+
+
+\subsection{Distributed Data Parallel (DDP)}
+
+We employed Distributed Data Parallel (DDP) as our training strategy, facilitated by PyTorch Lightning, for effective multi-GPU utilization. DDP works by spawning separate Python processes for each GPU, each with its own model copy and dataset partition. PyTorch Lightning sets a deterministic seed for each process to ensure reproducibility.
+
+Our Python script was specifically designed to be DDP-aware. Each spawned process has a unique 'local rank' identifier, which we leveraged to conditionally execute certain tasks. For instance, we only performed model saving and test steps on the process with local rank 0 to avoid redundant operations and potential conflicts. 
+
+The effective batch size in this setup is the local batch size multiplied by the number of GPUs. During training, each GPU calculates gradients based on its subset of the data. These gradients are then averaged across all GPUs, and each model copy is updated.
+
+Due to DDP's mechanism of data partitioning, some test samples can be replicated across GPUs. To avoid discrepancies in evaluation metrics, we carried out the testing solely on one GPU (local rank 0).
+
+
+
+\subsection{Training Configuration}
+\label{training}
+Training was executed on two distinct HPC clusters: ARNES and VEGA. On the ARNES infrastructure, two Tesla V100S-32GB GPUs were utilized, while on the VEGA cluster, four A100 GPUs were employed. The choice of batch size was adjusted to accommodate these different hardware configurations. Specifically, a smaller batch size of 2 was chosen for the ARNES setup due to the lower number of GPUs and their memory limitations. On the VEGA cluster, the larger memory and additional GPUs with a DDP strategy allowed for more flexibility in choosing a larger batch size.
+
+We chose the AdamW optimizer with a learning rate of \(2 \times 10^{-5}\) for our training. AdamW is an extension of the standard Adam optimizer, specifically designed to handle weight decay more effectively. Unlike traditional methods, AdamW decouples the weight decay from the optimization steps, providing a more effective approach to regularizing the model. This is particularly advantageous in the complex, non-convex optimization landscapes commonly found in deep learning. In simple terms, the weight decay in AdamW prevents the model from becoming overly complex and thus less prone to overfitting, making it more generalizable to unseen data. 
+
+The ReduceLROnPlateau learning rate scheduler was integrated to adapt the learning rate upon hitting validation loss plateaus. Early stopping mechanisms were also included, monitored via validation loss, to halt training once the model stopped improving.
+
 
 \section{Model Selection}
+\label{model_selection}
 
+\begin{enumerate}
+    \item \textbf{Frame-Sequence-based Competition Models:}
 Due to the non-deterministic nature of the training process, multiple models were trained with identical parameters. The model with the best performance, as determined by validation loss, was selected for the final submission. At the end of the training, the best model checkpoint based on validation loss was further trained with the same hyperparameters to accommodate the remaining data. Once early stopping was triggered, this final model checkpoint was saved for the final predictions.
+ \item \textbf{Improved Frame-based ConvNeXt Model:}
+        Multiple instances of this model were trained as well. To optimize the hyperparameters, a Weights and Biases (wandb) sweep was conducted. This allowed for systematic fine-tuning of hyperparameters against the validation loss. The model yielding the lowest validation loss during the sweep was selected as the final model. The relationship between validation loss and final score for these models is illustrated in Figure \ref{fig:ValidationVsFinalScore}.
+
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[trim={0cm 1cm 0cm 0cm},clip,width=1.1\textwidth]{images/plot.pdf}
+    \caption{Validation Loss vs Final Score.}
+    \label{fig:ValidationVsFinalScore}
+\end{figure}
+
+ 
+\end{enumerate}
 
 \section{Predictions and Model Averaging}
 
-The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos),
+\begin{enumerate}
+    \item \textbf{Frame-Sequence-based Competition Models:} 
 
-Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
+The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos),Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
 
 The dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
 
 For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model during the training phase.
 
-To assess the consistency of the predictions, the Root Mean Square Error (RMSE) between pairs of predictions was calculated. For the ConvNext model, the average RMSE was found to be 0.16, indicating a reasonable level of consistency in the predictions.
+\item \textbf{Improved Frame-based ConvNeXt Model:}
+Unlike the stochastic frame selection in the Frame-Sequence-based models, this improved model is designed to predict the MOS score using a maximum of 250 frames from each video. This allows for a more comprehensive analysis of the variability in the predictions. 
+
+Additionally, to speed up the prediction process, a batch processing mechanism was implemented. This enables the model to process multiple frames simultaneously, thereby reducing the overall time required for predictions. 
+\end{enumerate}
+
+\section{Performance Metrics}
+To evaluate the performance of our models, we used three key metrics: Pearson's Linear Correlation Coefficient (PLCC), Spearman's Rank Correlation Coefficient (SRCC), and Root Mean Square Error (RMSE). Importantly, PLCC and SRCC are the official metrics for the DFGC-VRA competition, and RMSE serves as an additional measure for model evaluation.
+The final score for each model was calculated as the average PLCC and SRCC values across all test set.
+\subsection{Pearson Linear Correlation Coefficient (PLCC)}
+
+PLCC assesses how well predicted Mean Opinion Scores (MOS) align with actual MOS, ranging from -1 to 1.
+
+\begin{itemize}
+    \item Near 1: Both scores increase together.
+    \item Near -1: One increases as the other decreases.
+    \item Near 0: No clear relationship.
+\end{itemize}
+
+A high PLCC in video realism assessment suggests the model is accurately capturing human perception.
+
+The formula is:
+
+\[
+\text{PLCC} = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}}{\sqrt{\sum_{i=1}^{n}{(x_i - \bar{x})^2} \sum_{i=1}^{n}{(y_i - \bar{y})^2}}}
+\]
+
+Here, \( \bar{x} \) and \( \bar{y} \) are the means of predicted and actual MOS, respectively.
+In simpler terms, the numerator of the PLCC equation calculates how each pair of actual and predicted scores deviate from their average values and sums these up. The denominator scales this sum to make it a value between -1 and 1. A high value indicates that the predicted and actual scores closely follow each other.
+
+\subsection{Spearman Rank-Order Correlation Coefficient (SRCC)}
+
+The Spearman Rank-Order Correlation Coefficient (SRCC) focuses on the rank-order relationship between variables, essentially assessing how well the sequence of data points in one set aligns with the sequence in another. 
+
+Consider a simple example with Predicted MOS \(= [5.0, 2.7, 3.6]\) and Actual MOS \(= [4.8, 2.8, 3.5]\). The ranks for both are \(= [3, 1, 2]\), indicating they align perfectly in terms of rank.
+
+The SRCC formula is:
+
+\[
+\text{SRCC} = \frac{\text{cov}(rg_X, rg_Y)}{\sigma_{rg_X} \sigma_{rg_Y}}
+\]
+
+Here, \(rg_X\) and \(rg_Y\) represent the rank variables for the Predicted and Actual MOS, respectively. The term \(\text{cov}\) stands for the covariance between these rank variables, while \(\sigma_{rg_X}\) and \(\sigma_{rg_Y}\) represent their standard deviations. 
+
+In the given example, the SRCC would be 1, indicating a perfect rank-order correlation. This signifies that the model ranks videos in a manner consistent with human judgment.
+
+\subsection{Final Score}
+
+The overall performance of a model on multiple test sets is determined by taking an equally weighted average of its performance metrics across these sets. This ensures that each test set contributes equally to the final evaluation.
+
+The final score for a submission is computed using the following equation:
+
+\[
+\text{Final Score} = \frac{(\text{plcc}_1 + \text{srcc}_1) + (\text{plcc}_2 + \text{srcc}_2) + (\text{plcc}_3 + \text{srcc}_3)}{6}
+\]
+
+
+Here, \(\text{plcc}_i\) and \(\text{srcc}_i\) represent the PLCC and SRCC scores on the \(i\)-th test set, respectively. This calculation ensures that both the PLCC and SRCC metrics are equally weighted in the final score.
 
 
 \chapter{Results}
 \label{ch3}
+To tackle the issue of evaluating the visual realism of deepfakes, we employed several models based on the architectures described in Chapter 3. In this chapter, we will focus on our top-performing models. We'll also discuss the results of hyperparameter tuning and investigate how visual realism assessments can vary on a frame-by-frame basis. TODO
+\section{Implemented Models}
+During the competition period, we implemented two models: Eva and ConvNeXt, both based on a frame-sequence-based architecture. These models were trained following the methodology described in Chapter~\ref{training}. The best-performing models, as determined by validation loss, were further trained and selected as detailed in Chapter~\ref{model_selection}. We utilized Weights \& Biases for logging and real-time tracking of the training process. 
 
-\section{Preliminary Analysis and Data Description}
+In the post-competition phase, we modified the ConvNeXt model to adopt a frame-based approach. This not only improved its performance but also enabled a more nuanced analysis of frame-level predictions.
 
-\section{Data Preprocessing Results}
 
-2. Face Extraction
+\section{Competition Models Training}
+In this section, we present the key training metrics for the two models we implemented during the competition period: Eva and ConvNeXt. These metrics serve to quantify the models' performance over the course of the training phase and to provide insights into their convergence behavior. For each model, we will detail the training and validation loss over epochs, as this offers a comprehensive view into the model's learning efficacy and potential for generalization.
 
-3. Resizing and Adjustment
+\begin{figure}[!htb]
+\centering
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.0\textwidth]{images/train.png}
+\caption{Training and validation loss for the best and retrained best frame-seqence-based competition models.}
+\label{fig:training_validation_loss}
+\end{figure}
 
-\section{Model Training Results}
+As depicted in Figure~\ref{fig:training_validation_loss}, both the initial best and the retrained best models exhibit the expected trends in training and validation loss. Notably, the training loss for the retrained best models drops rapidly. This is anticipated since the retraining process targets the remaining portion of the data, thereby focusing on fine-tuning rather than learning from scratch.
 
-4. Performance Metrics
+\subsection{Retraining Gains}
+During the competition, due to time constraints, our approach was to run the training script twice for each model—what we refer to as the 'double-run' method. To ensure that the results are directly comparable, we used the same random seed for frame-sequence sampling in both prediction runs.
+\begin{table}[!htb]
+\centering
+\caption{Performance of Initial and Retrained Models}
+\label{tab:retraining_gains}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Model & Test Set 1 & Test Set 2 & Test Set 3 & Final Score \\
+\hline
+Best ConvNeXt & 0.75 & 0.91 & 0.82 & 0.827 \\
+\hline
+Retrained Best ConvNeXt & 0.77 & 0.92 & 0.84 & 0.845 \\
+\hline
+Best Eva & 0.78 & 0.91 & 0.85 & 0.848 \\
+\hline
+Retrained Best Eva & 0.80 & 0.91 & 0.86 & 0.859 \\
+\hline
+\end{tabular}
+\end{table}
 
-5. Hyperparameter Tuning
+The table indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance.
+
+
 
 \section{Model Selection and Validation}
 
