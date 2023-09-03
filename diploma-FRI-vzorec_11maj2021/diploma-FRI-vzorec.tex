@@ -32,6 +32,8 @@
 
 \usepackage{color}
 \usepackage{soul}
+\usepackage{multirow} 
+
 
 \usepackage[
 backend=biber,
@@ -982,7 +984,8 @@ As depicted in Figure~\ref{fig:training_validation_loss}, both the initial best 
 During the competition, due to time constraints, our approach was to run the training script twice for each model—what we refer to as the 'double-run' method. To ensure that the results are directly comparable, we used the same random seed for frame-sequence sampling in both prediction runs.
 \begin{table}[!htb]
 \centering
-\caption{Performance of Initial and Retrained Models}
+
+
 \label{tab:retraining_gains}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -997,26 +1000,120 @@ Best Eva & 0.78 & 0.91 & 0.85 & 0.848 \\
 Retrained Best Eva & 0.80 & 0.91 & 0.86 & 0.859 \\
 \hline
 \end{tabular}
+\caption{Performance of Initial and Retrained Models}
 \end{table}
 
 The table indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance.
 
 
+\section{Post-Competition Model Hyperparameter tunning}
+After the competition, we had the chance to use the real labels and weren't limited by daily submission caps. This helped us do a deeper dive into fine-tuning our ConvNeXt model. We switched it to a frame-based setup, which improved its performance and made it easier to understand how it was making its predictions. We tweaked different settings during this stage and will go into the details of how this improved the model later on.
 
-\section{Model Selection and Validation}
+\subsection{Hyperparameter Optimization using Weights \& Biases Sweeps}
+Weights \& Biases (WandB) Sweeps offer a structured and automated way to perform hyperparameter tuning. Through a single config file it enables automatic testing of various parameter combinations with multiple agents running the training loop. WandB collected performance data, simplifying the selection of optimal settings. For efficient testing, each model predicted the MOS of only the middle frame in each test video. This offered a balance between speed and accuracy.
 
-6. Model Selection
+Various parameters were tested to optimize the frame-based ConvNeXt model, as detailed below
+\begin{itemize}
+    \item \textbf{Augment Probability}: \{0.5, 0.9\}
+    \item \textbf{Use Augmentation}: \{True, False\}
+    \item \textbf{Batch Size}: \{1, 8\}
+    \item \textbf{Drop Path Rate}: \{0, 0.1, 0.2\}
+    \item \textbf{Dropout Rate}: \{0.1, 0.5\}
+    \item \textbf{Loss Function}: \{RMSE, MAE\}
+    \item \textbf{Max Epochs}: \{16, 32, 48\}
+    \item \textbf{Random Seed}: \{-1, 1126\}
+    \item \textbf{Sequence Length}: \{8, 16, 32\}
+    \item \textbf{Weight Decay}: \{0.01, 0.1, 0.001\}
+\end{itemize}
 
-7. Validation
+In the following subsections, we will present the findings of the hyperparameter tuning process, starting with the significance of the seed parameter.
+\subsubsection{Seed Parameter}
+As evidenced in Figure \ref{fig:SEED}, the parameter importance chart showcases the relationship between the seed value, validation loss, and the final score based on the middle frames. The chart supports our observations that deterministic seeding (same seed value) leads to comparable validation losses, mainly influenced by other parameters such as batch size. Meanwhile, the non-deterministic seed (-1) shows a wider range of validation losses. Despite these variances in validation loss, the final scores remained relatively consistent across both seeded and non-seeded approaches. It's also evident that other hyperparameters have a noticeable impact on the final score. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[trim={0cm 2cm 0cm 2cm},clip,width=1.0\textwidth]{images/W&B Chart 03_09_2023, 15_11_19.png}
+\caption{Parameter Importance Chart: Relationship between Seed, Validation Loss, and Final Score from Middle Frames.}
+\label{fig:SEED}
+\end{figure}
+For comparability all subsequent analyses will use a fixed seed of 1126.
+
+
+
+
+\subsubsection{Batch Size}
+The figure \ref{fig:BatchSize} below illustrates the strong relationship between batch size and both validation loss and final score from middle frame evaluations. Notably, batch size emerged as the most significant hyperparameter in our model's performance.
+
+A larger batch size led to higher validation loss and, consequently, worse model performance. This may be attributed to the fact that larger batch sizes provide a more accurate estimate of the gradient. However, they also reduce the model's ability to escape local minima in the loss landscape, potentially leading to sub-optimal solutions. It's worth noting that the effective batch size was 4, as the training was distributed across 4 GPUs.
+
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[trim={1cm 2cm 1cm 2cm},clip,width=1.0\textwidth]{images/W&B Chart 03_09_2023, 16_16_33 (1).png}
+\caption{Parameter Importance Chart: Relationship between Batch Size, Validation Loss, and Final Score from Middle Frames.}
+\label{fig:BatchSize}
+\end{figure}
 
 \section{Final Predictions and Model Averaging}
+In this section, we focus on the performance of the top-performing models identified in the previous chapters. We'll explore their predictive accuracy on test sets, investigate the potential benefits of model ensembles, and evaluate the consistency of the predictions.
 
-8. Test Set Predictions 
+\subsection{Test Set Predictions}
+Here, we will present the test set performance of our best models.
 
-9. Model Averaging
 
-10. Consistency of Predictions
+\begin{table}[h]
 
+\label{res_test}
+\smallskip
+\begin{center}
+\begin{tabular}{ | c | c | c | c | c | c | }
+\hline  
+  \textbf{Model} & \textbf{Test Set} & \textbf{PLCC$^{\uparrow}$} & \textbf{SRCC$^{\uparrow}$} & \textbf{RMSE$^{\downarrow}$} &
+  \textbf{Score$^{\uparrow}$}\\ 
+\hline  
+  \multirow{3}{*}{ConvNext} & 1 & 0.7899 & 0.7387 & 0.4545 & \multirow{3}{*}{0.843} \\
+                            & 2 & 0.9279 & 0.9171 & 0.3492 & \\
+                            & 3 & 0.8647 & 0.8211 & 0.4303 & \\
+\hline
+  \multirow{3}{*}{Eva} & 1 & \textbf{0.8585} & \textbf{0.7919} & \textbf{0.4128} & \multirow{3}{*}{0.858}
+  \\ & 2 & 0.9158 & 0.9119 & 0.3622 & \\
+   & 3 & 0.8726 & 0.8285 & 0.4132 & \\
+\hline
+
+  \multirow{3}{*}{Ensemble} & 1 & 0.8091 & 0.7633 & 0.4352 & \multirow{3}{*}{0.854} \\
+                            & 2 & 0.9287 &
+                            0.9197 & 0.3447  & \\
+                            & 3 & 0.8746 & 0.8318& 0.4146 & \\
+                            \hline
+  \multirow{3}{*}{Post comp. ConvNext} & 1 & 0.8265 & 0.7907 & 0.4160 & \multirow{3}{*}{\textbf{0.867}} \\
+                            & 2 & \textbf{0.9323} & \textbf{ 0.9234} & \textbf{0.3233}  & \\
+                            & 3 & \textbf{ 0.8922} & \textbf{0.8382} & \textbf{0.3749} & \\
+\hline  
+\end{tabular}
+\end{center}
+\caption{Performance Metrics for Competition and Post Competition Model on each Test Set}
+\end{table}
+
+Table \ref{res_test} provides an overview of the performance metrics for our selected models across multiple test sets. Two key observations can be made:
+
+1. The Eva model from the competition phase stands out in terms of performance on Test Set 1, boasting the highest PLCC score of \(0.8585\) and an SRCC score of \(0.7919\).
+   
+2. The Post-competition ConvNext model outperforms all others in the overall evaluation, securing the highest aggregate score of \(0.867\).
+
+These findings underscore the robustness of the Post-competition ConvNext model while also highlighting the specific strengths of the Eva model in certain test scenarios.
+
+
+\subsection{Model Ensembles}
+In this subsection, we'll explore the utility of combining multiple models to create an ensemble, aiming to improve predictive performance further.
+
+\subsection{Consistency of Predictions}
+Finally, we'll examine the stability and reliability of our model predictions, providing insights into their robustness across different scenarios.
+
+Each subsection will be supported by data tables and figures to present a comprehensive view of the final results.
 \section{Model comparison}
 
 11.Competition
