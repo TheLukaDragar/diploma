@@ -405,7 +405,7 @@ We summarize the contributions of this work as follows:
 
 \begin{itemize}
     \item Uncover key gaps and the importance of VRA within deepfake research.
-    \item Establish and validate an ensemble of Eva and ConvNext CNNs specifically for VRA applications in deepfakes.
+    \item Establish and validate an ensemble of Eva and ConvNext models specifically for VRA applications in deepfakes.
     \item Conduct comprehensive benchmarking of our model against existing solutions, identifying both strengths and areas for further improvement.
     \item Provide an in-depth explanation of the entire research methodology, ranging from data preprocessing to final evaluation.
     \item Identify and implement key improvements to existing VRA methods.
@@ -986,7 +986,6 @@ During the competition, due to time constraints, our approach was to run the tra
 \centering
 
 
-\label{tab:retraining_gains}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Model & Test Set 1 & Test Set 2 & Test Set 3 & Final Score \\
@@ -1001,9 +1000,11 @@ Retrained Best Eva & 0.80 & 0.91 & 0.86 & 0.859 \\
 \hline
 \end{tabular}
 \caption{Performance of Initial and Retrained Models}
+\label{tab:retraining_gains}
+
 \end{table}
 
-The table indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance.
+Table \ref{tab:retraining_gains} indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance.
 
 
 \section{Post-Competition Model Hyperparameter tunning}
@@ -1067,7 +1068,6 @@ Here, we will present the test set performance of our best models.
 
 \begin{table}[h]
 
-\label{res_test}
 \smallskip
 \begin{center}
 \begin{tabular}{ | c | c | c | c | c | c | }
@@ -1095,29 +1095,141 @@ Here, we will present the test set performance of our best models.
 \hline  
 \end{tabular}
 \end{center}
-\caption{Performance Metrics for Competition and Post Competition Model on each Test Set}
+\caption{Performance Metrics for Competition and Post Competition Model on each Test Set.}
+\label{res_test}
 \end{table}
 
-Table \ref{res_test} provides an overview of the performance metrics for our selected models across multiple test sets. Two key observations can be made:
+Table \ref{res_test} provides an overview of the performance metrics for our selected models across multiple test sets. The Eva model performs best on Test Set 1 with a PLCC of \(0.8585\), while the Post-competition ConvNext model has the highest overall score of \(0.867\).
 
-1. The Eva model from the competition phase stands out in terms of performance on Test Set 1, boasting the highest PLCC score of \(0.8585\) and an SRCC score of \(0.7919\).
-   
-2. The Post-competition ConvNext model outperforms all others in the overall evaluation, securing the highest aggregate score of \(0.867\).
-
-These findings underscore the robustness of the Post-competition ConvNext model while also highlighting the specific strengths of the Eva model in certain test scenarios.
 
 
 \subsection{Model Ensembles}
-In this subsection, we'll explore the utility of combining multiple models to create an ensemble, aiming to improve predictive performance further.
+
+In Table \ref{res_test}, the competition ensemble model consisting of Eva and ConvNext performed slightly worse than Eva alone but better than just ConvNext. This was because Eva was given a smaller weight of 0.25 in the ensemble based on its initial test performance. The difference in performance between Eva and the ensemble was marginal. In a subsequent ensemble model, detailed in Table \ref{res_ensemble}, we combined Eva and the Post-competition ConvNext with equal weights of 0.5, which led to an improved overall performance score.
+\begin{table}[h]
+
+\smallskip
+\begin{center}
+\begin{tabular}{ | c | c | c | c | c | c | }
+\hline  
+  \textbf{Model} & \textbf{Test Set} & \textbf{PLCC$^{\uparrow}$} & \textbf{SRCC$^{\uparrow}$} & \textbf{RMSE$^{\downarrow}$} &
+  \textbf{Score$^{\uparrow}$}\\ 
+
+\hline
+
+  \multirow{3}{*}{Ensemble} & 1 & 0.8091 & 0.7633 & 0.4352 & \multirow{3}{*}{0.854} \\
+                            & 2 & 0.9287 &
+                            0.9197 & 0.3447  & \\
+                            & 3 & 0.8746 & 0.8318& 0.4146 & \\
+                            \hline
+
+  \multirow{3}{*}{Post comp. ConvNext} & 1 & 0.8265 & 0.7907 & 0.4160 & \multirow{3}{*}{0.867} \\
+                            & 2 & \textbf{0.9323} &  \textbf{0.9234} & \textbf{0.3233}  & \\
+                            & 3 &  0.8922 & 0.8382 & \textbf{0.3749} & \\
+\hline  
+
+  \multirow{3}{*}{Post comp. Ensemble} & 1 & \textbf{0.8372} & \textbf{0.8027} & \textbf{0.4037} & \multirow{3}{*}{\textbf{0.8714}} \\
+                            & 2 &  0.9307 & 0.9231 & 0.3298  & \\
+                            & 3 & \textbf{ 0.8922} & \textbf{0.8423} & 0.3782 & \\
+\hline  
+\end{tabular}
+\end{center}
+\caption{Performance Metrics for Competition and Post Competition Model Ensembles on each Test Set.}
+\label{res_ensemble}
+\end{table}
+\newpage
+
+
+
+
 
 \subsection{Consistency of Predictions}
-Finally, we'll examine the stability and reliability of our model predictions, providing insights into their robustness across different scenarios.
+The frame-based ConvNext model offers a detailed look into the evolution of Mean Opinion Score (MOS) predictions over time. Figure \ref{fig:MOS_changes} highlights a specific example where the MOS experiences significant fluctuations. Initially, the individual is looking away from the camera with their eyes directed downwards, showing noticeable artifacts around the eyes and specifically at the top right edge of the forehead. As the person turns to face the camera, these artifacts become less prominent, and even the teeth appear more realistic. However, this visual realism takes a hit when the individual starts speaking, resulting in blurring around the chin. Finally, the person looks away from the camera again, and artifacts become noticeable on the right side of the face where the digitally rendered face meets the real background. These rapid fluctuations in MOS indicate that human raters are likely to notice these significant changes in quality. Consequently, the overall visual realism of the video may be rated based on the lowest-quality frames, as these are the most noticeable and impactful to the viewer.
 
-Each subsection will be supported by data tables and figures to present a comprehensive view of the final results.
-\section{Model comparison}
 
-11.Competition
 
+\begin{figure}[H]
+\centering
+\includegraphics[trim={0.5cm 0cm 20cm 0cm},clip,width=1.0\textwidth]{images/mos_time.png}
+\caption{Plot showing changes in predicted MOS (blue line) and actual MOS (red line) over time, along with key frames that highlight these changes.}
+\label{fig:MOS_changes}
+\end{figure}
+
+\newpage
+
+\section{Competition Comparison}
+In this section, we compare the performance of our models against those submitted in the competition. This serves as an external benchmark to gauge the effectiveness of the techniques and approaches used in our work. 
+\begin{table}[h]
+
+\smallskip
+\begin{center}
+\begin{tabular}{ | c | c | c | c | c |  }
+\hline  
+  \textbf{Model} & \textbf{Test Set} & \textbf{PLCC$^{\uparrow}$} & \textbf{SRCC$^{\uparrow}$} & 
+  \textbf{Score$^{\uparrow}$}\\ 
+
+\hline
+  \multirow{3}{*}{OPDAI} & 1 & \textbf{0.8578} & \textbf{0.8372} &  \multirow{3}{*}{\textbf{0.8851 }} \\
+                            & 2 &  \textbf{0.9423}& \textbf{0.9214} & \\
+                            & 3 & \textbf{ 0.8928} & \textbf{0.8592} & \\
+                             \hline
+\multirow{3}{*}{HUST} & 1 & 0.8117 & 0.7864 &  \multirow{3}{*}{0.8611} \\
+                            & 2 & 0.9281 &
+                            0.9215  &  \\
+                            & 3 & 0.8842 & 0.8348&  \\
+                            \hline
+
+  \multirow{3}{*}{Our Ensemble} & 1 & 0.8091 & 0.7633  & \multirow{3}{*}{0.854} \\
+                            & 2 & 0.9287 &
+                            0.9197 & \\
+                            & 3 & 0.8746 & 0.8318&  \\
+                            \hline
+
+  \multirow{3}{*}{Organizer baseline\cite{sun2023visual}} & 1 & 0.3778 & 0.4731  & \multirow{3}{*}{0.5470} \\
+    & 2 & 0.5949 &
+    0.7322 & \\
+    & 3 & 0.4898 & 0.6139 &  \\
+    \hline
+
+
+
+
+\end{tabular}
+\end{center}
+\caption{Performance Metrics for Competition and Post Competition Model Ensembles on each Test Set.}
+\label{res_final}
+\end{table}
+
+As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the highest score of \(0.8851\) utilizing a Swin Transformer backbone along with Norm-in-Norm and KL Divergence loss. The second-place model, HUST, employed an ensemble of ConvNext and LSTM models and used a combination of MAE, rank, and PLCC losses to reach a score of \(0.8611\). Our Ensemble model follows closely behind with a score of \(0.854\). The Organizer's baseline model, constructed using SVR regression on features extracted by both Swin Transformer and ConvNeXt—both pretrained on deepfake detection—and employing MSE loss, significantly lags behind with a score of \(0.5470\).
+
+
+
+
+
+
+
+
+
+\section{Examples}
+In this section, we showcase examples of both accurate and inaccurate MOS (Mean Opinion Score) predictions made by our best-performing ensemble model. This model is an ensemble of Eva and the frame-based ConvNext. The figures below are arranged in grids where each cell represents a frame from the video test set, accompanied by its predicted and actual MOS values as well as its test set identifier.
+
+As evidenced in Figure \ref{fig:badpred}, the ensemble model of Eva and frame-based ConvNext occasionally generates imprecise MOS predictions. These instances are sorted by MAE in descending order, with the most inaccurate at the top. Notably, a large portion of these incorrect predictions stem from Test Set 1. This set is ID-disjoint from the training data, meaning the faces in this set were not seen during training. The absence of a reference face in Test Set 1 complicates the model's task of assessing visual realism. In Test Set 2, where reference faces are available, the model can comparatively evaluate the discrepancies between the manipulated and the original faces. This relative comparison simplifies the task and usually leads to more accurate MOS predictions. In contrast, Test Set 1 forces the model to make absolute judgments on visual realism without a point of comparison, making it a more challenging evaluation environment and contributing to higher inaccuracies.
+
+In contrast, Figure \ref{fig:goodpred} displays instances where the model's predictions are notably accurate. These are also sorted by MAE, but in ascending order to showcase the best predictions.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.1\textwidth]{images/badpred3.png}
+\caption{Grid of frames showing most inaccurate MOS predictions (Pred), ground truth (Gt), and test set identifiers (Ts), sorted in descending order by MAE.}
+\label{fig:badpred}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.1\textwidth]{images/goodpred.png}
+\caption{Grid of frames showing most accurate MOS predictions (Pred), ground truth (Gt), and test set identifiers (Ts), sorted in ascending order by MAE.}
+\label{fig:goodpred}
+\end{figure}
 \chapter{Conclusion}
 \label{ch4}
 
