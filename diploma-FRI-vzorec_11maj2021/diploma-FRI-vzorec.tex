@@ -384,7 +384,7 @@ To Time, for shaping me and this work.
 \bigskip
 
 %\noindent\textbf{Abstract:} 
-\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of ConvNext, a Convolutional Neural Network (CNN), and Eva, a vanilla Vision Transformer (ViT). These models were trained on a subset of the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with the competition's baseline model.
+\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of ConvNext, a Convolutional Neural Network (CNN), and Eva, a vanilla Vision Transformer (ViT). These models were trained on a subset of the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with other competitors.
 
 
 
@@ -409,7 +409,7 @@ To Time, for shaping me and this work.
 \bigskip
 
 %\noindent\textbf{Povzetek:} 
-\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh naprednih globokih nevronskih mrež imenovanih ConvNext in Eva. Modela smo natrenirali na podmnožici podatkovne množice DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja(MOS) ponarejenaga videoposnetka DeepFake. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
+\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake videposnetkov, kar je ključnega pomena za njihov vpliv. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh naprednih globokih nevronskih mrež imenovanih ConvNext in Eva. Modela smo natrenirali na podmnožici podatkovne množice DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja (MOS) ponarejenaga videoposnetka DeepFake. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov s sotekmovalci.
 
 \bigskip
 
@@ -424,11 +424,11 @@ To Time, for shaping me and this work.
 \chapter*{Razširjeni Povzetek}
 Raziskave na področju deepfake tehnologij pridobivajo na pomembnosti, saj imajo globoko ponarejanje lahko resne posledice na različnih področjih, od varnosti do novinarstva. Poleg prepoznavanja avtentičnosti videoposnetkov je nujno tudi razumeti, kako "resnični" ali prepričljivi se ti videi zdijo človeškim opazovalcem. Tovrstna ocena je kritična, saj je v končni fazi človek tisti, ki interpretira in reagira na medijske vsebine. Tehnologije za prepoznavanje deepfake so sicer vse bolj napredne, a človeška percepcija igra svojo vlogo. Raziskave namreč kažejo, da kombinacija človeškega vizualnega zaznavanja in algoritemske analize lahko zagotovi bolj zanesljivo prepoznavanje ponarejenih vsebin. To je deloma posledica človeške nevrološke zasnove, ki vključuje specifične mehanizme za prepoznavanje obrazov, mehanizme, ki se od računalniških znatno razlikujejo. 
 
-V tem kontekstu je bilo izvedeno tekmovanje z naslovom DFGC-VRA 2023, ki se je osredotočalo na ocenjevanje vizualnega realizma deepfake videoposnetkov. Organizatorji so pripravili obsežno podatkovno zbirko, ki je bila anotirana z povprečno mnenjsko oceno vizualnega realizma. Pet anotatorjev je skupno ocenilo 1.400 videoposnetkov, kar zagotavlja bogat in raznovrsten nabor podatkov. Za potrebe treninga modelov je bilo 700 videoposnetkov izbranih kot učna množica, preostalih 700 pa je bilo razdeljenih v posebne testne množice za evalvacijo modelov tekmovalcev. 
+V tem kontekstu je bilo izvedeno tekmovanje DFGC-VRA 2023, ki se je osredotočalo na ocenjevanje vizualnega realizma deepfake videoposnetkov. Organizatorji so pripravili obsežno podatkovno zbirko, ki je bila anotirana z povprečno mnenjsko oceno vizualnega realizma. Pet anotatorjev je skupno ocenilo 1.400 videoposnetkov, kar zagotavlja bogat in raznovrsten nabor podatkov. Za potrebe treninga modelov je bilo 700 videoposnetkov izbranih kot učna množica, preostalih 700 pa je bilo razdeljenih v posebne testne množice za evalvacijo modelov tekmovalcev. 
 
 V zgolj dveh tednih nam je uspelo implementirati inovativno metodo, ki združuje dve napredni arhitekturi globokih nevronskih mrež, ConvNext in Eva, v ansambelski model. S pomočjo tega ansambla smo učinkovito napovedali vizualni realizem deepfake videoposnetkov. Nenazadnje je naš pristop v okviru tekmovanja DFGC-VRA 2023 dosegel odmevno tretje mesto.
 
-Naša ekipa je prilagodila dve obstoječi arhitekturi, ConvNext in Eva, za specifično nalogo kvantifikacije vizualnega realizma deepfake videoposnetkov. ConvNext je bil prvotno zasnovan za detekcijo deepfake videposnetkov, Eva pa je bila usposobljena za slikovno klasifikacijo na osnovi podatkovne zbirke ImageNet.
+Naša ekipa je prilagodila dve obstoječi arhitekturi, ConvNext in Eva, za specifično nalogo kvantifikacije vizualnega realizma deepfake videoposnetkov. ConvNext je bil prvotno zasnovan za detekcijo deepfake videoposnetkov, Eva pa je bila usposobljena za slikovno klasifikacijo na osnovi podatkovne zbirke ImageNet.
 Za preseganje omejitev statične klasifikacije smo implementirali napredne tehnike za agregacijo značilk skozi časovne sekvence sličic. Predhodna obdelava je bila prav tako izvedena, da bi se sličice osredotočile na obrazne regije. V tem kontekstu smo dodelali obe arhitekturi, da bi bile bolj prilagodljive in učinkovite za dinamično analizo videoposnetkov.
 
 Po uspehu na tekmovanju smo izboljšali ConvNext model, ki zdaj omogoča oceno vizualnega realizma iz posameznih slik. Ta nadgradnja je rezultirala v boljši učinkovitosti in večji prilagodljivosti modela, saj je zdaj sposoben analizirati različne medijske formate, ne le videoposnetkov. 
@@ -460,7 +460,7 @@ Despite its vital role, VRA is an underexplored field compared to deepfake detec
 
 In this spirit, we participated in the DFGC-VRA competition, a continuation of the previous DFGC-2021 and DFGC-2022 competitions. While earlier events primarily focused on deepfake detection and creation, this year's competition emphasized the crucial but less-explored area of Visual Realism Assessment. Our efforts paid off, earning us a third-place finish in the DFGC 2023 competition.  Remarkably, I completed the entire project, from data preprocessing to model training and evaluation, in just 14 days.
 
-The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with other competitors as well as the competition's baseline model, highlighting the strengths and limitations of our solution.
+The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with other competitors and highlights the strengths and limitations of our solution.
 
 \section{Contributions}
 
@@ -522,8 +522,8 @@ The architecture employed for this work is \texttt{convnext\_xlarge\_384\_in22ft
 \subsubsection{Key Terminology}
 \begin{itemize}
     \item \textbf{Block}: A block is the smallest unit in the ConvNeXt architecture, consisting of a series of layers like Depthwise Convolution, Layer Normalization, Pointwise Convolution, and GELU Activation.
-    \item \textbf{Stage}:A stage groups together multiple blocks and functions as a significant unit within the network. Each stage operates at a consistent feature dimension, determined by the \texttt{dims} parameter, allowing for uniformity in feature map sizes across all the blocks within the same stage. This enables the model to focus on extracting different types of features at each stage.
-    \item \textbf{Downsampling Layers}: These are specialized layers responsible for reducing the size of the input image to make it more manageable for the model.
+    \item \textbf{Stage}: A stage groups together multiple blocks and functions as a significant unit within the network. Each stage operates at a consistent feature dimension, determined by the \texttt{dims} parameter, allowing for uniformity in feature map sizes across all the blocks within the same stage. This enables the model to focus on extracting different types of features at each stage.
+    \item \textbf{Downsampling Layers}: These layers reduce input size to streamline computation while aiding in hierarchical feature learning.
    \item \textbf{Convolutional Layer}:
 The convolutional layer serves multiple roles, such as spatial downsampling and channel expansion, depending on its configuration. 
 
@@ -595,7 +595,7 @@ In the context of neural networks, the term "residual" signifies the difference 
 
 Mathematically, this is expressed as \( H(x) = F(x) + x \), where \( F(x) \) is the residual that the network learns, and \( x \) is the original input. Once \( F(x) \) is learned, it is added back to \( x \) to produce the final output \( H(x) \).
 
-This allows for ease of identity mapping—essentially allowing layers to output the same values as their input. This is often the optimal behavior, especially in deep networks, where adding complexity doesn't always result in better performance. By making it easier to learn the identity mapping, residual connections, allowing for more effective training of deep architectures.
+This allows for ease of identity mapping—essentially allowing layers to output the same values as their input. This is often the optimal behavior, especially in deep networks, where adding complexity doesn't always result in better performance. By making it easier to learn identity mappings, residual connections allow for more effective training of deep architectures.
   
 \end{itemize}
 
@@ -639,7 +639,7 @@ This careful adjustment of dimensions is designed to shift the model's focus tow
 
 \subsection{Utilizing ConvNext as Our Model Backbone}
 
-In our work, we adapt the ConvNext model, originally optimized for deepfake detection, for the task of Mean Opinion Score (MOS) prediction. This model utilizes the DFGC-1st-2022-model as its backbone, a winner of the DFGC2022 competition \cite{peng2022dfgc}. We employ the principle of transfer learning to make this adaptation efficient and effective.
+In our work, we adapt the ConvNext model, originally optimized for deepfake detection, for the task of Mean Opinion Score (MOS) prediction. This model utilizes the DFGC-1st-2022-model as its backbone, a winner of the DFGC 2022 competition \cite{peng2022dfgc}. We employ the principle of transfer learning to make this adaptation efficient and effective.
 
 \subsubsection{Architectural Adaptations}
 
@@ -802,7 +802,7 @@ Eva utilizes a unique self-supervised pre-training approach known as Masked Imag
 
 \subsection{Utilizing Eva}
 
-Figure \ref{fig:eva_my} illustrates the architecture of the Eva model, which serves as a feature extractor for predicting MOS on deepfake videos, similar to the role played by the ConvNext model. Unlike ConvNext, Eva is initialized with pretrained weights from ImageNet using the timm library, rather than weights from DFGC2022 competition winners.
+Figure \ref{fig:eva_my} illustrates the architecture of the Eva model, which serves as a feature extractor for predicting MOS on deepfake videos, similar to the role played by the ConvNext model. Unlike ConvNext, Eva is initialized with pretrained weights from ImageNet using the timm library, rather than weights from DFGC 2022 competition winners.
 
 \begin{figure}[h]
 \centering
@@ -830,7 +830,7 @@ The basic premise is straightforward: individual models may excel in different a
 \label{chap:experiments}
 \section{Dataset}
 
-The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFCG-VRA competition, a subset of 1,400 videos was annotated by independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
+The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFGC-VRA competition, a subset of 1,400 videos was annotated by five independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
 
 \subsection{Face-Swap Methods}
 
@@ -956,14 +956,14 @@ Due to the non-deterministic nature of the training process, multiple models wer
 \begin{enumerate}
     \item \textbf{Frame-Sequence-based Competition Models:} 
 
-The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos),Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
+The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos), Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
 
 The dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
 
 For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model during the training phase.
 
 \item \textbf{Improved Frame-based ConvNeXt Model:}
-Unlike the stochastic frame selection in the Frame-Sequence-based models, this improved model is designed to predict the MOS score using a maximum of 250 frames from each video. This allows for a more comprehensive analysis of the variability in the predictions. 
+Unlike the stochastic frame selection in the Frame-Sequence-based models, this improved model is designed to predict the MOS score using an average over a maximum of 250 frames from each video. This allows for a more comprehensive analysis of the variability in the predictions. 
 
 Additionally, to speed up the prediction process, a batch processing mechanism was implemented. This enables the model to process multiple frames simultaneously, thereby reducing the overall time required for predictions. 
 \end{enumerate}
@@ -1024,7 +1024,7 @@ Here, \(\text{plcc}_i\) and \(\text{srcc}_i\) represent the PLCC and SRCC scores
 
 \chapter{Results}
 \label{chap:results}
-To tackle the issue of evaluating the visual realism of deepfakes, we employed several models based on the architectures described in Chapter 3. In this chapter, we will focus on our top-performing models. We'll also discuss the results of hyperparameter tuning and investigate how visual realism assessments can vary on a frame-by-frame basis. TODO
+To tackle the issue of evaluating the visual realism of deepfakes, we employed several models based on the architectures described in Chapter 3. In this chapter, we will focus on our top-performing models. We'll also discuss the results of hyperparameter tuning and investigate how visual realism assessments can vary on a frame-by-frame basis.
 \section{Implemented Models}
 During the competition period, we implemented two models: Eva and ConvNeXt, both based on a frame-sequence-based architecture. These models were trained following the methodology described in Chapter~\ref{training}. The best-performing models, as determined by validation loss, were further trained and selected as detailed in Chapter~\ref{model_selection}. We utilized Weights \& Biases for logging and real-time tracking of the training process. 
 
@@ -1276,7 +1276,13 @@ As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the hig
 \section{Examples and discussion}
 In this section, we showcase examples of both accurate and inaccurate MOS (Mean Opinion Score) predictions made by our best-performing ensemble model. This model is an ensemble of Eva and the frame-based ConvNext. The figures below are arranged in grids where each cell represents a frame from the video test set, accompanied by its predicted and actual MOS values as well as its test set identifier.
 
-As evidenced in Figure \ref{fig:badpred}, the ensemble model of Eva and frame-based ConvNext occasionally generates imprecise MOS predictions. These instances are sorted by MAE in descending order, with the most inaccurate at the top. Notably, a large portion of these incorrect predictions stem from Test Set 1. This set is ID-disjoint from the training data, meaning the faces in this set were not seen during training. The absence of a reference face in Test Set 1 complicates the model's task of assessing visual realism. In Test Set 2, where reference faces are available, the model can comparatively evaluate the discrepancies between the manipulated and the original faces. This relative comparison simplifies the task and usually leads to more accurate MOS predictions. In contrast, Test Set 1 forces the model to make absolute judgments on visual realism without a point of comparison, making it a more challenging evaluation environment and contributing to higher inaccuracies.
+As evidenced in Figure \ref{fig:badpred}, the ensemble model of Eva and frame-based ConvNext occasionally generates imprecise MOS predictions. These instances are sorted by MAE in descending order, with the most inaccurate at the top.
+
+Notably, a large portion of these incorrect predictions stem from Test Set 1. This set is ID-disjoint from the training data, meaning the faces in this set were not seen during training. The absence of a reference face in Test Set 1 complicates the model's task of assessing visual realism. In Test Set 2, where reference faces are available, the model can comparatively evaluate the discrepancies between the manipulated and the original faces. This relative comparison simplifies the task and usually leads to more accurate MOS predictions.
+
+Future work could focus on developing a 'reference-aware' mechanism within the model. This would allow the model to adjust its prediction strategy depending on the availability of reference faces, potentially standardizing performance across different test sets and enhancing the model's robustness and accuracy.
+
+In contrast, Test Set 1 forces the model to make absolute judgments on visual realism without a point of comparison, making it a more challenging evaluation environment and contributing to higher inaccuracies.
 
 In contrast, Figure \ref{fig:goodpred} displays instances where the model's predictions are notably accurate. These are also sorted by MAE, but in ascending order to showcase the best predictions.
 
