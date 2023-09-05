@@ -159,7 +159,7 @@ sorting=nty,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \pdfinfo{%
     /Title    (\ttitle)
-    /Author   (\tauthor, damjan@cvetan.si)
+    /Author   (\tauthor, luka.dragar2@gmail.com)
     /Subject  (\ttitleEn)
     /Keywords (\tkeywordsEn)
     /ModDate  (\pdfcreationdate)
@@ -184,6 +184,37 @@ sorting=nty,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\selectlanguage{english}
+\frontmatter
+\setcounter{page}{1} %
+\renewcommand{\thepage}{}       % preprečimo težave s številkami strani v kazalu
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%naslovnica
+ \thispagestyle{empty}%
+   \begin{center}
+    {\large\sc University of Ljubljana\\%
+%      Fakulteta za elektrotehniko\\% za študijski program Multimedija
+%      Fakulteta za upravo\\% za študijski program Upravna informatika
+     Faculty of Computer and Information Science\\%
+%      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
+     }
+    \vskip 10em%
+    {\autfont \tauthor\par}%
+    {\titfont \ttitleEn \par}%
+    {\vskip 3em \textsc{BACHELOR THESIS\\[5mm]         % dodal Solina za ostale študijske programe
+%    VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+     UNIVERSITY STUDY PROGRAMME\\ FIRST CYCLE\\ COMPUTER AND INFORMATION SCIENCE}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
+    \vfill\null%
+% izberite pravi habilitacijski naziv mentorja!
+
+    {\large \textsc{Mentor}: doc. dr. Žiga Emeršič\par}%
+   {\large \textsc{Co-mentor}: pred. dr. Borut Batagelj\par}%
+    {\vskip 2em \large Ljubljana, \the\year \par}%
+\end{center}
 \selectlanguage{slovene}
 \frontmatter
 \setcounter{page}{1} %
@@ -298,7 +329,7 @@ opis diplome v angleščini
 % zahvala
 \thispagestyle{empty}\mbox{}\vfill\null\it%
 \noindent
-Hvaležen sem svojemu mentorju, doc. dr. Žigi Emeršiču, in somentorju, pred. dr. Borutu Batagelju, za strokovno usmerjanje in pomoč pri oblikovanju te diplomske naloge.
+I am grateful to my mentor, doc. dr. Žiga Emeršič, and co-mentor, pred. dr. Borutu Batagelj, for their expert guidance and assistance in shaping this thesis.
 \rm\normalfont
 
 % prazna stran
@@ -307,7 +338,7 @@ Hvaležen sem svojemu mentorju, doc. dr. Žigi Emeršiču, in somentorju, pred. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % posvetilo, če sama zahvala ne zadošča :-)
 \thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
-Svoji dragi Lari.
+To Time, for shaping me and this work.
 \normalfont\end{minipage}
 
 % prazna stran
@@ -339,28 +370,6 @@ Svoji dragi Lari.
 
 % prazna stran
 \clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% povzetek
-\phantomsection
-\addcontentsline{toc}{chapter}{Povzetek}
-\chapter*{Povzetek}
-
-\noindent\textbf{Naslov:} \ttitle
-\bigskip
-
-\noindent\textbf{Avtor:} \tauthor
-\bigskip
-
-%\noindent\textbf{Povzetek:} 
-\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh globokih konvolucijskih nevronskih mrež (CNN), imenovanih Eva in ConvNext. Modela smo natrenirali na podatkovni množici DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja(MOS) ponarejenaga videoposnetka DeepFake. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
-
-\bigskip
-
-\noindent\textbf{Ključne besede:} \tkeywords.
-% prazna stran
-\clearemptydoublepage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % abstract
 \phantomsection
@@ -375,7 +384,10 @@ Svoji dragi Lari.
 \bigskip
 
 %\noindent\textbf{Abstract:} 
-\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of two Convolutional Neural Network (CNN) models, Eva and ConvNext. These models were trained on the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with the competition's baseline model.
+\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of ConvNext, a Convolutional Neural Network (CNN), and Eva, a vanilla Vision Transformer (ViT). These models were trained on a subset of the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with the competition's baseline model.
+
+
+
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -384,11 +396,62 @@ Svoji dragi Lari.
 \clearemptydoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% povzetek
+\phantomsection
+\addcontentsline{toc}{chapter}{Povzetek}
+\chapter*{Povzetek}
+
+\noindent\textbf{Naslov:} \ttitle
+\bigskip
+
+\noindent\textbf{Avtor:} \tauthor
+\bigskip
+
+%\noindent\textbf{Povzetek:} 
+\noindent V diplomski nalogi obravnavamo problematiko umetne inteligenco in tehnologijo DeepFake, ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma DeepFake, kar je ključnega pomena za vpliv ponarejenega videa. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma DeepFake videov z uporabo ansambla dveh naprednih globokih nevronskih mrež imenovanih ConvNext in Eva. Modela smo natrenirali na podmnožici podatkovne množice DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja(MOS) ponarejenaga videoposnetka DeepFake. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov z referenčnim modelom tekmovanja.
+
+\bigskip
+
+\noindent\textbf{Ključne besede:} \tkeywords.
+% prazna stran
+\clearemptydoublepage
+
+
+% povzetek
+\phantomsection
+\addcontentsline{toc}{chapter}{Razširjeni Povzetek}
+\chapter*{Razširjeni Povzetek}
+Raziskave na področju deepfake tehnologij pridobivajo na pomembnosti, saj imajo globoko ponarejanje lahko resne posledice na različnih področjih, od varnosti do novinarstva. Poleg prepoznavanja avtentičnosti videoposnetkov je nujno tudi razumeti, kako "resnični" ali prepričljivi se ti videi zdijo človeškim opazovalcem. Tovrstna ocena je kritična, saj je v končni fazi človek tisti, ki interpretira in reagira na medijske vsebine. Tehnologije za prepoznavanje deepfake so sicer vse bolj napredne, a človeška percepcija igra svojo vlogo. Raziskave namreč kažejo, da kombinacija človeškega vizualnega zaznavanja in algoritemske analize lahko zagotovi bolj zanesljivo prepoznavanje ponarejenih vsebin. To je deloma posledica človeške nevrološke zasnove, ki vključuje specifične mehanizme za prepoznavanje obrazov, mehanizme, ki se od računalniških znatno razlikujejo. 
+
+V tem kontekstu je bilo izvedeno tekmovanje z naslovom DFGC-VRA 2023, ki se je osredotočalo na ocenjevanje vizualnega realizma deepfake videoposnetkov. Organizatorji so pripravili obsežno podatkovno zbirko, ki je bila anotirana z povprečno mnenjsko oceno vizualnega realizma. Pet anotatorjev je skupno ocenilo 1.400 videoposnetkov, kar zagotavlja bogat in raznovrsten nabor podatkov. Za potrebe treninga modelov je bilo 700 videoposnetkov izbranih kot učna množica, preostalih 700 pa je bilo razdeljenih v posebne testne množice za evalvacijo modelov tekmovalcev. 
+
+V zgolj dveh tednih nam je uspelo implementirati inovativno metodo, ki združuje dve napredni arhitekturi globokih nevronskih mrež, ConvNext in Eva, v ansambelski model. S pomočjo tega ansambla smo učinkovito napovedali vizualni realizem deepfake videoposnetkov. Nenazadnje je naš pristop v okviru tekmovanja DFGC-VRA 2023 dosegel odmevno tretje mesto.
+
+Naša ekipa je prilagodila dve obstoječi arhitekturi, ConvNext in Eva, za specifično nalogo kvantifikacije vizualnega realizma deepfake videoposnetkov. ConvNext je bil prvotno zasnovan za detekcijo deepfake videposnetkov, Eva pa je bila usposobljena za slikovno klasifikacijo na osnovi podatkovne zbirke ImageNet.
+Za preseganje omejitev statične klasifikacije smo implementirali napredne tehnike za agregacijo značilk skozi časovne sekvence sličic. Predhodna obdelava je bila prav tako izvedena, da bi se sličice osredotočile na obrazne regije. V tem kontekstu smo dodelali obe arhitekturi, da bi bile bolj prilagodljive in učinkovite za dinamično analizo videoposnetkov.
+
+Po uspehu na tekmovanju smo izboljšali ConvNext model, ki zdaj omogoča oceno vizualnega realizma iz posameznih slik. Ta nadgradnja je rezultirala v boljši učinkovitosti in večji prilagodljivosti modela, saj je zdaj sposoben analizirati različne medijske formate, ne le videoposnetkov. 
+Zaradi zahtev, povezanih z obdelavo velike količine podatkov, smo za trening uporabili superračunalnik. Vključili smo tudi distribuiran trening na več grafičnih karticah in optimizacijo hiperparametrov, kar je dodatno izboljšalo naše rezultate. 
+
+V našem eksperimentu smo opazili, da modeli izjemno dobro delujejo na testni množici 2, ki vsebuje identitete obrazov, s katerimi so modeli že bili seznanjeni. To kaže, da modeli lahko učinkovito uporabljajo prej naučene reference za bolj natančno napoved, podobno kot so to naredili človeški ocenjevalci.
+Vendar pa natančnost modelov pade na testnih množicah, ki vključujejo nove, prej nevidene identitete. To nakazuje na nekolikšno omejitev modela pri generalizaciji na neznane identitete in bi zahtevala večjo in še bolj raznoliko učno množico.
+
+To delo je zlasti pomembno, saj se osredotoča na manj raziskano temo vizualnega realizma. Ne samo, da izboljšuje razumevanje te problematike, temveč tudi odpira možnosti za nove raziskave in bolj učinkovite strategije v boju proti zlorabi Deepfake tehnologije.
+
+
+\bigskip
+
+% prazna stran
+\clearemptydoublepage
+
+
 \mainmatter
 \setcounter{page}{1}
 \pagestyle{fancy}
 
 \chapter{Introduction}
+\label{chap:introduction}
 DeepFakes, first appearing around the end of 2017, were initially popularized by a group of Reddit users named "deepfakes." Utilizing deep-learning models, they crafted videos allowing for face swapping, face reenactment, facial attribute editing, and even entirely generated faces. This phenomenon rapidly spread, with well-known YouTube videos and various celebrities becoming the subject of deepfake content. The realism and accessibility of deepfakes have not only sparked widespread fascination but have also raised significant concerns. With the potential for negative applications such as impersonation and misinformation, extensive research has been directed towards developing automatic detection methods to counter these manipulations.
 
 The evaluation of deepfakes extends beyond merely detecting them, however. Since deepfakes are ultimately consumed by human viewers, their perceptual quality or visual realism has critical implications for their potential social impacts. This introduces the essential concept of Visual Realism Assessment (VRA), which focuses on how convincingly real a deepfake appears rather than traditional metrics like sharpness or compression. VRA provides a unique challenge due to its subjectivity, requiring careful and nuanced approaches. In addition, VRA serves as a valuable quality metric for both the generated images and the generative models themselves.
@@ -414,11 +477,11 @@ We summarize the contributions of this work as follows:
 
 \section{Structure}
 
-This thesis is organized into the following chapters:
-TODO
+This thesis is organized into five main chapters. Chapter~\ref{chap:introduction} serves as the introduction, providing an overview of the research topic and highlighting the contributions of this work. This is followed by Chapter~\ref{chap:related_work}, which offers a comprehensive discussion on existing literature and technologies pertinent to DeepFake detection and visual realism assessment. Chapter~\ref{chap:methods} elaborates on the methods used in this research, detailing the ConvNext and Eva models, as well as the ensemble approach employed. Chapter~\ref{chap:experiments} outlines the dataset, data preprocessing methods, and the experimental setup, including model selection and performance metrics. Finally, Chapter~\ref{chap:results} presents the findings of this research, including performance metrics, competition comparison, and examples, while also covering how the predictions were made.
+
 
 \chapter{Related Work}
-\label{ch0}
+\label{chap:related_work}
 The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection, and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods~\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
 With the advent of deep learning, detection methods have made significant strides, but disparities between human and machine perception of deepfakes remain an area needing further investigation \cite{DBLP:journals/corr/abs-2009-03155}.
 
@@ -433,11 +496,11 @@ The significant work by Sun et al. \cite{sun2023visual}, titled "Visual Realism 
 In the DFGC 2022 competition, the winning team employed an ensemble of models, including ConvNext, for their deepfake detection solution \cite{peng2022dfgc}. This victory suggests that models like ConvNext and Vision Transformers could be used not only for deepfake detection but also for Visual Realism Assessment. Such findings underscore the importance of factoring in visual realism and human cognitive abilities in the development of deepfake detection models, thereby motivating the research undertaken in this thesis.
 
 \chapter{Methods}
-\label{ch1}
+\label{chap:methods}
 
 \section{Overview}
 
-This research leverages the power of an ensemble comprising two distinct Convolutional Neural Network (CNN) models:
+This research leverages the power of an ensemble comprising two distinct models:
 ConvNext~\cite{DBLP:journals/corr/abs-2201-03545} and Eva~\cite{fang2022eva}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were finetuned on a subset of the DFGC 2022 dataset and submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
 
 \section{ConvNeXt}
@@ -764,7 +827,7 @@ The basic premise is straightforward: individual models may excel in different a
 
 
 \chapter{Experiments}
-\label{ch2}
+\label{chap:experiments}
 \section{Dataset}
 
 The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFCG-VRA competition, a subset of 1,400 videos was annotated by independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
@@ -960,7 +1023,7 @@ Here, \(\text{plcc}_i\) and \(\text{srcc}_i\) represent the PLCC and SRCC scores
 
 
 \chapter{Results}
-\label{ch3}
+\label{chap:results}
 To tackle the issue of evaluating the visual realism of deepfakes, we employed several models based on the architectures described in Chapter 3. In this chapter, we will focus on our top-performing models. We'll also discuss the results of hyperparameter tuning and investigate how visual realism assessments can vary on a frame-by-frame basis. TODO
 \section{Implemented Models}
 During the competition period, we implemented two models: Eva and ConvNeXt, both based on a frame-sequence-based architecture. These models were trained following the methodology described in Chapter~\ref{training}. The best-performing models, as determined by validation loss, were further trained and selected as detailed in Chapter~\ref{model_selection}. We utilized Weights \& Biases for logging and real-time tracking of the training process. 
@@ -1210,7 +1273,7 @@ As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the hig
 
 
 
-\section{Examples}
+\section{Examples and discussion}
 In this section, we showcase examples of both accurate and inaccurate MOS (Mean Opinion Score) predictions made by our best-performing ensemble model. This model is an ensemble of Eva and the frame-based ConvNext. The figures below are arranged in grids where each cell represents a frame from the video test set, accompanied by its predicted and actual MOS values as well as its test set identifier.
 
 As evidenced in Figure \ref{fig:badpred}, the ensemble model of Eva and frame-based ConvNext occasionally generates imprecise MOS predictions. These instances are sorted by MAE in descending order, with the most inaccurate at the top. Notably, a large portion of these incorrect predictions stem from Test Set 1. This set is ID-disjoint from the training data, meaning the faces in this set were not seen during training. The absence of a reference face in Test Set 1 complicates the model's task of assessing visual realism. In Test Set 2, where reference faces are available, the model can comparatively evaluate the discrepancies between the manipulated and the original faces. This relative comparison simplifies the task and usually leads to more accurate MOS predictions. In contrast, Test Set 1 forces the model to make absolute judgments on visual realism without a point of comparison, making it a more challenging evaluation environment and contributing to higher inaccuracies.
@@ -1231,6 +1294,16 @@ In contrast, Figure \ref{fig:goodpred} displays instances where the model's pred
 \label{fig:goodpred}
 \end{figure}
 \chapter{Conclusion}
+ In conclusion, this thesis has successfully tackled the growing concerns surrounding DeepFake technology by introducing a robust method for assessing the visual realism of DeepFake videos.
+ By harnessing the capabilities of ConvNext, a Convolutional Neural Network, in conjunction with Eva, a vanilla Vision Transformer (ViT), we've created an ensemble model that provides precise Mean Opinion Score (MOS) predictions. Notably, our approach has proven effective, earning us a third-place finish in the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA) 2023.
+Beyond the accomplishments, our work also addresses several challenges inherent to the field. These include managing large video datasets needing strategic preprocesing, training large models in cluster enviroments on multiple GPUs and striking a balance beetwen models performance and the computational complexity required.
+Overall, the success of this thesis underscores the untapped potential for further innovations in DeepFake detection and visual realism assessment, setting a benchmark for the next wave of research in this critical area of study.
+
+
+
+
+
+
 \label{ch4}
 
 
