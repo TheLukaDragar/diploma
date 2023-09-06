@@ -112,7 +112,7 @@ sorting=nty,
 % define medatata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \def\Title{\ttitle}
-\def\Author{\tauthor, matjaz.kralj@fri.uni-lj.si}
+\def\Author{\tauthor, luka.dragar3@gmail.com}
 \def\Subject{\ttitleEn}
 \def\Keywords{\tkeywordsEn}
 
@@ -159,7 +159,7 @@ sorting=nty,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \pdfinfo{%
     /Title    (\ttitle)
-    /Author   (\tauthor, luka.dragar2@gmail.com)
+    /Author   (\tauthor, luka.dragar3@gmail.com)
     /Subject  (\ttitleEn)
     /Keywords (\tkeywordsEn)
     /ModDate  (\pdfcreationdate)
@@ -338,7 +338,8 @@ I am grateful to my mentor, doc. dr. Žiga Emeršič, and co-mentor, pred. dr. B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % posvetilo, če sama zahvala ne zadošča :-)
 \thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
-To Time, for shaping me and this work.
+``To, kar znaš ti nihče ne more vzeti'' -- Ata Ivan
+
 \normalfont\end{minipage}
 
 % prazna stran
@@ -356,16 +357,25 @@ To Time, for shaping me and this work.
 \clearemptydoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% seznam kratic
 \selectlanguage{slovene}
 \chapter*{Seznam uporabljenih kratic}
 
-\noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
+\noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}
   {\bf kratica} & {\bf angleško}                              & {\bf slovensko} \\ \hline
-  {\bf VRA}      & Visual Realism Assessment of Deepfakes              &  Ocena kakovosti ponarejenih posnetkov \\
-
-%  \dots & \dots & \dots \\
+  {\bf VRA}     & Visual Realism Assessment      & Ocena vizualnega realizma\\
+  \hline
+  {\bf MOS}     & Mean Opinion Score                           & Povprečna mnenjska ocena \\
+  \hline
+  {\bf DFGC}    & DeepFake Game Competition                & 
+Tekmovanje na temo globokih ponaredkov \\
+  \hline
+  {\bf CNN}     & Convolutional Neural Network                 & Konvolucijska nevronska mreža \\
+  \hline
+  {\bf ViT}     & Vision Transformer                           & Vision Transformer \\
+  \hline
+  {\bf HPC}     & High-Performance Computing                   & Visokozmogljivo računalništvo \\
 \end{tabular}
+
 
 
 % prazna stran
@@ -482,7 +492,7 @@ This thesis is organized into five main chapters. Chapter~\ref{chap:introduction
 
 \chapter{Related Work}
 \label{chap:related_work}
-The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection, and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods~\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
+The rapid advancement of deepfake technologies has necessitated an intensified research focus on deepfake detection, face morphing attack detection and realism assessment \cite{DBLP:journals/corr/abs-2103-00484, ivanovska2022face}. The earliest studies in this field sought to differentiate authentic videos from their artificially manipulated counterparts. Despite advancements due to new benchmarks and extensive datasets \cite{khalid2022fakeavceleb, DBLP:journals/corr/abs-2103-16076}, as well as improvements achieved through the use of self-supervised data augmentations \cite{shiohara2022detecting}, enhanced Transformer models \cite{ISTVT}, and audio-visual multimodalities \cite{AVoiD}, current deepfake detection models still struggle in key areas. Specifically, these models face challenges in generalizing to unseen deepfake creation methods~\cite{li2023generalizable}, signaling the need for more robust and adaptable algorithms.
 With the advent of deep learning, detection methods have made significant strides, but disparities between human and machine perception of deepfakes remain an area needing further investigation \cite{DBLP:journals/corr/abs-2009-03155}.
 
 Building on this, disparities between human and machine perception of deepfakes have opened new avenues for investigation. Key research has revealed that a hybrid approach, incorporating both human judgment and machine learning models, yields superior results in deepfake detection compared to using either method in isolation \cite{DBLP:journals/corr/abs-2105-06496}. Importantly, this study discovered that the specialized cognitive capacity to process facial visuals greatly influences the efficacy of human deepfake detection.
@@ -655,7 +665,7 @@ By doing this, we leverage the robust feature extraction capabilities of the ori
 
 \subsubsection{Transfer Learning}
 
-Transfer learning is a prevalent approach in machine learning where a model initially developed for a specific task is adapted to solve a different but related problem. In our work, we employ this technique to adapt the ConvNext model, originally optimized for deepfake detection, for Mean Opinion Score (MOS) prediction. Using the DFGC-1st-2022-model as its backbone, the ConvNext model is a prime candidate for this adaptation, as it has already been trained on a challenging task and has robust feature-extraction capabilities.
+Transfer learning is a prevalent approach in machine learning where a model initially developed for a specific task is adapted to solve a different but related problem. In our work, we employ this technique to adapt the ConvNext model, originally optimized for deepfake detection, for Mean Opinion Score (MOS) prediction. Using the DFGC-1st-2022 model as its backbone, the ConvNext model is a prime candidate for this adaptation, as it has already been trained on a challenging task and has robust feature-extraction capabilities.
 
 Traditional machine learning often starts from scratch, requiring a significant amount of data and computational resources. Transfer learning alleviates these requirements by utilizing the architecture and pre-trained weights of an existing model.
 
@@ -703,7 +713,7 @@ In the frame-sequence-based approach, a for-loop iterates through each frame wit
 
 In the frame-based approach, a single frame is randomly selected from the sequence during each forward pass. This randomness is deliberately introduced to mitigate overfitting by providing slightly different inputs to the model at each epoch. The selected frame is processed by the backbone model to extract its features, which are then passed directly to a separate custom regression head, specifically tailored for frame-based MOS prediction.
 
-By utilizing these two distinct approaches, we accommodate different use-cases while maintaining a consistent input video sequence structure \(N \times \text{seq\_len} \times W \times H \times C\).
+By utilizing these two distinct approaches, we accommodate different use cases while maintaining a consistent input video sequence structure \(N \times \text{seq\_len} \times W \times H \times C\).
 
 \subsection{Loss Functions}
 
@@ -830,7 +840,7 @@ The basic premise is straightforward: individual models may excel in different a
 \label{chap:experiments}
 \section{Dataset}
 
-The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFGC-VRA competition, a subset of 1,400 videos was annotated by five independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
+The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFGC-VRA competition, a subset of face-swap 1,400 videos was annotated by five independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
 
 \subsection{Face-Swap Methods}
 
@@ -880,7 +890,7 @@ The initial step involved face extraction from video frames using the Multi-task
 \begin{figure}[!htb]
     \centering
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{images/resultof.png}
-    \caption{Example of face extraction using MTCNN and OpenCV. The red box indicates the original bounding box, and the green box represents the 1.3-scaled bounding box.}
+    \caption{Example of face extraction using MTCNN and OpenCV. The red box indicates the original bounding box and the green box represents the 1.3-scaled bounding box.}
 
     \label{fig:MTCCN}
 \end{figure}
@@ -970,8 +980,8 @@ Additionally, to speed up the prediction process, a batch processing mechanism w
 
 \section{Performance Metrics}
 To evaluate the performance of our models, we used three key metrics: Pearson's Linear Correlation Coefficient (PLCC), Spearman's Rank Correlation Coefficient (SRCC), and Root Mean Square Error (RMSE). Importantly, PLCC and SRCC are the official metrics for the DFGC-VRA competition, and RMSE serves as an additional measure for model evaluation.
-The final score for each model was calculated as the average PLCC and SRCC values across all test set.
-\subsection{Pearson Linear Correlation Coefficient (PLCC)}
+The final score for each model was calculated as the average PLCC and SRCC values across all test sets.
+\subsection{Pearson Linear Correlation Coefficient}
 
 PLCC assesses how well predicted Mean Opinion Scores (MOS) align with actual MOS, ranging from -1 to 1.
 
@@ -992,7 +1002,7 @@ The formula is:
 Here, \( \bar{x} \) and \( \bar{y} \) are the means of predicted and actual MOS, respectively.
 In simpler terms, the numerator of the PLCC equation calculates how each pair of actual and predicted scores deviate from their average values and sums these up. The denominator scales this sum to make it a value between -1 and 1. A high value indicates that the predicted and actual scores closely follow each other.
 
-\subsection{Spearman Rank-Order Correlation Coefficient (SRCC)}
+\subsection{Spearman Rank-Order Correlation Coefficient}
 
 The Spearman Rank-Order Correlation Coefficient (SRCC) focuses on the rank-order relationship between variables, essentially assessing how well the sequence of data points in one set aligns with the sequence in another. 
 
@@ -1037,7 +1047,7 @@ In this section, we present the key training metrics for the two models we imple
 \begin{figure}[!htb]
 \centering
 \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.0\textwidth]{images/train.png}
-\caption{Training and validation loss for the best and retrained best frame-seqence-based competition models.}
+\caption{Training and validation loss for the best and retrained best frame-sequence-based competition models.}
 \label{fig:training_validation_loss}
 \end{figure}
 
@@ -1100,7 +1110,7 @@ As evidenced in Figure \ref{fig:SEED}, the parameter importance chart showcases 
 \caption{Parameter Importance Chart: Relationship between Seed, Validation Loss, and Final Score from Middle Frames.}
 \label{fig:SEED}
 \end{figure}
-For comparability all subsequent analyses will use a fixed seed of 1126.
+For comparability, all subsequent analyses will use a fixed seed of 1126.
 
 
 
@@ -1207,7 +1217,7 @@ In Table \ref{res_test}, the competition ensemble model consisting of Eva and Co
 
 
 \subsection{Consistency of Predictions}
-The frame-based ConvNext model offers a detailed look into the evolution of Mean Opinion Score (MOS) predictions over time. Figure \ref{fig:MOS_changes} highlights a specific example where the MOS experiences significant fluctuations. Initially, the individual is looking away from the camera with their eyes directed downwards, showing noticeable artifacts around the eyes and specifically at the top right edge of the forehead. As the person turns to face the camera, these artifacts become less prominent, and even the teeth appear more realistic. However, this visual realism takes a hit when the individual starts speaking, resulting in blurring around the chin. Finally, the person looks away from the camera again, and artifacts become noticeable on the right side of the face where the digitally rendered face meets the real background. These rapid fluctuations in MOS indicate that human raters are likely to notice these significant changes in quality. Consequently, the overall visual realism of the video may be rated based on the lowest-quality frames, as these are the most noticeable and impactful to the viewer.
+The frame-based ConvNext model offers a detailed look into the evolution of Mean Opinion Score (MOS) predictions over time. Figure \ref{fig:MOS_changes} highlights a specific example where the MOS experiences significant fluctuations. Initially, the individual is looking away from the camera with their eyes directed downwards, showing noticeable artifacts around the eyes and specifically at the top right edge of the forehead. As the person turns to face the camera, these artifacts become less prominent, and even the teeth appear more realistic. However, this visual realism takes a hit when the individual starts speaking, resulting in blurring around the chin. Finally, the person looks away from the camera again, and artifacts become noticeable on the right side of the face where the digitally rendered face meets the real background. These rapid fluctuations in MOS indicate that human raters are likely to notice these significant changes in quality. Consequently, the overall visual realism of the video may be rated based on the lowest-quality frames, as these are the most noticeable and impactful to the viewer. However, most videos in our dataset exhibit low variance in MOS scores, with an average variance of \(0.018443\), indicating general stability in visual realism across frames.
 
 
 
@@ -1302,7 +1312,7 @@ In contrast, Figure \ref{fig:goodpred} displays instances where the model's pred
 \chapter{Conclusion}
  In conclusion, this thesis has successfully tackled the growing concerns surrounding DeepFake technology by introducing a robust method for assessing the visual realism of DeepFake videos.
  By harnessing the capabilities of ConvNext, a Convolutional Neural Network, in conjunction with Eva, a vanilla Vision Transformer (ViT), we've created an ensemble model that provides precise Mean Opinion Score (MOS) predictions. Notably, our approach has proven effective, earning us a third-place finish in the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA) 2023.
-Beyond the accomplishments, our work also addresses several challenges inherent to the field. These include managing large video datasets needing strategic preprocesing, training large models in cluster enviroments on multiple GPUs and striking a balance beetwen models performance and the computational complexity required.
+Beyond the accomplishments, our work also addresses several challenges inherent to the field. These include managing large video datasets needing strategic preprocessing, training large models in cluster environments on multiple GPUs, and striking a balance between model performance and the computational complexity required.
 Overall, the success of this thesis underscores the untapped potential for further innovations in DeepFake detection and visual realism assessment, setting a benchmark for the next wave of research in this critical area of study.
 
 
