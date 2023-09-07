@@ -394,7 +394,7 @@ Tekmovanje na temo globokih ponaredkov \\
 \bigskip
 
 %\noindent\textbf{Abstract:} 
-\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of ConvNext, a Convolutional Neural Network (CNN), and Eva, a vanilla Vision Transformer (ViT). These models were trained on a subset of the DeepFake Game Competition (DFGC) 2022 dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DFGC 2023 competition. The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with other competitors.
+\noindent In this thesis, we tackle the issues of artificial intelligence and DeepFake technology, which in the era of rapid digitalization, pose significant security and privacy concerns. We focus on the assessment of quality and visual realism of DeepFakes, a key factor for the impact of a forged video. We introduce an effective approach for quantifying the visual realism of DeepFake videos, using an ensemble of ConvNext, a Convolutional Neural Network (CNN), and Eva, a vanilla Vision Transformer (ViT). These models were trained on a subset of the DeepFake Game Competition 2022 (DFGC 2022) dataset to regress to Mean Opinion Scores (MOS) from DeepFake videos. Our work yielded successful results, securing third place in the DeepFake Game Competition on Visual Realism Assessment (DFGC-VRA 2023). The thesis provides a detailed presentation of the employed models, data preprocessing procedures, and training, as well as a comparison of our results with other competitors.
 
 
 
@@ -432,7 +432,7 @@ Tekmovanje na temo globokih ponaredkov \\
 \phantomsection
 \addcontentsline{toc}{chapter}{Razširjeni Povzetek}
 \chapter*{Razširjeni Povzetek}
-Raziskave na področju deepfake tehnologij pridobivajo na pomembnosti, saj imajo globoko ponarejanje lahko resne posledice na različnih področjih, od varnosti do novinarstva. Poleg prepoznavanja avtentičnosti videoposnetkov je nujno tudi razumeti, kako "resnični" ali prepričljivi se ti videi zdijo človeškim opazovalcem. Tovrstna ocena je kritična, saj je v končni fazi človek tisti, ki interpretira in reagira na medijske vsebine. Tehnologije za prepoznavanje deepfake so sicer vse bolj napredne, a človeška percepcija igra svojo vlogo. Raziskave namreč kažejo, da kombinacija človeškega vizualnega zaznavanja in algoritemske analize lahko zagotovi bolj zanesljivo prepoznavanje ponarejenih vsebin. To je deloma posledica človeške nevrološke zasnove, ki vključuje specifične mehanizme za prepoznavanje obrazov, mehanizme, ki se od računalniških znatno razlikujejo. 
+Raziskave na področju deepfake tehnologij pridobivajo na pomembnosti, saj ima globoko ponarejanje lahko resne posledice na različnih področjih, od varnosti do novinarstva. Poleg prepoznavanja avtentičnosti videoposnetkov je nujno tudi razumeti, kako "resnični" ali prepričljivi se ti videi zdijo človeškim opazovalcem. Tovrstna ocena je kritična, saj je v končni fazi človek tisti, ki interpretira in reagira na medijske vsebine. Tehnologije za prepoznavanje deepfake so sicer vse bolj napredne, a človeška percepcija igra svojo vlogo. Raziskave namreč kažejo, da kombinacija človeškega vizualnega zaznavanja in algoritemske analize lahko zagotovi bolj zanesljivo prepoznavanje ponarejenih vsebin. To je deloma posledica človeške nevrološke zasnove, ki vključuje specifične mehanizme za prepoznavanje obrazov, mehanizme, ki se od računalniških znatno razlikujejo. 
 
 V tem kontekstu je bilo izvedeno tekmovanje DFGC-VRA 2023, ki se je osredotočalo na ocenjevanje vizualnega realizma deepfake videoposnetkov. Organizatorji so pripravili obsežno podatkovno zbirko, ki je bila anotirana z povprečno mnenjsko oceno vizualnega realizma. Pet anotatorjev je skupno ocenilo 1.400 videoposnetkov, kar zagotavlja bogat in raznovrsten nabor podatkov. Za potrebe treninga modelov je bilo 700 videoposnetkov izbranih kot učna množica, preostalih 700 pa je bilo razdeljenih v posebne testne množice za evalvacijo modelov tekmovalcev. 
 
@@ -468,7 +468,7 @@ The evaluation of deepfakes extends beyond merely detecting them, however. Since
 
 Despite its vital role, VRA is an underexplored field compared to deepfake detection. The analysis of visual realism provides a fresh perspective in the continuous efforts to comprehend and manage the diverse and complex effects of deepfakes. More dedicated research is urgently needed to fully address this complex problem.
 
-In this spirit, we participated in the DFGC-VRA competition, a continuation of the previous DFGC-2021 and DFGC-2022 competitions. While earlier events primarily focused on deepfake detection and creation, this year's competition emphasized the crucial but less-explored area of Visual Realism Assessment. Our efforts paid off, earning us a third-place finish in the DFGC 2023 competition.  Remarkably, I completed the entire project, from data preprocessing to model training and evaluation, in just 14 days.
+In this spirit, we participated in the DFGC-VRA competition, a continuation of the previous DFGC-2021 and DFGC-2022 competitions. While earlier events primarily focused on deepfake detection and creation, this year's competition emphasized the crucial but less-explored area of Visual Realism Assessment. Our efforts paid off, earning us a third-place finish in the DFGC-VRA 2023 competition.  Remarkably, I completed the entire project, from data preprocessing to model training and evaluation, in just 14 days.
 
 The thesis delves into the specifics, covering the models we used, how we preprocessed the data and our training methodology. The thesis also includes a comparative analysis with other competitors and highlights the strengths and limitations of our solution.
 
@@ -511,15 +511,15 @@ In the DFGC 2022 competition, the winning team employed an ensemble of models, i
 \section{Overview}
 
 This research leverages the power of an ensemble comprising two distinct models:
-ConvNext~\cite{DBLP:journals/corr/abs-2201-03545} and Eva~\cite{fang2022eva}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were finetuned on a subset of the DFGC 2022 dataset and submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
+ConvNext~\cite{DBLP:journals/corr/abs-2201-03545} and Eva~\cite{fang2022eva}. Both models are equipped with dedicated regression heads, designed to predict Mean Opinion Scores (MOS) for deepfake videos. The models were finetuned on the competition's specific training subset of the DFGC 2022 dataset and submitted as our entries to the recent \textit{DeepFake Game Competition on Visual Realism Assessment}, held in conjunction with the 2023 IEEE International Joint Conference on Biometrics (IJCB 2023). Our method achieved third place in this competition.
 
 \section{ConvNeXt}
 \label{sec:convnext}
 
-ConvNeXt is an evolved architecture that aims to combine the strengths of Convolutional Neural Networks (ConvNets) and Transformers, specifically hierarchical vision Transformers like Swin-T\cite{DBLP:journals/corr/abs-2103-14030}. It starts with a ResNet-50\cite{DBLP:journals/corr/HeZRS15} backbone and gradually integrates features such as depthwise convolutions, large kernel sizes, and new activation and normalization functions inspired by Transformers.
+ConvNeXt is an evolved architecture that aims to combine the strengths of Convolutional Neural Networks (ConvNets) and Transformers, specifically hierarchical Vision Transformers like Swin-T~\cite{DBLP:journals/corr/abs-2103-14030}. It starts with a ResNet-50~\cite{DBLP:journals/corr/HeZRS15} backbone and gradually integrates features such as depthwise convolutions, large kernel sizes, and new activation and normalization functions inspired by Transformers.
 
 \subsection{ConvNeXt Architecture Overview}
-The architecture employed for this work is \texttt{convnext\_xlarge\_384\_in22ft1k}. The identifier indicates a large variant of the ConvNeXt model specifically optimized for \(384 \times 384\) input images. The architecture is modular, comprising stages and blocks that transform the input image into a feature vector. Depending on the downstream task—such as classification or Mean Opinion Score (MOS) prediction—the final linear layer (referred to as the "head") can be modified.
+The architecture employed for this work is \texttt{convnext\_xlarge\_384\_in22ft1k} sourced from timm library\footnote{\label{timm}\url{https://github.com/rwightman/pytorch-image-models/tree/main/results}}. The identifier indicates a large variant of the ConvNeXt model specifically optimized for \(384 \times 384\) input images. The architecture is modular, comprising stages and blocks that transform the input image into a feature vector. Depending on the downstream task—such as classification or Mean Opinion Score (MOS) prediction—the final linear layer (referred to as the "head") can be modified.
 
 \begin{figure}[h]
 \centering
@@ -549,7 +549,7 @@ This produces an output feature map \( \mathbf{Y} \) with dimensions \( H' \time
 
 Intuitively, \( D \) represents the variety of feature detectors applied. Each one generates a unique feature map, enabling the model to capture a comprehensive set of features. Therefore, by applying \( D \) kernels, the model diversifies its understanding of the input, enhancing its ability to learn complex representations.
 
-This multifunctionality makes the convolutional layer a powerful and flexible component in neural network design, adept at both feature extraction and dimensionality adaptation.
+%This multifunctionality makes the convolutional layer a powerful and flexible component in neural network design, adept at both feature extraction and dimensionality adaptation.%
 
 \end{itemize}
 
@@ -653,31 +653,30 @@ In our work, we adapt the ConvNext model, originally optimized for deepfake dete
 
 \subsubsection{Architectural Adaptations}
 
-The ConvNext model architecture comprises multiple layers designed for feature extraction and deepfake detection. In our adaptation, we replace the final layer head of the ConvNext models with an identity mapping, effectively removing it. This allows us to attach our custom regression head for MOS prediction while keeping the feature extraction capabilities intact.
+The ConvNext model architecture comprises multiple layers designed for feature extraction and deepfake detection. In our adaptation, we replace the final classification layer head of the original model with an identity mapping to allow us to attach our custom regression head for MOS prediction while keeping the feature extraction capabilities intact.
 
+To provide a detailed view of our adapted architecture, refer to Figure~\ref{fig:modified_convnext}. Here, we illustrate the custom heads designed to process either a single-frame feature vector or a single video-level feature vector made with pooling techniques.
+%tukaj bi jaz dodal še en odstavek v katerem bi opisal sliko 3.3 in se nanjo skliceval. Drugače je ta slika kar v zraku tukaj. Vidim, da se kasneje sklicuješ na to sliko, ampak pravilo je da je slika v tekstu omenjena preden jo prikažeš. Pa vsak slika, ki jo imaš mora biti opisana.
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.1\textwidth]{images/convmy.drawio.pdf}
-\caption{Modified ConvNeXt Architectures: One for Frame-Based and Another for Frame Sequence-Based MOS Prediction}\label{fig:modified_convnext}
+\caption{Modified ConvNeXt Architectures: One for Frame-Based and Another for Frame-Sequence-Based MOS Prediction}\label{fig:modified_convnext}
 \end{figure}
 
-By doing this, we leverage the robust feature extraction capabilities of the original ConvNext model while tailoring the output layers to our specific task of MOS prediction.
+
 
 \subsubsection{Transfer Learning}
 
-Transfer learning is a prevalent approach in machine learning where a model initially developed for a specific task is adapted to solve a different but related problem. In our work, we employ this technique to adapt the ConvNext model, originally optimized for deepfake detection, for Mean Opinion Score (MOS) prediction. Using the DFGC-1st-2022 model as its backbone, the ConvNext model is a prime candidate for this adaptation, as it has already been trained on a challenging task and has robust feature-extraction capabilities.
-
-Traditional machine learning often starts from scratch, requiring a significant amount of data and computational resources. Transfer learning alleviates these requirements by utilizing the architecture and pre-trained weights of an existing model.
-
-A popular source for such pre-trained models is ImageNet, a dataset containing millions of labeled images across thousands of categories. Models trained on ImageNet acquire a wide spectrum of features, ranging from basic patterns to complex object characteristics. These features are useful for many different tasks and serve as a solid foundation for our MOS prediction model.
-
-In this context, the pre-trained ConvNext model accelerates our learning process. We initialize our model with its weights and further fine-tune it on a dataset specific to MOS prediction. 
+Transfer learning is a prevalent approach in machine learning where a model initially developed for a specific task is adapted to solve a different but related problem. In our work, we adapted the DFGC-1st-2022 ConvNext model, initially optimized for deepfake detection, to suit the task of Mean Opinion Score (MOS) prediction. This model is a prime candidate for this adaptation, as it has already been trained on a challenging task and has robust feature-extraction capabilities. We started with the pre-existing weights of the model and fine-tuned it using a dataset designed for MOS prediction. Importantly, the backbone model's weights were not frozen during training, allowing the model to adapt to the new task. 
 
 \subsubsection{Feature Extraction and Pooling Techniques}
 
-In our work on MOS prediction, we utilize the ConvNext model as the backbone and adapt it for two distinct applications: video-based and frame-based assessments. The model ingests images and outputs feature vectors. Accordingly, we have developed two separate versions of the model, each configured to handle these feature vectors differently, depending on whether the application is focused on video sequences or individual frames.
+In our work on MOS prediction, we employ the ConvNext model in two distinctive scenarios: analyzing sequences of frames (video-based) or assessing individual frames. To accommodate these different approaches, we developed two versions of the model, each handling the feature vectors in a manner suited to the analysis of either a series of frames or single frames.
 
-\paragraph{Pooling Techniques for Video Sequences:}
+\paragraph{Frame-based Applications:}
+Following the conclusion of the DFGC-VRA 2023 competition, we drew inspiration from the solutions presented by the winners~\cite{peng_etal_2023} to further refine our approach. We employed a ConvNext model for frame-based MOS prediction, where the feature vectors for individual frames are used directly. These vectors are input into a separately designed custom regression head to facilitate frame-by-frame MOS assessment, simplifying the computational demands and making implementation more straightforward.
+\newpage
+\paragraph{Pooling Techniques for Videos:}
 For video-based applications, we aggregate feature vectors from multiple frames using average pooling and standard deviation pooling. These techniques condense the frame features into a single video-level feature vector. The mean and standard deviation are calculated as follows:
 
 \begin{equation}
@@ -688,10 +687,9 @@ f_{\mathrm{mean}} = \frac{1}{n}\sum_{i=1}^{n} f_{i},
 f_{\mathrm{std}} = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(f_{i} - f_{\mathrm{mean}})^2}.
 \end{equation}
 
-These aggregated features, \(f_{\mathrm{mean}}\) and \(f_{\mathrm{std}}\), are then concatenated and fed into a custom regression head tailored for frame-sequence-based MOS prediction see Figure \ref{fig:modified_convnext}.
+These aggregated features, \(f_{\mathrm{mean}}\) and \(f_{\mathrm{std}}\), are then concatenated and fed into a custom regression head tailored for frame-sequence-based MOS prediction see bottom half of Figure~\ref{fig:modified_convnext}.
 
-\paragraph{Frame-based Applications:}
-Drawing inspiration from the winners of the DFGC 2023 competition\cite{peng_etal_2023}, we also employ the ConvNext model for per frame-based MOS prediction. In this version, the feature vectors for individual frames are used directly. These features are then fed into a separate custom regression head, specifically designed for frame-based MOS assessment. This frame-based approach is computationally easier and simpler to implement.
+
 
 \subsubsection{Custom Regression Head: An MLP-based Architecture}
 
@@ -699,28 +697,31 @@ Our custom regression head is designed as a Multi-Layer Perceptron (MLP), a type
 
 The architecture consists of a sequence of linear layers interleaved with ReLU (Rectified Linear Unit) activation functions. Each linear layer is fully connected and is defined by the equation \(y = Wx + b\), where \(W\) represents the weight matrix, \(b\) is the bias term, \(x\) is the input feature vector, and \(y\) is the output feature vector. The ReLU activation is described as \(\text{ReLU}(x) = \max(0, x)\).
 These layers and activation functions process the feature vectors, either directly extracted or pooled from the ConvNext backbone. The custom head concludes with a single neuron designed to output the MOS.
-
+\newpage
 \subsection{Forward Pass}
 
 The forward pass of our ConvNext model operates on an input video sequence with dimensions \(N \times \text{seq\_len} \times W \times H \times C\), where \(N\) is the batch size, \(\text{seq\_len}\) is the sequence length, \(W\) and \(H\) are the width and height of each frame, and \(C\) is the number of channels. The methodology for processing this input varies based on whether it's frame-based or frame-sequence-based.
+
+By utilizing these two distinct approaches, we accommodate different use cases while maintaining a consistent input video sequence structure \(N \times \text{seq\_len} \times W \times H \times C\).
+
+\subsubsection{Frame-Based Approach}
+
+In the frame-based approach, a single frame is randomly selected from the sequence during each forward pass. This randomness is deliberately introduced to mitigate overfitting by providing slightly different inputs to the model at each epoch. The selected frame is processed by the backbone model to extract its features, which are then passed directly to a separate custom regression head, specifically tailored for frame-based MOS prediction.
+
 
 \subsubsection{Frame-Sequence-Based Approach}
 \label{frame:based}
 
 In the frame-sequence-based approach, a for-loop iterates through each frame within the sequence. The backbone model processes each frame to extract its features. These features are then aggregated using both mean and standard deviation, adhering to principles of average pooling and standard deviation pooling. The aggregated features are subsequently fed into the custom regression head designed for frame-sequence-based MOS prediction.
 
-\subsubsection{Frame-Based Approach}
-
-In the frame-based approach, a single frame is randomly selected from the sequence during each forward pass. This randomness is deliberately introduced to mitigate overfitting by providing slightly different inputs to the model at each epoch. The selected frame is processed by the backbone model to extract its features, which are then passed directly to a separate custom regression head, specifically tailored for frame-based MOS prediction.
-
-By utilizing these two distinct approaches, we accommodate different use cases while maintaining a consistent input video sequence structure \(N \times \text{seq\_len} \times W \times H \times C\).
+\newpage
 
 \subsection{Loss Functions}
 
 To train our models, we employ two loss functions: Root Mean Square Error (RMSE) and Mean Absolute Error (MAE). Both of these metrics are commonly used for regression tasks, but they have different sensitivities to outliers in the dataset.
 
 \subsubsection{Root Mean Square Error (RMSE)}
-
+\label{rmse}
 The RMSE is calculated using the formula:
 
 \begin{equation}
@@ -741,35 +742,49 @@ where \(N\) is the number of samples, \(y_{i}\) is the true value, and \(\hat{y}
 
 \paragraph{Sensitivity to Outliers}
 
-The main difference between RMSE and MAE lies in their treatment of outliers. RMSE squares the error before averaging, thereby giving more weight to large errors. This makes RMSE more sensitive to outliers, and it may result in a model that is less robust if outliers are an issue. On the other hand, MAE assigns equal weight to all errors, providing a more balanced view that is less influenced by extreme values.
+RMSE and MAE differ mainly in handling outliers. RMSE, which squares errors before averaging, is more sensitive to large errors, potentially leading to a less robust model in the presence of outliers. In contrast, MAE gives equal weight to all errors, offering a balanced view less affected by extreme values.
 
 
 
-
-
+\newpage
 \section{Eva Model}
 \label{sec:eva}
 
-In parallel to ConvNext, we also utilize the Eva model, a novel approach to visual representation learning that pushes the boundaries of large-scale masked image modeling (MIM) using publicly accessible data. Eva, a Vision Transformer (ViT), is pre-trained to reconstruct masked-out image-text aligned vision features conditioned on visible image patches. This unique pretraining task allows Eva to scale efficiently up to one billion parameters, setting new records across a wide range of downstream visual tasks. 
+In parallel to ConvNext, we also utilize the Eva model, a novel approach to visual representation learning that pushes the boundaries of large-scale masked image modeling (MIM) using publicly accessible data. Eva, a Vision Transformer (ViT), is pre-trained to reconstruct masked-out image-text aligned vision features conditioned on visible image patches. This unique pretraining task allows Eva to scale efficiently up to one billion parameters, setting new records across a wide range of downstream visual tasks. Specifically, in this work, we used the pre-trained \texttt{eva\_large\_patch14\_336.in22k\_ft\_in22k\_in1k} 
+version from timm library\footnote{\label{timm}\url{https://github.com/rwightman/pytorch-image-models/tree/main/results}}
+
 
 
 \subsection{Eva Architecture Overview}
 \label{subsec:eva_architecture}
 
-The Eva model, originally detailed in "Exploring the Limits of Masked Visual Representation Learning at Scale" \cite{fang2022eva}, capitalizes on the Vision Transformer (ViT) framework. This framework was first brought to prominence by the seminal paper, "An image is worth 16x16 words: Transformers for image recognition at scale" \cite{DBLP:journals/corr/abs-2010-11929}.
+The Eva model used in this work was originally detailed in "Exploring the Limits of Masked Visual Representation Learning at Scale"~\cite{fang2022eva}, and capitalizes on the Vision Transformer (ViT) framework. This framework was first brought to prominence by the seminal paper, "An image is worth 16x16 words: Transformers for image recognition at scale"~\cite{DBLP:journals/corr/abs-2010-11929}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=1.1\textwidth]{images/eva_arhitecture.png}
-\caption{Vanilla ViT model overview \cite{DBLP:journals/corr/abs-2010-11929}}\label{fig:eva}
-\end{figure}
+
+
 
 
 \subsection{Vision Transformer (ViT) Mechanics}
 \label{subsec:vit_mechanics}
+In the Vision Transformer depicted in Figure~\ref{fig:eva}, an input image \( x \in \mathbb{R}^{H \times W \times C} \) is divided into a sequence of flattened 2D patches, denoted as \( x_p \in \mathbb{R}^{(P^2 \cdot C)} \), where \(H\) and \(W\) are the height and width of the image respectively, \(C\) is the number of channels, and \(P\) is the resolution of each patch. The total number of patches, \(N\), is computed as \( N = \frac{HW}{P^2} \).
 
-In a typical Vision Transformer, an input image \( x \in \mathbb{R}^{H \times W \times C} \) is initially divided into a sequence of flattened 2D patches \( xp \in \mathbb{R}^{N \times (P^2 \cdot C)} \). Here, \( H, W \) represent the height and width of the image, \( C \) is the number of channels, and \( (P, P) \) is the resolution of each image patch. The total number of patches \( N \) is computed as \( N = \frac{HW}{P^2} \).
+Each patch \( x_p \) is then linearly embedded into a \(D\)-dimensional space using a trainable embedding matrix \(E\), forming a sequence of embedded patches given by \( z_0^i = E \cdot x_p^i \), where \(i\) ranges from 0 to \(N-1\). This generates a sequence \( z_0 = [z_0^0, z_0^1, ..., z_0^N] \), where \(D\) is the dimensionality of the embedding space.
 
+To retain the positional information lost during the conversion to patches, positional encodings are added to the embedded vectors in the sequence \( z_0 \).
+
+This enriched sequence forms the input to a transformer network composed of \(L\) layers. Through a series of self-attention mechanisms and feedforward neural networks, the transformer refines the patch representations, resulting in a new sequence \( z_L \).
+
+In the final step, the first vector in the sequence \( z_L \) is extracted and used in a classification head for image classification tasks, leveraging the refined and rich representations obtained through the transformer's layers to achieve classification.
+
+
+%jaz bi sliko \label{fig:eva}dal tukaj
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.1\textwidth]{images/eva_arhitecture_hq.png}
+\caption{Vanilla ViT model overview 
+\cite{DBLP:journals/corr/abs-2010-11929}}\label{fig:eva}
+\end{figure}
+\newpage
 \begin{itemize}
    \item \textbf{Patch Embedding}:
     
@@ -778,7 +793,7 @@ In a typical Vision Transformer, an input image \( x \in \mathbb{R}^{H \times W 
     The transformation results in a feature map with dimensions \(\frac{336}{14} \times \frac{336}{14} \times 1024 = 24 \times 24 \times 1024\).
     
     In this configuration, each \(14 \times 14\) patch of the original \(336 \times 336\) image is mapped to a \(1 \times 1\) position in the \(24 \times 24\) output feature map, and its depth is expanded to \(1024\) channels. These patches are then flattened into a sequence of 
-    \(576\) vectors, each with \(1024\) dimensions, and are prepared for further transformations by the subsequent layers of the ViT architecture."
+    \(576\) vectors, each with \(1024\) dimensions, and are prepared for further transformations by the subsequent layers of the ViT architecture.
 
     
     \item \textbf{Positional Embedding}:
@@ -812,7 +827,7 @@ Eva utilizes a unique self-supervised pre-training approach known as Masked Imag
 
 \subsection{Utilizing Eva}
 
-Figure \ref{fig:eva_my} illustrates the architecture of the Eva model, which serves as a feature extractor for predicting MOS on deepfake videos, similar to the role played by the ConvNext model. Unlike ConvNext, Eva is initialized with pretrained weights from ImageNet using the timm library, rather than weights from DFGC 2022 competition winners.
+Figure \ref{fig:eva_my} illustrates the architecture of the Eva model, which serves as a feature extractor for predicting MOS on deepfake videos, similar to the role played by the ConvNext model. Unlike ConvNext, Eva is initialized with pretrained weights from ImageNet using the timm library\textsuperscript{\ref{timm}}, rather than weights from DFGC 2022 competition winners.
 
 \begin{figure}[h]
 \centering
@@ -831,25 +846,34 @@ Just like with the ConvNext model, the weights of the backbone model in Eva are 
 
 Ensemble methods are designed to improve the performance of single predictive models by combining them to form a composite model. In the context of our work, we employ an ensemble approach that combines the capabilities of both the ConvNext and Eva models, aiming for a more robust and accurate prediction of Mean Opinion Scores (MOS) for deepfake videos. 
 
-The basic premise is straightforward: individual models may excel in different aspects of the task, and combining them can mitigate their individual limitations. For example, ConvNext might be particularly proficient at capturing local features, while Eva excels at understanding the global context. By averaging their outputs, we create a composite MOS prediction that incorporates both local and global contextual insights, thereby enriching the model's understanding of visual realism. This not only enhances the accuracy of the MOS prediction but also augments the model's robustness against diverse forms of manipulation and artifacts in deepfake videos.
+The basic premise is straightforward: individual models may excel in different aspects of the task, and combining them can mitigate their individual limitations. For example, ConvNext might be particularly proficient at capturing local features, while Eva excels at understanding the global context.
 
+By averaging their outputs, we create a composite MOS prediction that incorporates both local and global contextual insights, thereby enriching the model's understanding of visual realism. This not only enhances the accuracy of the MOS prediction but also augments the model's robustness against diverse forms of manipulation and artifacts in deepfake videos.
+
+Refer to Figure \ref{fig:ensamble} for a schematic representation of the ensemble architecture used in the competition that accommodates both frame-sequence-based models.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.1\textwidth]{images/ensemble.drawio.pdf}
+\caption{Competition ensemble architecture with two frame-sequence-based models. With the final prediction being a weighted sum of both.}
+\label{fig:ensamble}
+\end{figure}
 
 
 
 \chapter{Experiments}
 \label{chap:experiments}
 \section{Dataset}
-
-The thesis uses a subset of the DeepFake Game Competition (DFGC) 2022 dataset, which originally consists of 2,799 fake and 1,595 real face-swap videos. For the DFGC-VRA competition, a subset of face-swap 1,400 videos was annotated by five independent human raters. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
+The thesis utilizes a subset of the DeepFake Game Competition (DFGC) 2022 dataset, originally comprising 2,799 fake face-swap videos and 1,595 real non-face-swapped videos. For the DFGC-VRA competition, a curated subset of 1,400 face-swap videos was annotated by five independent human raters forming the DFGC-VRA 2023 dataset. These videos were then split into a training set of 700 videos, available for competitors, and another 700 videos used for evaluation, further divided into specific test sets with disjoint characteristics.
 
 \subsection{Face-Swap Methods}
 
 The original dataset incorporates videos generated using 35 different face-swap methods. A face-swap essentially involves taking two real videos and replacing the face in one video with the face from the other, while aiming to maintain natural facial expressions, lighting, and other variables. Key methods used for this in the dataset include DeepFaceLab~\cite{DBLP:journals/corr/abs-2005-05535}, SimSwap~\cite{DBLP:journals/corr/abs-2106-06340}, and FaceShifter~\cite{DBLP:journals/corr/abs-1912-13457}. An illustrative example of face-swaps for a single identity, achieved using various methods and annotated with Mean Opinion Scores (MOS), can be seen in Figure \ref{fig:face-swap-example}.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{images/newplot.png}
-    \caption{Grid illustrating face-swaps of a single identity, achieved via different faceswap methods and annotated with Mean Opinion Scores (MOS).}
+    \caption{Grid illustrating face-swaps of a single identity, achieved via different face-swap methods and annotated with Mean Opinion Scores (MOS). In the grid, the face-swaps are sorted based on their MOS, from the best to the worst, with the best demonstrating a higher level of visual realism as affirmed by the highest MOS values.}
     \label{fig:face-swap-example}
 \end{figure}
 
@@ -863,15 +887,15 @@ Annotations were performed by five independent human raters and were based on a 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[trim={1cm 1cm 0cm 0cm},clip,width=0.9\textwidth]{images/mos.png}
-    \caption{Histograms depicting the mean and standard deviation of realism ratings across the annotated subset of the DFGC-2022 dataset. C1, C2, and C3 represent specific subsets of the 1,400 videos. Figure adapted from \cite{peng2022dfgc}.}
+    \includegraphics[trim={1cm 1cm 0cm 0cm},clip,width=0.9\textwidth]{images/mos-lines-scale-1000-gigapixel.png}
+    \caption{Histograms depicting the mean and standard deviation of realism ratings across the DFGC-VRA 2023 dataset. C1, C2, and C3 represent specific subsets of the 1,400 videos and are not test-related. Figure adapted from~\cite{sun2023visual}.}
     \label{fig:MOS_distribution}
 \end{figure}
 
 
 \subsection{Data Splitting and Test Set Characteristics}
 
-The 1,400 annotated videos are split into different sets for training and testing, as outlined in Figure~\ref{fig:data_splitting}. The training set comprises 700 videos, each labeled with a ground truth Mean Opinion Score (MOS). For evaluation, three test sets are utilized: Test-1 contains 300 videos and is ID-disjoint, meaning it does not share any facial identities with the training set. Test-2 consists of 280 videos and is method-disjoint, indicating that the deepfake methods used for face swapping differ from those in the training set. Test-3 is the most restrictive, containing 120 videos that are both ID and method-disjoint. Participants trained their models using the training set and evaluated their performance on these test sets. Importantly, the annotations for the test sets were not disclosed to the participants.
+The 1,400 annotated videos are split into different sets for training and testing, as outlined in Figure~\ref{fig:data_splitting}. The training set comprises 700 videos, each labeled with a ground truth Mean Opinion Score (MOS). For evaluation, three test sets are utilized: Test-1 contains 300 videos and is ID-disjoint, meaning it does not share any facial identities with the training set. Test-2 consists of 280 videos and is method-disjoint, indicating that the deepfake methods used for face swapping differ from those in the training set. Test-3 is the most restrictive, containing 120 videos that are both ID and method-disjoint. Participants trained their models using the training set and evaluated their performance on these test sets. Importantly, the annotations for the test sets were not disclosed to the competition participants.
 
 \begin{figure}[H]
     \centering
@@ -887,9 +911,9 @@ The 1,400 annotated videos are split into different sets for training and testin
 The initial step involved face extraction from video frames using the Multi-task Cascaded Convolutional Networks (MTCNN)~\cite{DBLP:journals/corr/ZhangZL016} and OpenCV~\cite{opencv_library}. Bounding boxes were resized and expanded by a factor of 1.3 to capture more context (Figure~\ref{fig:MTCCN}). This resulted in a dataset of cropped face images for subsequent modeling. Preprocessing expedited training and optimized resource usage.
 
 
-\begin{figure}[!htb]
+\begin{figure}[H]
     \centering
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{images/resultof.png}
+    \includegraphics[trim={2cm 0cm 0cm 0cm},clip,width=\textwidth]{images/resultof.png}
     \caption{Example of face extraction using MTCNN and OpenCV. The red box indicates the original bounding box and the green box represents the 1.3-scaled bounding box.}
 
     \label{fig:MTCCN}
@@ -901,21 +925,23 @@ The initial step involved face extraction from video frames using the Multi-task
 Two different methods were employed for data preparation and model training in this thesis:
 
 \begin{enumerate}
-    \item \textbf{Frame-Sequence-based Competition Models:} For the competition, frame-sequence-based models were used, each video was processed to extract a sequence of five frames, starting from a randomly chosen point within the video. The dataset was then subdivided into three parts: 70\% for training (490 videos), 20\% for testing (140 videos), and 10\% for validation (70 videos). This specific split was employed to quickly evaluate model hyperparameters and overall performance. The top-performing model in the test set was subsequently retrained using the same split, with the aim of capturing any nuances present in the remaining data.
+    \item \textbf{Frame-Sequence-based Competition Models:} For the competition, frame-sequence-based models were used, each video was processed to extract a sequence of five frames, starting from a randomly chosen point within the video. The dataset was then randomly subdivided into three parts: 70\% for training (490 videos), 20\% for testing (140 videos), and 10\% for validation (70 videos). This specific split was employed to quickly evaluate model hyperparameters and overall performance. The top-performing model in the test set was subsequently retrained using the same percentage split but with the goal of different videos randomly included in each subset, with the aim of capturing any nuances present in the remaining potentially unseen data. This 'double-run' method was used due to time constraints.
 
-   \item \textbf{Improved Frame-based ConvNeXt Model:} Post-competition, a frame-based ConvNeXt model was developed. In this version, 16 random frames were selected from each video. During each training epoch, one of these 16 frames was randomly chosen for gradient updates. A simpler 10\% validation split was applied for this model, as external test sets from the competition were available for performance evaluation directly.
+
+   \item \textbf{Improved Frame-based ConvNeXt Model:} Post-competition, a frame-based ConvNeXt model was developed. In this version, 16 random frames were selected from each video. During each training epoch, one of these 16 frames was randomly chosen for gradient updates. 
+   Here we allocated 90\% of the data for training (630 videos) and the remaining 10\% (70 videos) for validation. As for testing external test sets from the competition were available for performance evaluation directly.
 
 \end{enumerate}
 
 \section{Experimental Setup}
 
 \subsection{HPC Infrastructure}
-The training was executed on the ARNES and VEGA High-Performance Computing (HPC) clusters, which employ the SLURM job scheduler for resource management. Utilizing HPC resources efficiently necessitates careful planning when writing code and scheduling jobs. In particular, the distributed data parallel (DDP) strategy was employed to leverage the multiple GPUs in these clusters. The use of HPC was critical given the large size of the model and video frames dataset. In my case, the HPC systems were crucial for enabling rapid computations by distributing tasks across multiple CPUs and GPUs. This setup provided a substantial advantage, especially for the machine learning experiments that I conducted, which required extensive computational resources. Using the HPC system allowed me to quickly train and test different models, making the whole process more efficient.
+The training was executed on the ARNES and VEGA High-Performance Computing (HPC) clusters, which employ the SLURM job scheduler for resource management. Utilizing HPC resources efficiently necessitates careful planning when writing code and scheduling jobs. In particular, the distributed data parallel (DDP) strategy was employed to leverage the multiple GPUs in these clusters. The use of HPC was critical given the large size of the model and video frames dataset. In our case, the HPC systems were crucial for enabling rapid computations by distributing tasks across multiple CPUs and GPUs. This setup provided a substantial advantage, especially for the machine learning experiments that we conducted, which required extensive computational resources. Using the HPC system allowed us to quickly train and test different models, making the whole process more efficient.
 
 
 \subsection{Framework}
 
-The experiments were facilitated using the PyTorch Lightning framework. PyTorch Lightning offers a more organized and modular approach than plain PyTorch, streamlining complex network training code into simpler, more readable forms. One significant advantage is that PyTorch Lightning makes the code hardware-agnostic. We opted for PyTorch Lightning due to its native support for SLURM environments, DDP strategies, and easy integration with WandB logging, thus making it particularly well-suited for our HPC setup.
+The experiments were facilitated using the PyTorch Lightning framework. PyTorch Lightning offers a more organized and modular approach than plain PyTorch, streamlining complex network training code into simpler, more readable forms. One significant advantage is that PyTorch Lightning makes the code hardware-agnostic. We opted for PyTorch Lightning due to its native support for SLURM environments, DDP strategies, and easy integration with Weights and Biases\footnote{\label{wandb}\url{https://wandb.ai/site}} (WandB) logging, thus making it particularly well-suited for our HPC setup.
 
 
 
@@ -938,7 +964,7 @@ Training was executed on two distinct HPC clusters: ARNES and VEGA. On the ARNES
 
 We chose the AdamW optimizer with a learning rate of \(2 \times 10^{-5}\) for our training. AdamW is an extension of the standard Adam optimizer, specifically designed to handle weight decay more effectively. Unlike traditional methods, AdamW decouples the weight decay from the optimization steps, providing a more effective approach to regularizing the model. This is particularly advantageous in the complex, non-convex optimization landscapes commonly found in deep learning. In simple terms, the weight decay in AdamW prevents the model from becoming overly complex and thus less prone to overfitting, making it more generalizable to unseen data. 
 
-The ReduceLROnPlateau learning rate scheduler was integrated to adapt the learning rate upon hitting validation loss plateaus. Early stopping mechanisms were also included, monitored via validation loss, to halt training once the model stopped improving.
+The \textit{ReduceLROnPlateau} learning rate scheduler was integrated to adapt the learning rate upon hitting validation loss plateaus. Early stopping mechanisms were also included, monitored via validation loss, to halt training once the model stopped improving.
 
 
 \section{Model Selection}
@@ -948,7 +974,12 @@ The ReduceLROnPlateau learning rate scheduler was integrated to adapt the learni
     \item \textbf{Frame-Sequence-based Competition Models:}
 Due to the non-deterministic nature of the training process, multiple models were trained with identical parameters. The model with the best performance, as determined by validation loss, was selected for the final submission. At the end of the training, the best model checkpoint based on validation loss was further trained with the same hyperparameters to accommodate the remaining data. Once early stopping was triggered, this final model checkpoint was saved for the final predictions.
  \item \textbf{Improved Frame-based ConvNeXt Model:}
-        Multiple instances of this model were trained as well. To optimize the hyperparameters, a Weights and Biases (wandb) sweep was conducted. This allowed for systematic fine-tuning of hyperparameters against the validation loss. The model yielding the lowest validation loss during the sweep was selected as the final model. The relationship between validation loss and final score for these models is illustrated in Figure \ref{fig:ValidationVsFinalScore}.
+        Multiple instances of this model were trained as well. To optimize the hyperparameters, a Weights and Biases (WandB) sweep\footnote{\label{wandbsweps}\url{https://wandb.ai/site/sweeps}} was conducted. This allowed for systematic fine-tuning of hyperparameters against the validation loss. The model yielding the lowest validation loss during the sweep was selected as the final model. 
+
+      In Figure \ref{fig:ValidationVsFinalScore}, we illustrate the relationship between the validation loss and the final score. Each dot in this figure represents a distinct model during its training phase, indicating a correlation between the validation loss and the final score it achieved on the test sets. This plot shows that choosing the best model based on the validation score was effective.
+
+
+
 
 
     \begin{figure}[H]
@@ -966,11 +997,11 @@ Due to the non-deterministic nature of the training process, multiple models wer
 \begin{enumerate}
     \item \textbf{Frame-Sequence-based Competition Models:} 
 
-The final model checkpoints were utilized to make predictions on the test sets. These test sets, referred to as Test Set 1 (300 videos), Test Set 2 (280 videos), and Test Set 3 (120 videos), were extracted from different subsets of the DeepFake Game Competition (DFGC) 2022 dataset.
+The final model checkpoints were utilized to make predictions on the three test sets from the DFGC-VRA dataset.
 
 The dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
 
-For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model during the training phase.
+For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model on the 140 videos from the test set during training. 
 
 \item \textbf{Improved Frame-based ConvNeXt Model:}
 Unlike the stochastic frame selection in the Frame-Sequence-based models, this improved model is designed to predict the MOS score using an average over a maximum of 250 frames from each video. This allows for a more comprehensive analysis of the variability in the predictions. 
@@ -979,7 +1010,7 @@ Additionally, to speed up the prediction process, a batch processing mechanism w
 \end{enumerate}
 
 \section{Performance Metrics}
-To evaluate the performance of our models, we used three key metrics: Pearson's Linear Correlation Coefficient (PLCC), Spearman's Rank Correlation Coefficient (SRCC), and Root Mean Square Error (RMSE). Importantly, PLCC and SRCC are the official metrics for the DFGC-VRA competition, and RMSE serves as an additional measure for model evaluation.
+To evaluate the performance of our models, we used three key metrics: Pearson's Linear Correlation Coefficient (PLCC), Spearman's Rank Correlation Coefficient (SRCC), and Root Mean Square Error (RMSE) detailed in ~\ref{rmse}. Importantly, PLCC and SRCC are the official metrics for the DFGC-VRA 2023 competition, and RMSE serves as an additional measure for model evaluation.
 The final score for each model was calculated as the average PLCC and SRCC values across all test sets.
 \subsection{Pearson Linear Correlation Coefficient}
 
@@ -1006,7 +1037,8 @@ In simpler terms, the numerator of the PLCC equation calculates how each pair of
 
 The Spearman Rank-Order Correlation Coefficient (SRCC) focuses on the rank-order relationship between variables, essentially assessing how well the sequence of data points in one set aligns with the sequence in another. 
 
-Consider a simple example with Predicted MOS \(= [5.0, 2.7, 3.6]\) and Actual MOS \(= [4.8, 2.8, 3.5]\). The ranks for both are \(= [3, 1, 2]\), indicating they align perfectly in terms of rank.
+Consider a simple example with Predicted MOS values of \(= [5.0, 2.7, 3.6]\) and Actual MOS values of \(= [4.8, 2.8, 3.5]\). To find the ranks, we order the scores in each set from the lowest to the highest, resulting in a rank assignment of \(= [3, 1, 2]\) for both the Predicted and Actual MOS values. This outcome indicates a perfect alignment in the rank ordering, illustrating a perfect Spearman correlation.
+
 
 The SRCC formula is:
 
@@ -1051,17 +1083,17 @@ In this section, we present the key training metrics for the two models we imple
 \label{fig:training_validation_loss}
 \end{figure}
 
-As depicted in Figure~\ref{fig:training_validation_loss}, both the initial best and the retrained best models exhibit the expected trends in training and validation loss. Notably, the training loss for the retrained best models drops rapidly. This is anticipated since the retraining process targets the remaining portion of the data, thereby focusing on fine-tuning rather than learning from scratch.
+As depicted in Figure~\ref{fig:training_validation_loss}, both the initial best and the retrained best models exhibit the expected trends in training and validation loss. Notably, the training loss for the retrained best is low from the start. This is anticipated since the retraining process targets the remaining portion of the data, thereby focusing on fine-tuning rather than learning from scratch.
 
 \subsection{Retraining Gains}
-During the competition, due to time constraints, our approach was to run the training script twice for each model—what we refer to as the 'double-run' method. To ensure that the results are directly comparable, we used the same random seed for frame-sequence sampling in both prediction runs.
+During the competition, due to time constraints, our approach was to run the training script twice for each model—what we refer to as the 'double-run' method. To gauge the effectiveness of this strategy, a post-competition analysis was conducted. Ensuring that the results are directly comparable, we used the same random seed for frame-sequence sampling in both prediction runs.
 \begin{table}[!htb]
 \centering
 
 
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-Model & Test Set 1 & Test Set 2 & Test Set 3 & Final Score \\
+Model & Test Set 1 & Test Set 2 & Test Set 3 & Final  Score \\
 \hline
 Best ConvNeXt & 0.75 & 0.91 & 0.82 & 0.827 \\
 \hline
@@ -1072,7 +1104,10 @@ Best Eva & 0.78 & 0.91 & 0.85 & 0.848 \\
 Retrained Best Eva & 0.80 & 0.91 & 0.86 & 0.859 \\
 \hline
 \end{tabular}
-\caption{Performance of Initial and Retrained Models}
+\caption{Performance of the Initial and Retrained Models across various test sets. Each entry in the table depicts the score attained on a specific test set, derived from averaging the PLCC and SRCC values of that set. The last column consolidates these results, presenting a final score calculated as the mean of all the test set scores.}
+
+
+
 \label{tab:retraining_gains}
 
 \end{table}
@@ -1084,7 +1119,7 @@ Table \ref{tab:retraining_gains} indicates that retraining the models provided a
 After the competition, we had the chance to use the real labels and weren't limited by daily submission caps. This helped us do a deeper dive into fine-tuning our ConvNeXt model. We switched it to a frame-based setup, which improved its performance and made it easier to understand how it was making its predictions. We tweaked different settings during this stage and will go into the details of how this improved the model later on.
 
 \subsection{Hyperparameter Optimization using Weights \& Biases Sweeps}
-Weights \& Biases (WandB) Sweeps offer a structured and automated way to perform hyperparameter tuning. Through a single config file it enables automatic testing of various parameter combinations with multiple agents running the training loop. WandB collected performance data, simplifying the selection of optimal settings. For efficient testing, each model predicted the MOS of only the middle frame in each test video. This offered a balance between speed and accuracy.
+Weights \& Biases (WandB) Sweeps offer a structured and automated way to perform hyperparameter tuning. Through a single config file it enables automatic testing of various parameter combinations with multiple agents running the training loop. WandB collected performance data, simplifying the selection of optimal settings. Only here for efficient preliminary testing, each model predicted the MOS of only the middle frame in each test video. This was done for speed and comparability of predictions.
 
 Various parameters were tested to optimize the frame-based ConvNeXt model, as detailed below
 \begin{itemize}
@@ -1157,28 +1192,30 @@ Here, we will present the test set performance of our best models.
    & 3 & 0.8726 & 0.8285 & 0.4132 & \\
 \hline
 
-  \multirow{3}{*}{Ensemble} & 1 & 0.8091 & 0.7633 & 0.4352 & \multirow{3}{*}{0.854} \\
-                            & 2 & 0.9287 &
-                            0.9197 & 0.3447  & \\
-                            & 3 & 0.8746 & 0.8318& 0.4146 & \\
-                            \hline
+  %\multirow{3}{*}{Ensemble} & 1 & 0.8091 & 0.7633 & 0.4352 & \multirow{3}{*}{0.854} \\
+                            %& 2 & 0.9287 &
+                           % 0.9197 & 0.3447  & \\
+                            %& 3 & 0.8746 & 0.8318& 0.4146 & \\
+                            %\hline
   \multirow{3}{*}{Post comp. ConvNext} & 1 & 0.8265 & 0.7907 & 0.4160 & \multirow{3}{*}{\textbf{0.867}} \\
                             & 2 & \textbf{0.9323} & \textbf{ 0.9234} & \textbf{0.3233}  & \\
                             & 3 & \textbf{ 0.8922} & \textbf{0.8382} & \textbf{0.3749} & \\
 \hline  
 \end{tabular}
 \end{center}
-\caption{Performance Metrics for Competition and Post Competition Model on each Test Set.}
+\caption{Performance Metrics for Competition and Post Competition Model on each Test Set. The bolded entries represent the highest score attained in a respective test set, underlining the superior performance in those instances.}
 \label{res_test}
 \end{table}
 
-Table \ref{res_test} provides an overview of the performance metrics for our selected models across multiple test sets. The Eva model performs best on Test Set 1 with a PLCC of \(0.8585\), while the Post-competition ConvNext model has the highest overall score of \(0.867\).
+Table \ref{res_test} provides an overview of the performance metrics for our selected models across multiple test sets. The Eva model performs best on Test Set 1 with a PLCC of \(0.8585\), while the Post-competition ConvNext model has the highest overall score of \(0.867\) as it performed best on Test Set 2 and 3.
 
 
 
 \subsection{Model Ensembles}
 
-In Table \ref{res_test}, the competition ensemble model consisting of Eva and ConvNext performed slightly worse than Eva alone but better than just ConvNext. This was because Eva was given a smaller weight of 0.25 in the ensemble based on its initial test performance. The difference in performance between Eva and the ensemble was marginal. In a subsequent ensemble model, detailed in Table \ref{res_ensemble}, we combined Eva and the Post-competition ConvNext with equal weights of 0.5, which led to an improved overall performance score.
+Looking at Table \ref{res_test} and \ref{res_ensemble} the competition ensemble model consisting of Eva and ConvNext performed slightly worse than Eva alone but better than just ConvNext. This was because Eva was given a smaller weight of 0.25 in the ensemble based on its initial test performance. The difference in performance between Eva and the ensemble was marginal.
+
+In a subsequent post-competition ensemble model, we combined Eva and the post-competition ConvNext with equal weights of 0.5, which led to an improved overall performance score. The weight was chosen to give both models an equal contribution in the ensemble to possibly leverage the strengths of each more fully as Eva demonstrated a substantial standalone performance on Test Set 1.
 \begin{table}[h]
 
 \smallskip
@@ -1196,14 +1233,14 @@ In Table \ref{res_test}, the competition ensemble model consisting of Eva and Co
                             & 3 & 0.8746 & 0.8318& 0.4146 & \\
                             \hline
 
-  \multirow{3}{*}{Post comp. ConvNext} & 1 & 0.8265 & 0.7907 & 0.4160 & \multirow{3}{*}{0.867} \\
-                            & 2 & \textbf{0.9323} &  \textbf{0.9234} & \textbf{0.3233}  & \\
-                            & 3 &  0.8922 & 0.8382 & \textbf{0.3749} & \\
-\hline  
+  %\multirow{3}{*}{Post comp. ConvNext} & 1 & 0.8265 & 0.7907 & 0.4160 & \multirow{3}{*}{0.867} \\
+                           % & 2 & \textbf{0.9323} &  \textbf{0.9234} & \textbf{0.3233}  & \\
+                           % & 3 &  0.8922 & 0.8382 & \textbf{0.3749} & \\
+%\hline  
 
   \multirow{3}{*}{Post comp. Ensemble} & 1 & \textbf{0.8372} & \textbf{0.8027} & \textbf{0.4037} & \multirow{3}{*}{\textbf{0.8714}} \\
-                            & 2 &  0.9307 & 0.9231 & 0.3298  & \\
-                            & 3 & \textbf{ 0.8922} & \textbf{0.8423} & 0.3782 & \\
+                            & 2 &  \textbf{0.9307} & \textbf{0.9231} & \textbf{0.3298}  & \\
+                            & 3 & \textbf{ 0.8922} & \textbf{0.8423} & \textbf{0.3782} & \\
 \hline  
 \end{tabular}
 \end{center}
@@ -1246,13 +1283,13 @@ In this section, we compare the performance of our models against those submitte
                             & 2 &  \textbf{0.9423}& \textbf{0.9214} & \\
                             & 3 & \textbf{ 0.8928} & \textbf{0.8592} & \\
                              \hline
-\multirow{3}{*}{HUST} & 1 & 0.8117 & 0.7864 &  \multirow{3}{*}{0.8611} \\
+\multirow{3}{*}{HUST} & 1 & 0.8117 & 0.7864 &  \multirow{3}{*}{0.8564} \\
                             & 2 & 0.9281 &
                             0.9215  &  \\
                             & 3 & 0.8842 & 0.8348&  \\
                             \hline
 
-  \multirow{3}{*}{Our Ensemble} & 1 & 0.8091 & 0.7633  & \multirow{3}{*}{0.854} \\
+  \multirow{3}{*}{Our Ensemble} & 1 & 0.8091 & 0.7633  & \multirow{3}{*}{0.8545} \\
                             & 2 & 0.9287 &
                             0.9197 & \\
                             & 3 & 0.8746 & 0.8318&  \\
@@ -1273,7 +1310,7 @@ In this section, we compare the performance of our models against those submitte
 \label{res_final}
 \end{table}
 
-As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the highest score of \(0.8851\) utilizing a Swin Transformer backbone along with Norm-in-Norm and KL Divergence loss. The second-place model, HUST, employed an ensemble of ConvNext and LSTM models and used a combination of MAE, rank, and PLCC losses to reach a score of \(0.8611\). Our Ensemble model follows closely behind with a score of \(0.854\). The Organizer's baseline model, constructed using SVR regression on features extracted by both Swin Transformer and ConvNeXt—both pretrained on deepfake detection—and employing MSE loss, significantly lags behind with a score of \(0.5470\).
+As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the highest score of \(0.8851\) utilizing a Swin Transformer backbone along with Norm-in-Norm and KL Divergence loss. The second-place model, HUST, employed an ensemble of ConvNext and LSTM models and used a combination of MAE, rank, and PLCC losses to reach a score of \(0.8611\). Our Ensemble model follows closely behind with a score of \(0.854\). The Organizer's baseline model, constructed using SVR regression on features extracted by both Swin Transformer and ConvNeXt—both pretrained on deepfake detection—and employing MSE loss, significantly lags behind with a score of \(0.5470\). In the summary paper of the DFGC-VRA 2023 competition documented by Peng et al. (2023)~\cite{peng_etal_2023}, the organizers undertook the task of reproducing the results of top teams. During this process, it was shown that our approach secured the second place, registering a score of 0.8501, while the team from HUST trailed slightly with a score of 0.8474, thereby taking the third place. In the competition, they used a trick of finetuning their ensemble models for each test set separately to gain a higher score which is not common practice.
 
 
 
@@ -1290,11 +1327,11 @@ As evidenced in Figure \ref{fig:badpred}, the ensemble model of Eva and frame-ba
 
 Notably, a large portion of these incorrect predictions stem from Test Set 1. This set is ID-disjoint from the training data, meaning the faces in this set were not seen during training. The absence of a reference face in Test Set 1 complicates the model's task of assessing visual realism. In Test Set 2, where reference faces are available, the model can comparatively evaluate the discrepancies between the manipulated and the original faces. This relative comparison simplifies the task and usually leads to more accurate MOS predictions.
 
-Future work could focus on developing a 'reference-aware' mechanism within the model. This would allow the model to adjust its prediction strategy depending on the availability of reference faces, potentially standardizing performance across different test sets and enhancing the model's robustness and accuracy.
-
 In contrast, Test Set 1 forces the model to make absolute judgments on visual realism without a point of comparison, making it a more challenging evaluation environment and contributing to higher inaccuracies.
 
-In contrast, Figure \ref{fig:goodpred} displays instances where the model's predictions are notably accurate. These are also sorted by MAE, but in ascending order to showcase the best predictions.
+Future work could focus on developing a 'reference-aware' mechanism within the model. This would allow the model to adjust its prediction strategy depending on the availability of reference faces, potentially standardizing performance across different test sets and enhancing the model's robustness and accuracy. As well as implementing different loss functions like Norm-in-Norm loss~\cite{norminnorm} used for fast convergence and better performance in image quality assessment, and also used by winners of the competition.
+
+Finally, Figure \ref{fig:goodpred} displays instances where the model's predictions are notably accurate. These are also sorted by MAE, but in ascending order to showcase the best predictions.
 
 \begin{figure}[!htb]
 \centering
