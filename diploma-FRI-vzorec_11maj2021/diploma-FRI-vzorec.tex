@@ -49,12 +49,12 @@ sorting=nty,
 %	DIPLOMA INFO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\ttitle}{Ocena kakovosti ponarejenih posnetkov}
-\newcommand{\ttitleEn}{Visual Realism Assessment of Deepfakes}
+\newcommand{\ttitleEn}{Visual Realism Assessment for Deepfake Videos}
 \newcommand{\tsubject}{\ttitle}
 \newcommand{\tsubjectEn}{\ttitleEn}
 \newcommand{\tauthor}{Luka Dragar}
-\newcommand{\tkeywords}{globoki ponaredek,vizualni realizem}
-\newcommand{\tkeywordsEn}{deepfake,visual realism}
+\newcommand{\tkeywords}{globoki ponaredek, vizualni realizem, globoko učenje}
+\newcommand{\tkeywordsEn}{deepfake, visual realism, deep learing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	HYPERREF SETUP
@@ -306,16 +306,15 @@ Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
 
 \bigskip
 \noindent\textbf{Opis:}\\
-Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. 
-V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. 
-Kaj so cilji, kakšne metode naj uporabi, morda bo zapisal tudi ključno literaturo.
+Diplomsko delo naj se osredotoči na problematiko umetne inteligence in DeepFake tehnologije, ki sta ključni za digitalno varnost in zasebnost. Uporabite ansambel nevronskih mrež ConvNext in Eva za kvantifikacijo vizualnega realizma DeepFake videov. Model naj bo natreniran na podmnožici podatkov iz DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja (MOS). Delo naj podrobno obravnava uporabljene modele, postopke in primerjavo z ostalimi pristopi, predvsem s tistimi na tekmovanju DFGC-VRA 2023.
+
 
 \bigskip
-\noindent\textbf{Title:} Visual Realism Assessment of Deepfakes
+\noindent\textbf{Title:} Visual Realism Assessment for Deepfake Videos
 
 \bigskip
 \noindent\textbf{Description:}\\
-opis diplome v angleščini
+The thesis should focus on the issues of artificial intelligence and DeepFake technology, which are crucial for digital security and privacy. Use an ensemble of neural networks called ConvNext and Eva for quantifying the visual realism of DeepFake videos. The model should be trained on a subset of data from the DeepFake Game Competition (DFGC) 2022, aiming to predict the Mean Opinion Score (MOS). The work should thoroughly discuss the models used, procedures, and comparisons with other approaches, particularly the ones in the DFGC-VRA 2023 competition.
 
 \vfill
 
@@ -660,7 +659,7 @@ To provide a detailed view of our adapted architecture, refer to Figure~\ref{fig
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.1\textwidth]{images/convmy.drawio.pdf}
-\caption{Modified ConvNeXt Architectures: One for Frame-Based and Another for Frame-Sequence-Based MOS Prediction}\label{fig:modified_convnext}
+\caption{Modified ConvNeXt Architectures: One for Frame-Based and Another for Frame-Sequence-Based MOS Prediction.}\label{fig:modified_convnext}
 \end{figure}
 
 
@@ -674,7 +673,7 @@ Transfer learning is a prevalent approach in machine learning where a model init
 In our work on MOS prediction, we employ the ConvNext model in two distinctive scenarios: analyzing sequences of frames (video-based) or assessing individual frames. To accommodate these different approaches, we developed two versions of the model, each handling the feature vectors in a manner suited to the analysis of either a series of frames or single frames.
 
 \paragraph{Frame-based Applications:}
-Following the conclusion of the DFGC-VRA 2023 competition, we drew inspiration from the solutions presented by the winners~\cite{peng_etal_2023} to further refine our approach. We employed a ConvNext model for frame-based MOS prediction, where the feature vectors for individual frames are used directly. These vectors are input into a separately designed custom regression head to facilitate frame-by-frame MOS assessment, simplifying the computational demands and making implementation more straightforward.
+Following the conclusion of the DFGC-VRA 2023 competition, we drew inspiration from the solutions presented by the winners~\cite{peng_etal_2023} to further refine our approach. We employed a ConvNext model for frame-based MOS prediction, where the feature vectors for individual frames are used directly as shown in the top half of Figure~\ref{fig:modified_convnext}. These vectors are input into a separately designed custom regression head to facilitate frame-by-frame MOS assessment, simplifying the computational demands and making implementation more straightforward.
 \newpage
 \paragraph{Pooling Techniques for Videos:}
 For video-based applications, we aggregate feature vectors from multiple frames using average pooling and standard deviation pooling. These techniques condense the frame features into a single video-level feature vector. The mean and standard deviation are calculated as follows:
@@ -780,7 +779,7 @@ In the final step, the first vector in the sequence \( z_L \) is extracted and u
 %jaz bi sliko \label{fig:eva}dal tukaj
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.1\textwidth]{images/eva_arhitecture_hq.png}
+\includegraphics[trim={2cm 0cm 0cm 0cm},clip,width=1.0\textwidth]{images/eva_arhitecture_hq.png}
 \caption{Vanilla ViT model overview 
 \cite{DBLP:journals/corr/abs-2010-11929}}\label{fig:eva}
 \end{figure}
@@ -804,9 +803,10 @@ In the final step, the first vector in the sequence \( z_L \) is extracted and u
 
     \item \textbf{Class Token}: The class token is a special, learnable token that is prepended to the sequence of patch embeddings. During training, it gets updated to capture global information about the entire image, serving as a universal representation that can be used for tasks like classification. 
     
-    
+    \newpage
 
     \item \textbf{Transformer Layers}: The sequence of 577 tokens serves as the input to a series of Transformer layers, each with its own set of functionalities.
+
     
 
     \item \textbf{Transformer Overview}: 
@@ -892,19 +892,19 @@ Annotations were performed by five independent human raters and were based on a 
     \label{fig:MOS_distribution}
 \end{figure}
 
-
+\newpage
 \subsection{Data Splitting and Test Set Characteristics}
 
 The 1,400 annotated videos are split into different sets for training and testing, as outlined in Figure~\ref{fig:data_splitting}. The training set comprises 700 videos, each labeled with a ground truth Mean Opinion Score (MOS). For evaluation, three test sets are utilized: Test-1 contains 300 videos and is ID-disjoint, meaning it does not share any facial identities with the training set. Test-2 consists of 280 videos and is method-disjoint, indicating that the deepfake methods used for face swapping differ from those in the training set. Test-3 is the most restrictive, containing 120 videos that are both ID and method-disjoint. Participants trained their models using the training set and evaluated their performance on these test sets. Importantly, the annotations for the test sets were not disclosed to the competition participants.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\textwidth]{images/protocol.png}
+    \includegraphics[trim={0.6cm 0cm 0.6cm 0cm},clip,width=\textwidth]{images/protocol.png}
     \caption{Competition protocol for dataset splits. Figure adapted from~\cite{peng_etal_2023}.}
     \label{fig:data_splitting}
 \end{figure}
 
-
+\newpage
 
 \section{Data Preprocessing}
 
@@ -984,22 +984,24 @@ Due to the non-deterministic nature of the training process, multiple models wer
 
     \begin{figure}[H]
     \centering
-    \includegraphics[trim={0cm 1cm 0cm 0cm},clip,width=1.1\textwidth]{images/plot.pdf}
+    \includegraphics[trim={0cm 1cm 0cm 4cm},clip,width=1.1\textwidth]{images/plot.pdf}
     \caption{Validation Loss vs Final Score.}
     \label{fig:ValidationVsFinalScore}
 \end{figure}
 
  
 \end{enumerate}
-
+\newpage
 \section{Predictions and Model Averaging}
+This section explains the methodology employed to make predictions on the DFGC-VRA dataset's three test sets.
+
 
 \begin{enumerate}
     \item \textbf{Frame-Sequence-based Competition Models:} 
 
-The final model checkpoints were utilized to make predictions on the three test sets from the DFGC-VRA dataset.
+The final model checkpoints were utilized to make predictions on the three test sets.
 
-The dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
+Here the dataloader operated in a stochastic manner, selecting sequences of 5 frames from the videos at random. To mitigate the variance introduced by this randomness, an averaging strategy was applied for each test set: predictions were generated 10 times and then the average was computed. This procedure yielded more robust predictions by accommodating the inherent randomness of the frame sequence selection process.
 
 For the combination of predictions from the two models, a weighted average approach was adopted. The final prediction was computed as 0.75 times the ConvNext prediction plus 0.25 times the Eva prediction. This weighting scheme was chosen due to the superior performance of the ConvNext model on the 140 videos from the test set during training. 
 
@@ -1038,8 +1040,6 @@ In simpler terms, the numerator of the PLCC equation calculates how each pair of
 The Spearman Rank-Order Correlation Coefficient (SRCC) focuses on the rank-order relationship between variables, essentially assessing how well the sequence of data points in one set aligns with the sequence in another. 
 
 Consider a simple example with Predicted MOS values of \(= [5.0, 2.7, 3.6]\) and Actual MOS values of \(= [4.8, 2.8, 3.5]\). To find the ranks, we order the scores in each set from the lowest to the highest, resulting in a rank assignment of \(= [3, 1, 2]\) for both the Predicted and Actual MOS values. This outcome indicates a perfect alignment in the rank ordering, illustrating a perfect Spearman correlation.
-
-
 The SRCC formula is:
 
 \[
@@ -1067,6 +1067,7 @@ Here, \(\text{plcc}_i\) and \(\text{srcc}_i\) represent the PLCC and SRCC scores
 \chapter{Results}
 \label{chap:results}
 To tackle the issue of evaluating the visual realism of deepfakes, we employed several models based on the architectures described in Chapter 3. In this chapter, we will focus on our top-performing models. We'll also discuss the results of hyperparameter tuning and investigate how visual realism assessments can vary on a frame-by-frame basis.
+
 \section{Implemented Models}
 During the competition period, we implemented two models: Eva and ConvNeXt, both based on a frame-sequence-based architecture. These models were trained following the methodology described in Chapter~\ref{training}. The best-performing models, as determined by validation loss, were further trained and selected as detailed in Chapter~\ref{model_selection}. We utilized Weights \& Biases for logging and real-time tracking of the training process. 
 
@@ -1112,9 +1113,10 @@ Retrained Best Eva & 0.80 & 0.91 & 0.86 & 0.859 \\
 
 \end{table}
 
-Table \ref{tab:retraining_gains} indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance.
+Table \ref{tab:retraining_gains} indicates that retraining the models provided a boost in performance across all test sets, effectively raising the final scores. This suggests that our 'double-run' approach was not merely a workaround for tight deadlines but actually a method that contributed to optimizing the model's performance. Specifically, the 'double-run' approach involved running the same training script twice; in each run, the training data was selected and partitioned randomly into test, train, and validation sets. This strategy was employed with the expectation that the model would encounter different, potentially unseen data in the second run, leveraging the stochastic nature of the dataloader to offer a high chance of fine-tuning the model using a broader spectrum of data.
 
 
+\newpage
 \section{Post-Competition Model Hyperparameter tunning}
 After the competition, we had the chance to use the real labels and weren't limited by daily submission caps. This helped us do a deeper dive into fine-tuning our ConvNeXt model. We switched it to a frame-based setup, which improved its performance and made it easier to understand how it was making its predictions. We tweaked different settings during this stage and will go into the details of how this improved the model later on.
 
@@ -1122,18 +1124,16 @@ After the competition, we had the chance to use the real labels and weren't limi
 Weights \& Biases (WandB) Sweeps offer a structured and automated way to perform hyperparameter tuning. Through a single config file it enables automatic testing of various parameter combinations with multiple agents running the training loop. WandB collected performance data, simplifying the selection of optimal settings. Only here for efficient preliminary testing, each model predicted the MOS of only the middle frame in each test video. This was done for speed and comparability of predictions.
 
 Various parameters were tested to optimize the frame-based ConvNeXt model, as detailed below
-\begin{itemize}
-    \item \textbf{Augment Probability}: \{0.5, 0.9\}
-    \item \textbf{Use Augmentation}: \{True, False\}
-    \item \textbf{Batch Size}: \{1, 8\}
-    \item \textbf{Drop Path Rate}: \{0, 0.1, 0.2\}
-    \item \textbf{Dropout Rate}: \{0.1, 0.5\}
-    \item \textbf{Loss Function}: \{RMSE, MAE\}
-    \item \textbf{Max Epochs}: \{16, 32, 48\}
-    \item \textbf{Random Seed}: \{-1, 1126\}
-    \item \textbf{Sequence Length}: \{8, 16, 32\}
-    \item \textbf{Weight Decay}: \{0.01, 0.1, 0.001\}
-\end{itemize}
+\
+
+\begin{tabular}{ll}
+    \textbf{Augment Probability}: \{0.5, 0.9\} & \textbf{Loss Function}: \{RMSE, MAE\} \\
+    \textbf{Use Augmentation}: \{True, False\} & \textbf{Max Epochs}: \{16, 32, 48\} \\
+    \textbf{Batch Size}: \{1, 8\} & \textbf{Random Seed}: \{-1, 1126\} \\
+    \textbf{Drop Path Rate}: \{0, 0.1, 0.2\} & \textbf{Sequence Length}: \{8, 16, 32\} \\
+    \textbf{Dropout Rate}: \{0.1, 0.5\} & \textbf{Weight Decay}: \{0.01, 0.1, 0.001\} \\
+\end{tabular}
+\
 
 In the following subsections, we will present the findings of the hyperparameter tuning process, starting with the significance of the seed parameter.
 \subsubsection{Seed Parameter}
@@ -1318,7 +1318,7 @@ As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the hig
 
 
 
-
+\newpage
 
 \section{Examples and discussion}
 In this section, we showcase examples of both accurate and inaccurate MOS (Mean Opinion Score) predictions made by our best-performing ensemble model. This model is an ensemble of Eva and the frame-based ConvNext. The figures below are arranged in grids where each cell represents a frame from the video test set, accompanied by its predicted and actual MOS values as well as its test set identifier.
@@ -1335,14 +1335,14 @@ Finally, Figure \ref{fig:goodpred} displays instances where the model's predicti
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.1\textwidth]{images/badpred3.png}
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.0\textwidth]{images/badpred3.png}
 \caption{Grid of frames showing most inaccurate MOS predictions (Pred), ground truth (Gt), and test set identifiers (Ts), sorted in descending order by MAE.}
 \label{fig:badpred}
 \end{figure}
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.1\textwidth]{images/goodpred.png}
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=1.0\textwidth]{images/goodpred.png}
 \caption{Grid of frames showing most accurate MOS predictions (Pred), ground truth (Gt), and test set identifiers (Ts), sorted in ascending order by MAE.}
 \label{fig:goodpred}
 \end{figure}
@@ -1367,11 +1367,11 @@ Overall, the success of this thesis underscores the untapped potential for furth
 \raggedright
 
 
-\printbibliography[heading=bibintoc,type=article,title={Journal articles}]
+%\printbibliography[heading=bibintoc,type=article,title={Journal articles}]
 
-\printbibliography[heading=bibintoc,type=inproceedings,title={Articles in Proceedings}]
+%\printbibliography[heading=bibintoc,type=inproceedings,title={Articles in Proceedings}]
 
-\printbibliography[heading=bibintoc,type=incollection,title={Chapters in books}]
+%\printbibliography[heading=bibintoc,type=incollection,title={Chapters in books}]
 
 % v zadnji verziji diplomskega dela običajno združiš vse tri vrste referenc v en sam seznam in
 % izpustiš delne sezname
