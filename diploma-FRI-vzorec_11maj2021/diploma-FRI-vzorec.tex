@@ -293,9 +293,31 @@ Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
 % stran 3 med uvodnimi listi
 \thispagestyle{empty}
 \
-\vfill
+
 
 \bigskip
+
+\noindent\textbf{Candidate:} Luka Dragar\\
+\noindent\textbf{Title:} Visual Realism Assessment for Deepfake Videos\\
+% vstavite ustrezen naziv študijskega programa!
+\noindent\textbf{Thesis type:} Bachelor thesis on a first-cycle university program Computer
+and Information Science \\
+% izberite pravi habilitacijski naziv mentorja!
+\noindent\textbf{Mentor:} doc. dr. Žiga Emeršič\\
+\noindent\textbf{Co-mentor:} pred. dr. Borut Batagelj
+
+
+\bigskip
+\noindent\textbf{Description:}\\
+The thesis should focus on the issues of artificial intelligence and DeepFake technology, which are crucial for digital security and privacy. Use an ensemble of neural networks called ConvNext and Eva for quantifying the visual realism of DeepFake videos. The model should be trained on a subset of data from the DeepFake Game Competition (DFGC) 2022, aiming to predict the Mean Opinion Score (MOS). The work should thoroughly discuss the models used, procedures, and comparisons with other approaches, particularly the ones in the DFGC-VRA 2023 competition.
+
+\vfill
+
+\newpage
+
+\bigskip
+
+
 \noindent\textbf{Kandidat:} Luka Dragar\\
 \noindent\textbf{Naslov:} Ocena kakovosti ponarejenih posnetkov\\
 % vstavite ustrezen naziv študijskega programa!
@@ -309,14 +331,7 @@ Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
 Diplomsko delo naj se osredotoči na problematiko umetne inteligence in tehnologije globokih ponaredkov, ki sta ključni za digitalno varnost in zasebnost. Uporabite ansambel nevronskih mrež ConvNext in Eva za kvantifikacijo vizualnega realizma globokih ponaredkov. Model naj bo natreniran na podmnožici podatkov iz DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja (MOS). Delo naj podrobno obravnava uporabljene modele, postopke in primerjavo z ostalimi pristopi, predvsem s tistimi na tekmovanju DFGC-VRA 2023.
 
 
-\bigskip
-\noindent\textbf{Title:} Visual Realism Assessment for Deepfake Videos
 
-\bigskip
-\noindent\textbf{Description:}\\
-The thesis should focus on the issues of artificial intelligence and DeepFake technology, which are crucial for digital security and privacy. Use an ensemble of neural networks called ConvNext and Eva for quantifying the visual realism of DeepFake videos. The model should be trained on a subset of data from the DeepFake Game Competition (DFGC) 2022, aiming to predict the Mean Opinion Score (MOS). The work should thoroughly discuss the models used, procedures, and comparisons with other approaches, particularly the ones in the DFGC-VRA 2023 competition.
-
-\vfill
 
 
 
@@ -336,8 +351,8 @@ I am grateful to my mentor, doc. dr. Žiga Emeršič, and co-mentor, pred. dr. B
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % posvetilo, če sama zahvala ne zadošča :-)
-\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
-``To, kar znaš ti nihče ne more vzeti'' -- Ata Ivan
+\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.50\textwidth}%
+``To, kar znaš ti nihče ne more vzeti.'' -- Ata Ivan
 
 \normalfont\end{minipage}
 
@@ -418,7 +433,7 @@ Tekmovanje na temo globokih ponaredkov \\
 \bigskip
 
 %\noindent\textbf{Povzetek:} 
-\noindent V diplomski nalogi obravnavamo problematiko umetne inteligence in tehno\-logijo globokih ponaredkov (angl. DeepFake), ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma globoko ponarejenih videposnetkov, kar je ključnega pomena za njihov vpliv. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma globokih ponaredkov z uporabo ansambla dveh naprednih globokih nevronskih mrež imenovanih ConvNext in Eva. Modela smo natrenirali na podmnožici podatkovne množice DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja (MOS) ponarejenaga videoposnetka. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov s sotekmovalci.
+\noindent V diplomski nalogi obravnavamo problematiko umetne inteligence in tehno\-logijo globokih ponaredkov (angl. DeepFake), ki sta v dobi hitre digitalizacije ključni za varnost in zasebnost. Osredotočili smo se na ocenjevanje kakovosti in vizualnega realizma globoko ponarejenih videposnetkov, kar je ključnega pomena za njihov vpliv. Predstavljamo učinkovit pristop za kvantifikacijo vizualnega realizma globokih ponaredkov z uporabo ansambla dveh naprednih globokih nevronskih mrež imenovanih ConvNext in Eva. Modela smo natrenirali na podmnožici podatkovne množice DeepFake Game Competition (DFGC) 2022, s ciljem napovedati povprečno oceno mnenja (MOS) ponarejenega videoposnetka. Rezultati našega dela so se izkazali za uspešne, saj je naš pristop na tekmovanju DFGC-VRA 2023 zasedel tretje mesto. V diplomski nalogi so podrobno predstavljeni uporabljeni modeli, postopki predhodne obdelave podatkov in treniranja modelov, ter primerjava naših rezultatov s sotekmovalci.
 
 \bigskip
 
@@ -750,7 +765,7 @@ RMSE and MAE differ mainly in handling outliers. RMSE, which squares errors befo
 \label{sec:eva}
 
 In parallel to ConvNext, we also utilize the Eva model, a novel approach to visual representation learning that pushes the boundaries of large-scale masked image modeling (MIM) using publicly accessible data. Eva, a Vision Transformer (ViT), is pre-trained to reconstruct masked-out image-text aligned vision features conditioned on visible image patches. This unique pretraining task allows Eva to scale efficiently up to one billion parameters, setting new records across a wide range of downstream visual tasks. Specifically, in this work, we used the pre-trained \texttt{eva\_large\_patch14\_336.in22k\_ft\_in22k\_in1k} 
-version from timm library\footnote{\label{timm}\url{https://github.com/rwightman/pytorch-image-models/tree/main/results}}
+version from timm library\footnote{\label{timm2}\url{https://github.com/rwightman/pytorch-image-models/tree/main/results}}.
 
 
 
@@ -1310,7 +1325,7 @@ In this section, we compare the performance of our models against those submitte
 \label{res_final}
 \end{table}
 
-As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the highest score of \(0.8851\) utilizing a Swin Transformer backbone along with Norm-in-Norm and KL Divergence loss. The second-place model, HUST, employed an ensemble of ConvNext and LSTM models and used a combination of MAE, rank, and PLCC losses to reach a score of \(0.8611\). Our Ensemble model follows closely behind with a score of \(0.854\). The Organizer's baseline model, constructed using SVR regression on features extracted by both Swin Transformer and ConvNeXt—both pretrained on deepfake detection—and employing MSE loss, significantly lags behind with a score of \(0.5470\). In the summary paper of the DFGC-VRA 2023 competition documented by Peng et al. (2023)~\cite{peng_etal_2023}, the organizers undertook the task of reproducing the results of top teams. During this process, it was shown that our approach had better reproducability with a score of 0.8501, while the team from HUST  performed worse with a reproducable score of 0.8474, thereby taking the "third place". In the competition, they used a trick of finetuning their ensemble models for each test set separately to gain a higher score which is not common practice.
+As seen in Table \ref{res_final}, the first-place model, OPDAI, achieved the highest score of \(0.8851\) utilizing a Swin Transformer backbone along with Norm-in-Norm and KL Divergence loss. The second-place model, HUST, employed an ensemble of ConvNext and LSTM models and used a combination of MAE, rank, and PLCC losses to reach a score of \(0.8611\). Our Ensemble model follows closely behind with a score of \(0.854\). The Organizer's baseline model, constructed using SVR regression on features extracted by both Swin Transformer and ConvNeXt—both pretrained on deepfake detection—and employing MSE loss, significantly lags behind with a score of \(0.5470\). In the summary paper of the DFGC-VRA 2023 competition documented by Peng et al. (2023)~\cite{peng_etal_2023}, the organizers undertook the task of reproducing the results of top teams. During this process, it was shown that our approach had better reproducability with a score of 0.8501, while the team from HUST  performed worse with a reproducable score of 0.8474. In the competition, they used a trick of finetuning their ensemble models for each test set separately to gain a higher score which is not common practice.
 
 
 
